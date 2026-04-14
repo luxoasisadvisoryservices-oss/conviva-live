@@ -23,7 +23,7 @@ const scenarios = [
   },
   {
     tag: "Check-in",
-    time: "3:30 PM",
+    time: "12:30 PM",
     guest: "We're heading to the apartment now. Is early check-in possible? We arrive at 1pm.",
     reply: "I'll check with the team on availability for early check-in at 1pm — I'll get back to you shortly with confirmation.",
     outcome: "Escalated to team",
