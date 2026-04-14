@@ -73,7 +73,7 @@ const scenarios = [
     tag: "Complaint",
     time: "3:45 PM",
     guest: "We just checked in and the apartment is not clean. There is dust everywhere and the bathroom looks like it was not touched. This is really disappointing.",
-    reply: "I am so sorry — this is absolutely not the standard we hold ourselves to and I can imagine how frustrating this is after your journey. I am getting our cleaning team on this right now and someone will be with you in the next few minutes to sort it out.",
+    reply: "I am so sorry — this is absolutely not the standard we hold ourselves to and I completely understand your frustration. I am getting our cleaning team on this right now and someone will be with you in the next few minutes to sort it out.",
     outcome: "Escalated to team",
     color: "orange",
   },
