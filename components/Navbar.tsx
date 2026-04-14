@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 
 const links = [
   { label: "How it works", href: "#how-it-works" },
@@ -11,6 +10,18 @@ const links = [
   { label: "Use cases", href: "#use-cases" },
   { label: "FAQ", href: "#faq" },
 ];
+
+function Logo() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="#2A7A6B"/>
+      <path d="M6 11C6 9.343 7.343 8 9 8h14c1.657 0 3 1.343 3 3v7c0 1.657-1.343 3-3 3h-3l-4 4-4-4H9c-1.657 0-3-1.343-3-3v-7z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="1.2"/>
+      <circle cx="16" cy="14.5" r="2" fill="white"/>
+      <line x1="11" y1="14.5" x2="13.5" y2="14.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="18.5" y1="14.5" x2="21" y2="14.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,13 +40,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <a href="#" className="flex items-center gap-2.5">
-          <Image
-            src="/logo.png"
-            alt="Conviva.live"
-            width={32}
-            height={32}
-            className="rounded-lg"
-          />
+          <Logo />
           <span className="text-[17px] font-semibold text-[#1E2D3D] tracking-tight">Conviva.live</span>
         </a>
 
