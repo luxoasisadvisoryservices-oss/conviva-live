@@ -8,50 +8,74 @@ const scenarios = [
   {
     tag: "Access",
     time: "11:47 PM",
-    guest: "Hi, we can't get into the building. There's a keypad but we don't know the code?",
-    reply: "Welcome! Enter 4821# at the lobby keypad. Take lift to floor 12, then apartment 1204 — door code 7736. Parking is B2 bay 47. Let me know if anything else!",
+    guest: "Hi, we just arrived but we can't get into the building. There's a keypad but we don't know the code?",
+    reply: "Welcome! Enter 4821# at the lobby keypad. Take the lift to floor 12, then apartment 1204 — door code 7736. Here is your parking location: 📍 https://maps.app.goo.gl/example — Bay B2-47. Let me know if anything else!",
+    outcome: "Resolved by AI",
+    color: "teal",
+  },
+  {
+    tag: "Voice message",
+    time: "9:12 AM",
+    guest: "🎤 Voice message — guest asking how to operate the washing machine",
+    reply: "No problem! Here is a quick guide for the washing machine: 👉 https://youtube.com/example — Press Power, select your cycle with the left dial, then Start/Pause. Daily 40° works for most loads. Let me know if you need anything else!",
     outcome: "Resolved by AI",
     color: "teal",
   },
   {
     tag: "Maintenance",
     time: "2:13 PM",
-    guest: "The AC has been making a loud noise since this morning and it's getting hot in here.",
-    reply: "I'm sorry to hear that — I'm flagging this to the team right now so someone can look into it urgently.",
+    guest: "The AC has been making a loud noise since this morning and it's getting really hot.",
+    reply: "I am sorry to hear that — I am flagging this to the team right now so someone can look into it urgently.",
     outcome: "Escalated to team",
     color: "orange",
-  },
-  {
-    tag: "Check-in",
-    time: "12:30 PM",
-    guest: "We're heading to the apartment now. Is early check-in possible? We arrive at 1pm.",
-    reply: "I'll check with the team on availability for early check-in at 1pm — I'll get back to you shortly with confirmation.",
-    outcome: "Escalated to team",
-    color: "orange",
-  },
-  {
-    tag: "Appliance",
-    time: "9:05 AM",
-    guest: "How do you turn on the washing machine? The buttons are confusing.",
-    reply: "For the washing machine: press Power first, then select your cycle using the dial on the left (Daily 40° works for most loads). Press Start/Pause to begin. Let me know if you need anything else!",
-    outcome: "Resolved by AI",
-    color: "teal",
   },
   {
     tag: "Directions",
     time: "6:45 PM",
-    guest: "How do we get to the nearest supermarket from the apartment?",
-    reply: "The closest option is Carrefour Market — a 5-minute walk. Exit the building, turn right on JBR Walk, and it's on the left past the fountain. Spinneys is also nearby, about 10 minutes on foot.",
+    guest: "How do we get to the nearest supermarket? And is there parking there?",
+    reply: "The closest is Carrefour Market — 5 minutes walk. Here is the exact location: 📍 https://maps.app.goo.gl/example. There is parking directly underneath the building. Spinneys is also nearby if you prefer.",
+    outcome: "Resolved by AI",
+    color: "teal",
+  },
+  {
+    tag: "Local situation",
+    time: "8:30 AM",
+    guest: "We wanted to go to the beach today — is everything normal around JBR?",
+    reply: "Yes, JBR Beach is open and operating normally today. The Walk is also open. Weather looks good — around 32°C. Enjoy your day!",
+    outcome: "Resolved by AI",
+    color: "teal",
+  },
+  {
+    tag: "Check-in",
+    time: "12:45 PM",
+    guest: "We are heading to the apartment now. Is early check-in possible? We arrive at 1pm.",
+    reply: "I will check with the team on availability for early check-in at 1pm and get back to you shortly with confirmation.",
+    outcome: "Escalated to team",
+    color: "orange",
+  },
+  {
+    tag: "How-to",
+    time: "7:20 PM",
+    guest: "The TV is showing a black screen — we cannot figure out how to switch the input.",
+    reply: "Here is a short video guide for the TV setup in your apartment: 👉 https://youtube.com/example — Press the Input button on the remote and select HDMI 1. Should fix it straight away!",
     outcome: "Resolved by AI",
     color: "teal",
   },
   {
     tag: "Late night",
     time: "1:22 AM",
-    guest: "Sorry to message so late — forgot to ask, what's the WiFi password?",
+    guest: "Sorry to message so late — forgot to ask, what is the WiFi password?",
     reply: "No problem at all! WiFi network: LuxOasis_M3 · Password: Guest2024#. Enjoy your evening!",
     outcome: "Resolved by AI",
     color: "teal",
+  },
+  {
+    tag: "Complaint",
+    time: "3:45 PM",
+    guest: "We just checked in and the apartment is not clean. There is dust everywhere and the bathroom looks like it was not touched. This is really disappointing.",
+    reply: "I am truly sorry — this is absolutely not the standard we hold ourselves to and I completely understand your frustration. I am escalating this to our team right now as urgent. Someone will be in touch within minutes to make this right.",
+    outcome: "Escalated to team",
+    color: "orange",
   },
 ];
 
@@ -72,13 +96,12 @@ export default function UseCases() {
             Real scenarios
           </span>
           <h2 className="font-display text-4xl lg:text-5xl text-[#1E2D3D] tracking-tight mb-5 max-w-2xl">
-            What Conviva handles
+            What Conviva.live handles
             <br />
             <span className="italic">every single day.</span>
           </h2>
-          <p className="text-lg text-[#3D5166] max-w-xl">
-            These are real guest moments — the ones that happen across your
-            portfolio, at all hours, every day.
+          <p className="text-lg text-[#3D5166] max-w-2xl">
+            Voice messages, how-to video links, Google Maps directions, live local awareness — and the judgement to know when a real person should step in.
           </p>
         </motion.div>
 
@@ -88,24 +111,20 @@ export default function UseCases() {
               key={s.tag + i}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
               className="bg-white rounded-2xl border border-[#E5E5E0] p-5 flex flex-col"
             >
-              {/* Header */}
               <div className="flex items-center justify-between mb-4">
-                <span
-                  className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-                    s.color === "teal"
-                      ? "bg-teal-50 text-teal-700 border border-teal-100"
-                      : "bg-orange-50 text-orange-700 border border-orange-100"
-                  }`}
-                >
+                <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                  s.color === "teal"
+                    ? "bg-teal-50 text-teal-700 border border-teal-100"
+                    : "bg-orange-50 text-orange-700 border border-orange-100"
+                }`}>
                   {s.tag}
                 </span>
                 <span className="text-xs text-[#7A8899]">{s.time}</span>
               </div>
 
-              {/* Guest message */}
               <div className="bg-[#F4F4F1] rounded-xl rounded-tl-sm p-3 mb-3">
                 <p className="text-xs text-[#3D5166] leading-relaxed">
                   <span className="font-medium text-[#7A8899]">Guest: </span>
@@ -113,25 +132,19 @@ export default function UseCases() {
                 </p>
               </div>
 
-              {/* AI reply */}
-              <div
-                className={`rounded-xl rounded-bl-sm p-3 mb-4 flex-1 ${
-                  s.color === "teal" ? "bg-teal-50" : "bg-orange-50"
-                }`}
-              >
+              <div className={`rounded-xl rounded-bl-sm p-3 mb-4 flex-1 ${
+                s.color === "teal" ? "bg-teal-50" : "bg-orange-50"
+              }`}>
                 <p className="text-xs leading-relaxed text-[#1E2D3D]">
-                  <span className="font-medium text-[#7A8899]">Conviva: </span>
+                  <span className="font-medium text-[#7A8899]">Conviva.live: </span>
                   {s.reply}
                 </p>
               </div>
 
-              {/* Outcome */}
               <div className="flex items-center gap-2">
-                <div
-                  className={`w-2 h-2 rounded-full ${
-                    s.color === "teal" ? "bg-teal-500" : "bg-orange-500"
-                  }`}
-                />
+                <div className={`w-2 h-2 rounded-full ${
+                  s.color === "teal" ? "bg-teal-500" : "bg-orange-500"
+                }`} />
                 <span className="text-xs text-[#7A8899]">{s.outcome}</span>
               </div>
             </motion.div>
