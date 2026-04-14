@@ -23,17 +23,17 @@ const pains = [
   {
     icon: "📦",
     title: "Knowledge is fragmented",
-    body: "Each unit has its own quirks — access flows, recurring issues, special instructions. That knowledge lives in people's heads, not in your system.",
+    body: "Each unit has its own quirks — access flows, recurring issues, special instructions. As you grow, that knowledge becomes impossible to keep consistent across your whole team.",
   },
   {
     icon: "📈",
     title: "Volume grows, quality drops",
-    body: "As you add more units, communication becomes harder to manage well. Scaling operations without scaling stress feels impossible.",
+    body: "The more units you manage, the harder it is to maintain the same standard. What worked for 5 properties starts breaking at 20.",
   },
   {
     icon: "🤝",
     title: "Sensitive situations need a real person",
-    body: "Complaints, maintenance issues, frustrated guests. These moments need genuine human care — not an auto-reply that misses the tone.",
+    body: "Some moments require genuine empathy — the kind that builds trust and turns a difficult experience into a loyal guest. Conviva knows when to step back and let your team take over.",
   },
 ];
 
@@ -59,8 +59,7 @@ export default function Problem() {
             <span className="italic">managing communication constantly.</span>
           </h2>
           <p className="text-lg text-[#3D5166] max-w-xl mx-auto">
-            And most of it is repetitive, predictable, and time-consuming — even
-            when you have good people in place.
+            Whether you manage 5 units or 50, the communication pressure is the same — and most of it is repetitive, predictable, and time-consuming.
           </p>
         </motion.div>
 
