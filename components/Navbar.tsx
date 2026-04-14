@@ -22,92 +22,46 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0] shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0] shadow-sm" : "bg-transparent"
+    }`}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <a href="#" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7.75a4.5 4.5 0 01-3.75-2.016c.019-1.244 2.5-1.928 3.75-1.928 1.244 0 3.731.684 3.75 1.928A4.5 4.5 0 018 12.25z"
-                fill="white"
-              />
+              <path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7.75a4.5 4.5 0 01-3.75-2.016c.019-1.244 2.5-1.928 3.75-1.928 1.244 0 3.731.684 3.75 1.928A4.5 4.5 0 018 12.25z" fill="white"/>
             </svg>
           </div>
-          <span className="text-[17px] font-semibold text-[#1E2D3D] tracking-tight">
-            Conviva
-          </span>
+          <span className="text-[17px] font-semibold text-[#1E2D3D] tracking-tight">Conviva.live</span>
         </a>
 
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-[#3D5166] hover:text-[#1E2D3D] transition-colors font-normal"
-            >
+            <a key={l.href} href={l.href} className="text-sm text-[#3D5166] hover:text-[#1E2D3D] transition-colors">
               {l.label}
             </a>
           ))}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#contact"
-            className="text-sm text-[#3D5166] hover:text-[#1E2D3D] transition-colors"
-          >
-            Contact
-          </a>
-          <a
-            href="#contact"
-            className="text-sm font-medium bg-teal-600 hover:bg-teal-800 text-white px-5 py-2.5 rounded-lg transition-all duration-200 hover:-translate-y-px"
-          >
+        <div className="hidden md:flex items-center">
+          <a href="#contact" className="text-sm font-medium bg-teal-600 hover:bg-teal-800 text-white px-5 py-2.5 rounded-lg transition-all duration-200 hover:-translate-y-px">
             Book a demo
           </a>
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2 text-[#3D5166]"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
+        <button className="md:hidden p-2 text-[#3D5166]" onClick={() => setOpen(!open)}>
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="md:hidden bg-[#FAFAF8] border-b border-[#E5E5E0] px-6 py-4 flex flex-col gap-4"
-          >
+          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+            className="md:hidden bg-[#FAFAF8] border-b border-[#E5E5E0] px-6 py-4 flex flex-col gap-4">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-sm text-[#3D5166]"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </a>
+              <a key={l.href} href={l.href} className="text-sm text-[#3D5166]" onClick={() => setOpen(false)}>{l.label}</a>
             ))}
-            <a
-              href="#contact"
-              className="text-sm font-medium bg-teal-600 text-white px-5 py-2.5 rounded-lg text-center"
-              onClick={() => setOpen(false)}
-            >
+            <a href="#contact" className="text-sm font-medium bg-teal-600 text-white px-5 py-2.5 rounded-lg text-center" onClick={() => setOpen(false)}>
               Book a demo
             </a>
           </motion.div>
