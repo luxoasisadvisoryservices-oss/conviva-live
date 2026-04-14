@@ -60,7 +60,7 @@ export default function Footer() {
             </p>
             <div className="space-y-2.5">
               <a
-                href="mailto:hello@conviva.live"
+                href="mailto:info@luxoasisadvisory.com"
                 className="block text-sm text-[#3D5166] hover:text-teal-600 transition-colors"
               >
                 hello@conviva.live
