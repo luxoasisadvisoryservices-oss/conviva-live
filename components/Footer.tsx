@@ -55,7 +55,13 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-[#E5E5E0] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[#7A8899]">© {year} Conviva.live. All rights reserved.</p>
+          <div>
+            <p className="text-xs text-[#7A8899]">© {year} Conviva.live. All rights reserved.</p>
+            <div className="flex gap-4 mt-2">
+              <a href="/privacy" className="text-xs text-[#7A8899] hover:text-teal-600 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="text-xs text-[#7A8899] hover:text-teal-600 transition-colors">Terms of Service</a>
+            </div>
+          </div>
           <div className="text-right">
             <p className="text-xs text-[#7A8899]">
               Conviva.live is a product of <span className="text-[#3D5166] font-medium">Lux Oasis Advisory &amp; Services LLC</span>
