@@ -38,7 +38,7 @@ export default function Hero() {
               </a>
             </motion.div>
             <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-6 text-sm text-[#3D5166]">
-              {["WhatsApp native", "Unit-specific AI", "Voice messages", "Human handover"].map((item) => (
+              {["WhatsApp native", "Knows your guests", "Voice messages", "Human handover"].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2.5 7l3 3 6-6" stroke="#2A7A6B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -58,10 +58,10 @@ export default function Hero() {
             <div className="relative">
               <div className="bg-white rounded-2xl border border-[#E5E5E0] shadow-xl overflow-hidden">
                 <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center text-white text-sm font-semibold">AP</div>
+                  <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center text-white text-sm font-semibold">SL</div>
                   <div>
-                    <p className="text-white text-sm font-medium">Apartment 204 — Guest Support</p>
-                    <p className="text-[#a8e0c8] text-xs">Powered by Conviva.live</p>
+                    <p className="text-white text-sm font-medium">Sarah L.</p>
+                    <p className="text-[#a8e0c8] text-xs">Checking in today · Apt 204 · Powered by Conviva.live</p>
                   </div>
                   <div className="ml-auto flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full bg-[#25D366]" />
@@ -83,10 +83,10 @@ export default function Hero() {
                   >
                     <div className="bg-white rounded-tr-xl rounded-tl-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[85%] shadow-sm">
                       <p className="text-[#1E2D3D] text-sm leading-relaxed">
-                        This sometimes happens on first use! The AC in your unit needs a full reset after check-in.<br /><br />
-                        Press and hold <strong>MODE</strong> for 5 seconds until it beeps, then set to <strong>COOL 20</strong>. It should start cooling within 2 minutes.<br /><br />
+                        Hi Sarah! This sometimes happens on first use — no worries.<br /><br />
+                        The AC in Apt 204 needs a quick reset after check-in. Press and hold <strong>MODE</strong> for 5 seconds until it beeps, then set to <strong>COOL 20</strong>. It should start cooling within 2 minutes.<br /><br />
                         Here is a quick guide: <span className="text-[#0066cc]">conviva.live/ac-guide</span><br /><br />
-                        If it still does not cool in 10 mins let me know and I will get the maintenance team on it right away.
+                        If it still does not cool, let me know and I will get someone over right away.
                       </p>
                       <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM</p>
                     </div>
@@ -98,7 +98,7 @@ export default function Hero() {
                     className="flex justify-end"
                   >
                     <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[70%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">It worked! Thank you so much</p>
+                      <p className="text-[#1E2D3D] text-sm">It worked! Thank you so much 🙏</p>
                       <p className="text-[#7A8899] text-xs mt-1 text-right">2:16 PM</p>
                     </div>
                   </motion.div>
@@ -128,8 +128,8 @@ export default function Hero() {
                 transition={{ delay: 1.5, duration: 0.5 }}
                 className="absolute -top-4 -right-4 bg-teal-600 rounded-xl shadow-lg p-3"
               >
-                <p className="text-white text-xs font-medium">Apartment 204</p>
-                <p className="text-teal-100 text-xs">Unit knowledge active</p>
+                <p className="text-white text-xs font-medium">Sarah L. · Apt 204</p>
+                <p className="text-teal-100 text-xs">Guest profile loaded</p>
               </motion.div>
             </div>
           </motion.div>
