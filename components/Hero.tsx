@@ -34,16 +34,13 @@ export default function Hero() {
               {...fadeUp(0.3)}
               className="text-lg text-[#3D5166] leading-relaxed mb-8 max-w-lg"
             >
-              Conviva gives every holiday home its own AI layer. Guests message
+              Conviva.live gives every holiday home its own AI layer. Guests message
               on WhatsApp as normal. Your team stays in control through
               Chatwoot. Precise answers, 24/7 — without losing the human touch.
             </motion.p>
 
-            <motion.div
-              {...fadeUp(0.4)}
-              className="flex flex-wrap gap-3 mb-12"
-            >
-              <a
+            <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-3 mb-12">
+              
                 href="#contact"
                 className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-px text-sm"
               >
@@ -52,7 +49,7 @@ export default function Hero() {
                   <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </a>
-              <a
+              
                 href="#how-it-works"
                 className="inline-flex items-center gap-2 text-[#1E2D3D] border border-[#E5E5E0] hover:border-[#C0C0B8] font-medium px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-px text-sm"
               >
@@ -60,17 +57,8 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Trust signals */}
-            <motion.div
-              {...fadeUp(0.5)}
-              className="flex flex-wrap gap-6 text-sm text-[#3D5166]"
-            >
-              {[
-                "WhatsApp native",
-                "Chatwoot control room",
-                "Unit-specific AI",
-                "Human handover",
-              ].map((item) => (
+            <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-6 text-sm text-[#3D5166]">
+              {["WhatsApp native", "Unit-specific AI", "Voice messages", "Human handover"].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2.5 7l3 3 6-6" stroke="#2A7A6B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -89,16 +77,15 @@ export default function Hero() {
             className="relative"
           >
             <div className="relative">
-              {/* WhatsApp chat mock */}
               <div className="bg-white rounded-2xl border border-[#E5E5E0] shadow-xl overflow-hidden">
                 {/* Chat header */}
                 <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center text-white text-sm font-semibold">
-                    M3
+                    AP
                   </div>
                   <div>
-                    <p className="text-white text-sm font-medium">Murjan 3 — Guest Support</p>
-                    <p className="text-[#a8e0c8] text-xs">Powered by Conviva</p>
+                    <p className="text-white text-sm font-medium">Apartment 204 — Guest Support</p>
+                    <p className="text-[#a8e0c8] text-xs">Powered by Conviva.live</p>
                   </div>
                   <div className="ml-auto flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full bg-[#25D366]" />
@@ -107,12 +94,13 @@ export default function Hero() {
                 </div>
 
                 {/* Chat body */}
-                <div className="bg-[#ECE5DD] p-4 space-y-3 min-h-[280px]">
+                <div className="bg-[#ECE5DD] p-4 space-y-3 min-h-[320px]">
+
                   {/* Guest message */}
                   <div className="flex justify-end">
-                    <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[75%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">Hi! We just arrived but can't figure out how to get into the building. There's a keypad but we don't know the code?</p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">11:42 PM ✓✓</p>
+                    <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[80%] shadow-sm">
+                      <p className="text-[#1E2D3D] text-sm">The AC has been running for 30 mins but it's still not cooling. It's really hot in here.</p>
+                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM ✓✓</p>
                     </div>
                   </div>
 
@@ -123,13 +111,14 @@ export default function Hero() {
                     transition={{ delay: 1.2, duration: 0.5 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-white rounded-tr-xl rounded-tl-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[80%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">
-                        Hi! Welcome to Murjan 3 🙏<br /><br />
-                        For building entry, use keypad code <strong>4821#</strong> at the main lobby door. Take the elevator to floor 12, then apartment 1204 — your door code is <strong>7736</strong>.<br /><br />
-                        Parking is B2, bay 47. Let me know if you need anything else!
+                    <div className="bg-white rounded-tr-xl rounded-tl-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[85%] shadow-sm">
+                      <p className="text-[#1E2D3D] text-sm leading-relaxed">
+                        This sometimes happens on first use! The AC in your unit needs a full reset after check-in.<br /><br />
+                        Press and hold <strong>MODE</strong> for 5 seconds until it beeps, then set to <strong>COOL 20°</strong>. It should start cooling within 2 minutes.<br /><br />
+                        Here is a quick guide: 👉 <span className="text-[#0066cc]">conviva.live/ac-guide</span><br /><br />
+                        If it still does not cool in 10 mins, let me know and I will get the maintenance team on it right away.
                       </p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">11:42 PM ✓✓</p>
+                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM ✓✓</p>
                     </div>
                   </motion.div>
 
@@ -140,15 +129,16 @@ export default function Hero() {
                     transition={{ delay: 1.8, duration: 0.5 }}
                     className="flex justify-end"
                   >
-                    <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[60%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">Perfect, thank you so much! 🙌</p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">11:43 PM ✓✓</p>
+                    <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[70%] shadow-sm">
+                      <p className="text-[#1E2D3D] text-sm">It worked! Thank you so much 🙏</p>
+                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:16 PM ✓✓</p>
                     </div>
                   </motion.div>
+
                 </div>
               </div>
 
-              {/* Chatwoot badge floating */}
+              {/* Chatwoot badge */}
               <motion.div
                 initial={{ opacity: 0, y: 12, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -163,7 +153,7 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-xs font-medium text-[#1E2D3D]">Chatwoot — operator view</p>
-                  <p className="text-xs text-[#3D5166]">AI replied · 0s response time</p>
+                  <p className="text-xs text-[#3D5166]">AI replied · 0s · No escalation needed</p>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
               </motion.div>
@@ -175,7 +165,7 @@ export default function Hero() {
                 transition={{ delay: 1.5, duration: 0.5 }}
                 className="absolute -top-4 -right-4 bg-teal-600 rounded-xl shadow-lg p-3"
               >
-                <p className="text-white text-xs font-medium">Murjan 3</p>
+                <p className="text-white text-xs font-medium">Apartment 204</p>
                 <p className="text-teal-100 text-xs">Unit knowledge active</p>
               </motion.div>
             </div>
