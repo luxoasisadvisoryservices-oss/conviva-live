@@ -10,6 +10,11 @@ const fadeUp = (delay: number = 0) => ({
 export default function Hero() {
   return (
     <section className="pt-32 pb-24 px-6 overflow-hidden">
+      <div className="max-w-6xl mx-auto mb-4 flex justify-center">
+        <span className="inline-flex items-center gap-2 text-xs text-[#3D5166] bg-[#F4F4F1] border border-[#E5E5E0] px-4 py-1.5 rounded-full">
+          🏠 Built by operators, for operators.
+        </span>
+      </div>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
