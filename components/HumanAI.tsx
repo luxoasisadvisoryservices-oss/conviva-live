@@ -23,17 +23,15 @@ export default function HumanAI() {
           <h2 className="font-display text-4xl lg:text-5xl text-[#1E2D3D] tracking-tight mb-5">
             This is not a chatbot.
             <br />
-            <span className="italic text-teal-600">It&apos;s an extension of your team.</span>
+            <span className="italic text-teal-600">It is an extension of your team.</span>
           </h2>
           <p className="text-lg text-[#3D5166] max-w-2xl mx-auto leading-relaxed">
-            Hospitality is built on human care. Conviva exists to protect that —
-            not replace it. The AI handles the repetitive. Your team handles
-            what matters most.
+            Hospitality is built on human care. Conviva.live exists to protect that — not replace it. The AI handles the complex and repetitive. Your team steps in where genuine human care matters most.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* AI handles */}
+          {/* Conviva handles */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -46,19 +44,22 @@ export default function HumanAI() {
                 <path d="M6 9l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <h3 className="font-semibold text-[#1E2D3D] text-lg mb-4">Conviva handles</h3>
+            <h3 className="font-semibold text-[#1E2D3D] text-lg mb-4">Conviva.live handles</h3>
             <ul className="space-y-2.5">
               {[
-                "Access and check-in questions",
-                "Parking and directions",
-                "WiFi and appliance guidance",
-                "Arrival instructions",
-                "Routine FAQ replies",
-                "Late-night messages",
-                "Repeated daily queries",
+                "Building access, codes and arrival flow",
+                "Unit-specific appliance quirks and resets",
+                "Parking, directions and Google Maps links",
+                "WiFi, TV, and how-to video guides",
+                "Voice messages — read and replied to",
+                "Late-night and out-of-hours queries",
+                "Recurring known issues for each unit",
+                "Local area questions and current conditions",
+                "Pre-arrival and check-in instructions",
+                "Escalation to the right person when needed",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm text-[#1E2D3D]">
-                  <div className="w-1.5 h-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                <li key={item} className="flex items-start gap-2.5 text-sm text-[#1E2D3D]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-teal-600 flex-shrink-0 mt-1.5" />
                   {item}
                 </li>
               ))}
@@ -78,23 +79,28 @@ export default function HumanAI() {
                 <path d="M3 15c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
             </div>
-            <h3 className="font-semibold text-[#1E2D3D] text-lg mb-4">Your team handles</h3>
+            <h3 className="font-semibold text-[#1E2D3D] text-lg mb-4">Your team steps in for</h3>
             <ul className="space-y-2.5">
               {[
-                "Maintenance issues and follow-ups",
-                "Complaints and refund requests",
-                "Frustrated or upset guests",
-                "Sensitive or complex situations",
-                "Decisions requiring judgement",
-                "Compensation discussions",
-                "Anything that needs real care",
+                "Complaints that need a real apology",
+                "Maintenance visits and urgent follow-ups",
+                "Refund or compensation decisions",
+                "Guests who are frustrated or upset",
+                "Situations requiring genuine empathy",
+                "Anything outside normal operational logic",
+                "Final decisions that need human judgement",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm text-[#1E2D3D]">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#1E2D3D] flex-shrink-0" />
+                <li key={item} className="flex items-start gap-2.5 text-sm text-[#1E2D3D]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#1E2D3D] flex-shrink-0 mt-1.5" />
                   {item}
                 </li>
               ))}
             </ul>
+            <div className="mt-6 pt-5 border-t border-[#E5E5E0]">
+              <p className="text-xs text-[#7A8899] leading-relaxed">
+                Conviva.live is designed to escalate early and cleanly — so your team always has the context they need before they step in.
+              </p>
+            </div>
           </motion.div>
         </div>
 
@@ -106,8 +112,7 @@ export default function HumanAI() {
           className="bg-[#F4F4F1] rounded-2xl p-8 text-center border border-[#E5E5E0]"
         >
           <p className="font-display text-2xl lg:text-3xl text-[#1E2D3D] italic leading-snug max-w-2xl mx-auto">
-            "Escalation is not a weakness. It&apos;s built in by design — because
-            the right person at the right moment is what hospitality is about."
+            "Escalation is not a weakness. It is built in by design — because the right person at the right moment is what hospitality is about."
           </p>
         </motion.div>
       </div>
