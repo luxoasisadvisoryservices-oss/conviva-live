@@ -114,7 +114,7 @@ export default function HumanAI() {
           <p className="text-lg text-[#8FADC4] max-w-xl mx-auto leading-relaxed mb-8">
             Whether you manage 5 units or 500 — too much time gets lost on communication that should not need a person. Conviva.live handles the volume, so your team can focus on what actually needs them. And when something does — a real issue, a frustrated guest, a decision that needs judgement — they will know immediately and step in with one tap.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-[#8FADC4]">
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-[#8FADC4] mb-10">
             {[
               "No more late-night monitoring",
               "Instant escalation alerts",
@@ -126,9 +126,9 @@ export default function HumanAI() {
               </div>
             ))}
           </div>
+          <div className="border-t border-[#2E4155] pt-8">
+            <p className="font-display text-xl lg:text-2xl text-teal-300 italic leading-snug max-w-2xl mx-auto">
+              "Escalation is not a weakness. It is built in by design — because the right person at the right moment is what hospitality is about."
+            </p>
+          </div>
         </motion.div>
-
-      </div>
-    </section>
-  );
-}
