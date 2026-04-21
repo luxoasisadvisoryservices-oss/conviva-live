@@ -102,7 +102,6 @@ export default function HumanAI() {
           </motion.div>
         </div>
 
-        {/* Slogan block */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -118,4 +117,18 @@ export default function HumanAI() {
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[#8FADC4]">
             {[
               "No more late-night monitoring",
-              "
+              "Instant escalation alerts",
+              "One tap to take over",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
