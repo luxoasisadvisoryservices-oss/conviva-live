@@ -30,8 +30,7 @@ export default function HumanAI() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* Conviva handles */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -66,7 +65,6 @@ export default function HumanAI() {
             </ul>
           </motion.div>
 
-          {/* Humans handle */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -98,24 +96,26 @@ export default function HumanAI() {
             </ul>
             <div className="mt-6 pt-5 border-t border-[#E5E5E0]">
               <p className="text-xs text-[#7A8899] leading-relaxed">
-                Conviva.live is designed to escalate early and cleanly — so your team always has the context they need before they step in.
+                Conviva.live escalates early and cleanly — so your team always has the context they need before they step in.
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom quote */}
+        {/* Slogan block */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-[#F4F4F1] rounded-2xl p-8 text-center border border-[#E5E5E0]"
+          className="bg-[#1E2D3D] rounded-2xl p-8 md:p-12 text-center"
         >
-          <p className="font-display text-2xl lg:text-3xl text-[#1E2D3D] italic leading-snug max-w-2xl mx-auto">
-            "Escalation is not a weakness. It is built in by design — because the right person at the right moment is what hospitality is about."
+          <p className="font-display text-3xl lg:text-4xl text-white italic leading-snug max-w-2xl mx-auto mb-6">
+            "Your team gets their focus back."
           </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+          <p className="text-lg text-[#8FADC4] max-w-xl mx-auto leading-relaxed mb-8">
+            Whether you manage 5 units or 500 — too much time gets lost on communication that should not need a person. Conviva.live handles the volume, so your team can focus on what actually needs them. And when something does — a real issue, a frustrated guest, a decision that needs judgement — they will know immediately and step in with one tap.
+          </p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-[#8FADC4]">
+            {[
+              "No more late-night monitoring",
+              "
