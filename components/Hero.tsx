@@ -13,15 +13,10 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <motion.div {...fadeUp(0.0)}>
-              <span className="inline-flex items-center gap-2 text-xs text-[#3D5166] bg-[#F4F4F1] border border-[#E5E5E0] px-4 py-1.5 rounded-full mb-4">
-                🏠 Built by operators, for operators.
-              </span>
-            </motion.div>
             <motion.div {...fadeUp(0.1)}>
               <span className="inline-flex items-center gap-2 text-xs font-medium tracking-widest text-teal-600 uppercase bg-teal-50 border border-teal-100 px-3 py-1.5 rounded-full mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse" />
-                AI-powered guest communication
+                AI-powered guest communication · Built by operators, for operators
               </span>
             </motion.div>
             <motion.h1
