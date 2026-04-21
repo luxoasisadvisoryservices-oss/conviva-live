@@ -132,3 +132,8 @@ export default function HumanAI() {
             </p>
           </div>
         </motion.div>
+
+      </div>
+    </section>
+  );
+}
