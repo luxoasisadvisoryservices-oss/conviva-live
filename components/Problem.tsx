@@ -7,23 +7,23 @@ import { useRef } from "react";
 const pains = [
   {
     icon: "📱",
-    title: "You're always watching WhatsApp",
-    body: "Evenings, weekends, late nights. The moment you step away, a message comes in. Guest communication never stops.",
+    title: "You are always watching WhatsApp",
+    body: "Evenings, weekends, late nights. The moment you step away, a message comes in. Guest communication never stops — and neither do you.",
   },
   {
     icon: "🔁",
-    title: "The same questions, every time",
-    body: "Building access. Parking. Check-in steps. WiFi. Appliances. Every new guest asks the same things — and someone has to answer them.",
+    title: "The same questions, every single day",
+    body: "Building access. Parking. Check-in steps. WiFi. Appliances. Every new guest asks the same things — and someone has to answer them, every time.",
   },
   {
-    icon: "⚡",
-    title: "Inconsistent replies across your team",
-    body: "One VA says one thing. Another says something slightly different. Guests notice. Trust erodes.",
+    icon: "🌍",
+    title: "Your guests speak 6 languages. Your VA speaks one.",
+    body: "Russian guests, Arabic families, Chinese tourists, European travellers. Multilingual communication is a daily reality in Dubai — and most teams are not equipped for it.",
   },
   {
     icon: "📦",
-    title: "Knowledge is fragmented",
-    body: "Each unit has its own quirks — access flows, recurring issues, special instructions. As you grow, that knowledge becomes impossible to keep consistent across your whole team.",
+    title: "Every VA you hire needs weeks of training. Then they leave.",
+    body: "Unit access flows, building quirks, recurring issues — that knowledge lives in people's heads. When they go, it goes with them. And you start again.",
   },
   {
     icon: "📈",
@@ -33,7 +33,7 @@ const pains = [
   {
     icon: "🤝",
     title: "Sensitive situations need a real person",
-    body: "Some moments require genuine empathy — the kind that builds trust and turns a difficult experience into a loyal guest. Conviva knows when to step back and let your team take over.",
+    body: "Some moments require genuine empathy — the kind that builds trust and turns a difficult experience into a loyal guest. Conviva.live knows when to step back and let your team take over.",
   },
 ];
 
