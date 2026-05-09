@@ -27,7 +27,6 @@ export default function Home() {
       <FAQ />
       <CTA />
       <Footer />
-      
         href="https://wa.me/971585089283"
         target="_blank"
         rel="noopener noreferrer"
