@@ -66,7 +66,14 @@ export default function Footer() {
             <p className="text-xs text-[#7A8899]">
               Conviva.live is a product of <span className="text-[#3D5166] font-medium">Lux Oasis Advisory &amp; Services LLC</span>
             </p>
-            <p className="text-xs text-[#B0B0A8] mt-0.5">Lux Oasis Advisory &amp; Services LLC · All AI products &amp; services</p>
+            
+              href="https://luxoasisadvisory.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-teal-600 hover:text-teal-800 transition-colors mt-1 inline-block"
+            >
+              luxoasisadvisory.com →
+            </a>
           </div>
         </div>
       </div>
