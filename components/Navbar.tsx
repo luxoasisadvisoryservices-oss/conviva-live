@@ -11,18 +11,6 @@ const links = [
   { label: "FAQ", href: "#faq" },
 ];
 
-function Logo() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="8" fill="#2A7A6B"/>
-      <path d="M6 11C6 9.343 7.343 8 9 8h14c1.657 0 3 1.343 3 3v7c0 1.657-1.343 3-3 3h-3l-4 4-4-4H9c-1.657 0-3-1.343-3-3v-7z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="1.2"/>
-      <circle cx="16" cy="14.5" r="2" fill="white"/>
-      <line x1="11" y1="14.5" x2="13.5" y2="14.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-      <line x1="18.5" y1="14.5" x2="21" y2="14.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -34,48 +22,76 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0] shadow-sm" : "bg-transparent"
-    }`}>
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-
-        <a href="#" className="flex items-center gap-2.5">
-          <Logo />
-          <span className="text-[17px] font-semibold text-[#1E2D3D] tracking-tight">Conviva.live</span>
-        </a>
-
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-[#3D5166] hover:text-[#1E2D3D] transition-colors">
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden md:flex items-center">
-          <a href="#contact" className="text-sm font-medium bg-teal-600 hover:bg-teal-800 text-white px-5 py-2.5 rounded-lg transition-all duration-200 hover:-translate-y-px">
-            Book a demo
+    <>
+      {/* Top announcement bar */}
+      <div className="w-full bg-[#1E2D3D] py-2 px-4 text-center">
+        <p className="text-xs text-[#8FADC4]">
+          A product by{" "}
+          
+            href="https://luxoasisadvisory.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-teal-400 hover:text-teal-300 transition-colors font-medium"
+          >
+            Lux Oasis Advisory &amp; Services LLC
           </a>
-        </div>
-
-        <button className="md:hidden p-2 text-[#3D5166]" onClick={() => setOpen(!open)}>
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        </p>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-            className="md:hidden bg-[#FAFAF8] border-b border-[#E5E5E0] px-6 py-4 flex flex-col gap-4">
+      {/* Main navbar */}
+      <header className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0] shadow-sm" : "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0]"
+      }`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+
+          <a href="#" className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center flex-shrink-0">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7.75a4.5 4.5 0 01-3.75-2.016c.019-1.244 2.5-1.928 3.75-1.928 1.244 0 3.731.684 3.75 1.928A4.5 4.5 0 018 12.25z" fill="white"/>
+              </svg>
+            </div>
+            <span className="text-[16px] font-semibold text-[#1E2D3D] tracking-tight whitespace-nowrap">Conviva.live</span>
+          </a>
+
+          <nav className="hidden lg:flex items-center gap-6">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm text-[#3D5166]" onClick={() => setOpen(false)}>{l.label}</a>
+              <a key={l.href} href={l.href} className="text-sm text-[#3D5166] hover:text-[#1E2D3D] transition-colors whitespace-nowrap">
+                {l.label}
+              </a>
             ))}
-            <a href="#contact" className="text-sm font-medium bg-teal-600 text-white px-5 py-2.5 rounded-lg text-center" onClick={() => setOpen(false)}>
+          </nav>
+
+          <div className="hidden lg:flex items-center">
+            <a href="#contact" className="text-sm font-medium bg-teal-600 hover:bg-teal-800 text-white px-5 py-2.5 rounded-lg transition-all duration-200 whitespace-nowrap">
               Book a demo
             </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+          </div>
+
+          <button className="lg:hidden p-2 text-[#3D5166] flex-shrink-0" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="lg:hidden bg-[#FAFAF8] border-b border-[#E5E5E0] px-4 py-4 flex flex-col gap-3"
+            >
+              {links.map((l) => (
+                <a key={l.href} href={l.href} className="text-sm text-[#3D5166] py-2 border-b border-[#F0F0EC] last:border-0" onClick={() => setOpen(false)}>
+                  {l.label}
+                </a>
+              ))}
+              <a href="#contact" className="text-sm font-medium bg-teal-600 text-white px-5 py-3 rounded-lg text-center mt-2" onClick={() => setOpen(false)}>
+                Book a demo
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }
