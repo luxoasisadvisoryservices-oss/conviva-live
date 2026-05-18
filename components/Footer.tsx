@@ -13,11 +13,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7.75a4.5 4.5 0 01-3.75-2.016c.019-1.244 2.5-1.928 3.75-1.928 1.244 0 3.731.684 3.75 1.928A4.5 4.5 0 018 12.25z" fill="white"/>
-                </svg>
-              </div>
+              <img src="/conviva-logo.jpg" alt="Conviva.live" className="w-8 h-8 rounded-lg" />
               <span className="text-[17px] font-semibold text-[#1E2D3D] tracking-tight">Conviva.live</span>
             </div>
             <p className="text-sm text-[#3D5166] leading-relaxed max-w-xs">AI-powered guest communication for holiday homes operators. Precise, consistent, and human where it counts.</p>
