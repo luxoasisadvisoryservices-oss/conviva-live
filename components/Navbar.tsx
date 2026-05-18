@@ -29,11 +29,7 @@ export default function Navbar() {
       <header className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0] shadow-sm" : "bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#E5E5E0]"}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center flex-shrink-0">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7.75a4.5 4.5 0 01-3.75-2.016c.019-1.244 2.5-1.928 3.75-1.928 1.244 0 3.731.684 3.75 1.928A4.5 4.5 0 018 12.25z" fill="white"/>
-              </svg>
-            </div>
+            <img src="/conviva-logo.jpg" alt="Conviva.live" className="w-8 h-8 rounded-lg" />
             <span className="text-[16px] font-semibold text-[#1E2D3D] tracking-tight whitespace-nowrap">Conviva.live</span>
           </a>
           <nav className="hidden lg:flex items-center gap-6">
