@@ -23,7 +23,7 @@ export default function Hero() {
               <span className="italic text-teal-600">as well as you do.</span>
             </motion.h1>
             <motion.p {...fadeUp(0.3)} className="text-lg text-[#3D5166] leading-relaxed mb-8 max-w-lg">
-              Conviva gives every holiday home its own AI layer trained on the exact details of that unit. Guests message on WhatsApp. Your team stays in control through Chatwoot. One operator can comfortably oversee 40 units or more.
+              Conviva learns every unit like your best operator would, and never forgets a detail. Guests message on WhatsApp. Your team sees everything through Chatwoot. The repetitive gets handled. The important gets escalated. Nothing falls through.
             </motion.p>
             <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-3 mb-12">
               <a href="#contact" className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 text-sm">Book a demo</a>
