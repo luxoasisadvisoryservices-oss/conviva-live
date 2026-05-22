@@ -6,7 +6,9 @@ import Intelligence from "@/components/Intelligence";
 import Chatwoot from "@/components/Chatwoot";
 import HumanAI from "@/components/HumanAI";
 import UseCases from "@/components/UseCases";
+import Testimonial from "@/components/Testimonial";
 import Benefits from "@/components/Benefits";
+import Pricing from "@/components/Pricing";
 import Comparison from "@/components/Comparison";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
@@ -24,7 +26,9 @@ export default function Home() {
       <Chatwoot />
       <HumanAI />
       <UseCases />
+      <Testimonial />
       <Benefits />
+      <Pricing />
       <Comparison />
       <FAQ />
       <CTA />
