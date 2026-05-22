@@ -4,6 +4,7 @@ export default function Footer() {
     { label: "How it works", href: "#how-it-works" },
     { label: "Features", href: "#intelligence" },
     { label: "Use cases", href: "#use-cases" },
+    { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
     { label: "Book a demo", href: "#contact" },
   ];
@@ -21,11 +22,7 @@ export default function Footer() {
           <div>
             <p className="text-xs font-medium text-[#7A8899] uppercase tracking-widest mb-4">Navigation</p>
             <ul className="space-y-2.5">
-              {nav.map((item) => (
-                <li key={item.label}>
-                  <a href={item.href} className="text-sm text-[#3D5166] hover:text-teal-600 transition-colors">{item.label}</a>
-                </li>
-              ))}
+              {nav.map((item) => (<li key={item.label}><a href={item.href} className="text-sm text-[#3D5166] hover:text-teal-600 transition-colors">{item.label}</a></li>))}
             </ul>
           </div>
           <div>
