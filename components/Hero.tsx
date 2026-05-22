@@ -1,12 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-
 const fadeUp = (delay: number = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
-
 export default function Hero() {
   return (
     <section className="pt-32 pb-24 px-6 overflow-hidden">
@@ -19,15 +17,12 @@ export default function Hero() {
                 AI-powered guest communication · Built by operators, for operators
               </span>
             </motion.div>
-            <motion.h1
-              {...fadeUp(0.2)}
-              className="font-display text-5xl lg:text-6xl text-[#1E2D3D] leading-[1.1] tracking-tight mb-6"
-            >
-              Guest communication,{" "}
-              <span className="italic text-teal-600">handled.</span>
+            <motion.h1 {...fadeUp(0.2)} className="font-display text-4xl lg:text-5xl text-[#1E2D3D] leading-[1.15] tracking-tight mb-6">
+              Guest communication that knows every unit{" "}
+              <span className="italic text-teal-600">as well as you do.</span>
             </motion.h1>
             <motion.p {...fadeUp(0.3)} className="text-lg text-[#3D5166] leading-relaxed mb-8 max-w-lg">
-              Conviva.live gives every holiday home its own AI layer. Guests message on WhatsApp as normal. Your team stays in control through Chatwoot. Precise answers, 24/7 without losing the human touch.
+              Conviva gives every holiday home its own AI layer trained on the exact details of that unit. Guests message on WhatsApp. Your team stays in control through Chatwoot. One operator can comfortably oversee 40 units or more.
             </motion.p>
             <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-3 mb-12">
               <a href="#contact" className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 text-sm">
@@ -48,13 +43,7 @@ export default function Hero() {
               ))}
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.3 }}
-            className="relative"
-          >
+          <motion.div initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.3 }} className="relative">
             <div className="relative">
               <div className="bg-white rounded-2xl border border-[#E5E5E0] shadow-xl overflow-hidden">
                 <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
@@ -75,12 +64,7 @@ export default function Hero() {
                       <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM</p>
                     </div>
                   </div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2, duration: 0.5 }}
-                    className="flex justify-start"
-                  >
+                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 0.5 }} className="flex justify-start">
                     <div className="bg-white rounded-tr-xl rounded-tl-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[85%] shadow-sm">
                       <p className="text-[#1E2D3D] text-sm leading-relaxed">
                         Hi Sarah! This sometimes happens on first use — no worries.<br /><br />
@@ -91,25 +75,15 @@ export default function Hero() {
                       <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM</p>
                     </div>
                   </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.8, duration: 0.5 }}
-                    className="flex justify-end"
-                  >
+                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.5 }} className="flex justify-end">
                     <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[70%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">It worked! Thank you so much 🙏</p>
+                      <p className="text-[#1E2D3D] text-sm">It worked! Thank you so much</p>
                       <p className="text-[#7A8899] text-xs mt-1 text-right">2:16 PM</p>
                     </div>
                   </motion.div>
                 </div>
               </div>
-              <motion.div
-                initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 2.0, duration: 0.5 }}
-                className="absolute -bottom-6 -left-6 bg-white rounded-xl border border-[#E5E5E0] shadow-lg p-3 flex items-center gap-3"
-              >
+              <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 2.0, duration: 0.5 }} className="absolute -bottom-6 -left-6 bg-white rounded-xl border border-[#E5E5E0] shadow-lg p-3 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-[#1F93FF] flex items-center justify-center">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <rect x="1" y="1" width="12" height="9" rx="2" stroke="white" strokeWidth="1.2"/>
@@ -122,12 +96,7 @@ export default function Hero() {
                 </div>
                 <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: -12, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 1.5, duration: 0.5 }}
-                className="absolute -top-4 -right-4 bg-teal-600 rounded-xl shadow-lg p-3"
-              >
+              <motion.div initial={{ opacity: 0, y: -12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 1.5, duration: 0.5 }} className="absolute -top-4 -right-4 bg-teal-600 rounded-xl shadow-lg p-3">
                 <p className="text-white text-xs font-medium">Sarah L. · Apt 204</p>
                 <p className="text-teal-100 text-xs">Guest profile loaded</p>
               </motion.div>
