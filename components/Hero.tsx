@@ -6,6 +6,7 @@ const fadeUp = (delay: number = 0) => ({
   transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 export default function Hero() {
+  const checks = ["WhatsApp native", "Knows your guests", "Voice messages", "Human handover"];
   return (
     <section className="pt-32 pb-24 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -29,9 +30,9 @@ export default function Hero() {
               <a href="#how-it-works" className="inline-flex items-center gap-2 text-[#1E2D3D] border border-[#E5E5E0] hover:border-[#C0C0B8] font-medium px-6 py-3 rounded-lg transition-all duration-200 text-sm">See how it works</a>
             </motion.div>
             <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-6 text-sm text-[#3D5166]">
-              {["WhatsApp native", "Knows your guests", "Voice messages", "Human handover"].map((item) => (
+              {checks.map((item) => (
                 <div key={item} className="flex items-center gap-2">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="#2A7A6B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="text-teal-600">&#10003;</span>
                   {item}
                 </div>
               ))}
@@ -60,8 +61,10 @@ export default function Hero() {
                   </div>
                   <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 0.5 }} className="flex justify-start">
                     <div className="bg-white rounded-tr-xl rounded-tl-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[85%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm leading-relaxed">Hi Sarah! This sometimes happens on first use. The AC in Apt 204 needs a quick reset after check-in. Press and hold <strong>MODE</strong> for 5 seconds until it beeps, then set to <strong>COOL 20</strong>. It should start cooling within 2 minutes.<br /><br />Here is a quick guide: <span className="text-[#0066cc]">conviva.live/ac-guide</span><br /><br />If it still does not cool, let me know and I will get someone over right away.</p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM</p>
+                      <p className="text-[#1E2D3D] text-sm leading-relaxed">Hi Sarah! This sometimes happens on first use. The AC in Apt 204 needs a quick reset after check-in. Press and hold <strong>MODE</strong> for 5 seconds until it beeps, then set to <strong>COOL 20</strong>. It should start cooling within 2 minutes.</p>
+                      <p className="text-[#1E2D3D] text-sm leading-relaxed mt-3">Here is a quick guide: <span className="text-[#0066cc]">conviva.live/ac-guide</span></p>
+                      <p className="text-[#1E2D3D] text-sm leading-relaxed mt-3">If it still does not cool, let me know and I will get someone over right away.</p>
+                      <p className="text-[#7A8899] text-xs mt-2 text-right">2:14 PM</p>
                     </div>
                   </motion.div>
                   <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.5 }} className="flex justify-end">
@@ -73,76 +76,7 @@ export default function Hero() {
                 </div>
               </div>
               <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 2.0, duration: 0.5 }} className="absolute -bottom-6 -left-6 bg-white rounded-xl border border-[#E5E5E0] shadow-lg p-3 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#1F93FF] flex items-center justify-center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="9" rx="2" stroke="white" strokeWidth="1.2"/><path d="M4 13l3-3 3 3" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
-                <div>
-                  <p className="text-xs font-medium text-[#1E2D3D]">Chatwoot — operator view</p>
-                  <p className="text-xs text-[#3D5166]">AI replied · 0s · No escalation needed</p>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: -12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 1.5, duration: 0.5 }} className="absolute -top-4 -right-4 bg-teal-600 rounded-xl shadow-lg p-3">
-                <p className="text-white text-xs font-medium">Sarah L. · Apt 204</p>
-                <p className="text-teal-100 text-xs">Guest profile loaded</p>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}/svg>
-                  {item}
-                </div>
-              ))}
-            </motion.div>
-          </div>
-          <motion.div initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.3 }} className="relative">
-            <div className="relative">
-              <div className="bg-white rounded-2xl border border-[#E5E5E0] shadow-xl overflow-hidden">
-                <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center text-white text-sm font-semibold">SL</div>
-                  <div>
-                    <p className="text-white text-sm font-medium">Sarah L.</p>
-                    <p className="text-[#a8e0c8] text-xs">Checking in today · Apt 204 · Powered by Conviva.live</p>
-                  </div>
-                  <div className="ml-auto flex items-center gap-1">
-                    <div className="w-2 h-2 rounded-full bg-[#25D366]" />
-                    <span className="text-[#a8e0c8] text-xs">Online</span>
-                  </div>
-                </div>
-                <div className="bg-[#ECE5DD] p-4 space-y-3 min-h-[320px]">
-                  <div className="flex justify-end">
-                    <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[80%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">The AC has been running for 30 mins but it is still not cooling. It is really hot in here.</p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM</p>
-                    </div>
-                  </div>
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 0.5 }} className="flex justify-start">
-                    <div className="bg-white rounded-tr-xl rounded-tl-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[85%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm leading-relaxed">
-                        Hi Sarah! This sometimes happens on first use — no worries.<br /><br />
-                        The AC in Apt 204 needs a quick reset after check-in. Press and hold <strong>MODE</strong> for 5 seconds until it beeps, then set to <strong>COOL 20</strong>. It should start cooling within 2 minutes.<br /><br />
-                        Here is a quick guide: <span className="text-[#0066cc]">conviva.live/ac-guide</span><br /><br />
-                        If it still does not cool, let me know and I will get someone over right away.
-                      </p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:14 PM</p>
-                    </div>
-                  </motion.div>
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.5 }} className="flex justify-end">
-                    <div className="bg-[#DCF8C6] rounded-tl-xl rounded-tr-sm rounded-bl-xl rounded-br-xl px-4 py-2.5 max-w-[70%] shadow-sm">
-                      <p className="text-[#1E2D3D] text-sm">It worked! Thank you so much</p>
-                      <p className="text-[#7A8899] text-xs mt-1 text-right">2:16 PM</p>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-              <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 2.0, duration: 0.5 }} className="absolute -bottom-6 -left-6 bg-white rounded-xl border border-[#E5E5E0] shadow-lg p-3 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#1F93FF] flex items-center justify-center">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <rect x="1" y="1" width="12" height="9" rx="2" stroke="white" strokeWidth="1.2"/>
-                    <path d="M4 13l3-3 3 3" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
+                <div className="w-8 h-8 rounded-lg bg-[#1F93FF] flex items-center justify-center text-white text-xs font-bold">CW</div>
                 <div>
                   <p className="text-xs font-medium text-[#1E2D3D]">Chatwoot — operator view</p>
                   <p className="text-xs text-[#3D5166]">AI replied · 0s · No escalation needed</p>
