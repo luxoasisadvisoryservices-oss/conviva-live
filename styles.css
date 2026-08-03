@@ -2856,3 +2856,10 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
   .mline-in { transform: none; transition: none; }
   .hs-typing { display: none !important; }
 }
+
+/* Mobile: prevent a fixed/overhanging element from widening the layout
+   viewport and letting the page scroll sideways. `clip` does not create a
+   scroll container, and pinned sticky scenes are disabled below 768px. */
+@media (max-width: 767px) {
+  html { overflow-x: clip; }
+}
