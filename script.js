@@ -1,0 +1,920 @@
+/* GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py */
+/* ============================================================
+   CONVIVA — script.js
+   Vanilla JS only. No dependencies, no build step.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Sticky header ---------- */
+  var header = document.querySelector(".site-header");
+  function onScroll() {
+    if (header) header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile nav ---------- */
+  var navToggle = document.getElementById("navToggle");
+  var mainNav = document.getElementById("mainNav");
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", function () {
+      var open = mainNav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+    mainNav.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        mainNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && !prefersReducedMotion) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          ro.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function (el) { ro.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ============================================================
+     CHAT SIMULATOR — "See Conviva handle a real night"
+     All 9 scenarios from the content brief. Each plays message-by-
+     message with typing-indicator pacing; the Chatwoot panel updates
+     live alongside (status, activity log, resolution).
+     ============================================================ */
+
+  var SCENARIOS = [
+    {
+      id: "access", chip: "Access", time: "11:47 PM",
+      guest: "Lena T.", initials: "LT", unit: "Murjan 3", ava: "a1",
+      messages: [
+        { from: "guest", text: "Hi! We just arrived but we can’t get into the building — there’s a keypad and we don’t have any code", time: "11:47 PM" },
+        { from: "ai", text: "Welcome! You’re seconds away. Enter <strong>4821#</strong> at the lobby keypad, then take the lift to floor 12 — apartment 1204. Door code <strong>7736</strong>.", time: "11:47 PM" },
+        { from: "ai", text: "Parking: <span class=\"msg-link\">maps.app/murjan3-parking</span> — Bay B2-47. Sleep well!", time: "11:47 PM" },
+        { from: "guest", text: "We’re in — thank you so much!", time: "11:49 PM" }
+      ],
+      resolution: "ai",
+      log: [
+        { t: "11:47 PM", html: "New WhatsApp message — <strong>Murjan 3</strong>", cls: "" },
+        { t: "11:47 PM", html: "Conviva matched unit data: <strong>building access + door codes</strong>", cls: "" },
+        { t: "11:47 PM", html: "<strong>AI replied · 0.4s</strong> — no escalation needed", cls: "lg-ok" },
+        { t: "11:49 PM", html: "Guest confirmed — conversation resolved", cls: "lg-ok" }
+      ]
+    },
+    {
+      id: "voice", chip: "Voice note", time: "9:12 AM",
+      guest: "Amira H.", initials: "AH", unit: "JBR Tower 2", ava: "a2",
+      messages: [
+        { from: "guest", voice: true, dur: "0:14", time: "9:12 AM" },
+        { from: "ai", text: "Good morning! Heard your note about the washing machine — here’s the quick guide: <span class=\"msg-link\">conviva.live/g/jbr2-washer</span>", time: "9:12 AM" },
+        { from: "ai", text: "Press <strong>Power</strong>, select the cycle with the left dial, then <strong>Start/Pause</strong>. “Daily 40°” works for most loads.", time: "9:12 AM" }
+      ],
+      resolution: "ai",
+      log: [
+        { t: "9:12 AM", html: "Voice message received — <strong>JBR Tower 2</strong>", cls: "" },
+        { t: "9:12 AM", html: "Conviva transcribed the voice note · <strong>appliance guides</strong> matched", cls: "" },
+        { t: "9:12 AM", html: "<strong>AI replied · 0.6s</strong> — guide link sent", cls: "lg-ok" }
+      ]
+    },
+    {
+      id: "maintenance", chip: "AC issue", time: "2:13 PM",
+      guest: "Marco R.", initials: "MR", unit: "JBR Tower 2", ava: "a3",
+      messages: [
+        { from: "guest", text: "The AC is making a really loud noise and the apartment is heating up. This needs to be fixed.", time: "2:13 PM" },
+        { from: "ai", text: "I am so sorry to hear that — I am flagging this to the team right now for urgent investigation. Someone will follow up with you very shortly.", time: "2:13 PM" },
+        { from: "system", text: "Layla (Operations) joined the conversation", time: "2:15 PM" }
+      ],
+      resolution: "esc",
+      log: [
+        { t: "2:13 PM", html: "New WhatsApp message — <strong>JBR Tower 2</strong>", cls: "" },
+        { t: "2:13 PM", html: "Maintenance issue detected — <strong>escalation triggered</strong>", cls: "lg-esc" },
+        { t: "2:13 PM", html: "Alert sent to on-duty team · full context attached", cls: "" },
+        { t: "2:15 PM", html: "<strong>Layla took over</strong> — one-click human takeover", cls: "lg-esc" }
+      ]
+    },
+    {
+      id: "directions", chip: "Directions", time: "6:45 PM",
+      guest: "Tomasz W.", initials: "TW", unit: "Murjan 5", ava: "a4",
+      messages: [
+        { from: "guest", text: "Where’s the nearest supermarket? And is there parking there?", time: "6:45 PM" },
+        { from: "ai", text: "Closest is <strong>Carrefour Market</strong> — a 5-minute walk: <span class=\"msg-link\">maps.app/carrefour-murjan</span>. Parking is directly underneath.", time: "6:45 PM" },
+        { from: "ai", text: "Spinneys is also nearby if you prefer. Enjoy!", time: "6:45 PM" }
+      ],
+      resolution: "ai",
+      log: [
+        { t: "6:45 PM", html: "New WhatsApp message — <strong>Murjan 5</strong>", cls: "" },
+        { t: "6:45 PM", html: "Conviva matched unit data: <strong>local directions</strong>", cls: "" },
+        { t: "6:45 PM", html: "<strong>AI replied · 0.3s</strong> — map link sent", cls: "lg-ok" }
+      ]
+    },
+    {
+      id: "local", chip: "Local situation", time: "8:30 AM",
+      guest: "Yulia S.", initials: "YS", unit: "Murjan 3", ava: "a1",
+      messages: [
+        { from: "guest", text: "Good morning — is everything normal around JBR Beach today? We were planning to spend the day there.", time: "8:30 AM" },
+        { from: "ai", text: "Good morning! Yes — JBR Beach is open and operating normally, and The Walk is open too. Weather is around <strong>32°C</strong>. Enjoy your day!", time: "8:30 AM" }
+      ],
+      resolution: "ai",
+      log: [
+        { t: "8:30 AM", html: "New WhatsApp message — <strong>Murjan 3</strong>", cls: "" },
+        { t: "8:30 AM", html: "Local area conditions checked", cls: "" },
+        { t: "8:30 AM", html: "<strong>AI replied · 0.5s</strong> — no escalation needed", cls: "lg-ok" }
+      ]
+    },
+    {
+      id: "checkin", chip: "Early check-in", time: "12:45 PM",
+      guest: "Chen W.", initials: "CW", unit: "Jumeirah Villa", ava: "a2",
+      messages: [
+        { from: "guest", text: "Our flight lands early — any chance we could check in at 1 PM instead of 3?", time: "12:45 PM" },
+        { from: "ai", text: "I will check with the team on availability for a 1 PM early check-in and get back to you shortly with confirmation.", time: "12:45 PM" },
+        { from: "system", text: "Request assigned to the operations team", time: "12:46 PM" }
+      ],
+      resolution: "esc",
+      log: [
+        { t: "12:45 PM", html: "New WhatsApp message — <strong>Jumeirah Villa</strong>", cls: "" },
+        { t: "12:45 PM", html: "Early check-in request — <strong>needs human confirmation</strong>", cls: "lg-esc" },
+        { t: "12:46 PM", html: "Assigned to operations · guest expectation set by AI", cls: "" }
+      ]
+    },
+    {
+      id: "howto", chip: "TV how-to", time: "7:20 PM",
+      guest: "Priya M.", initials: "PM", unit: "Jumeirah Villa", ava: "a2",
+      messages: [
+        { from: "guest", text: "The TV just shows a black screen — we’ve tried the remote but nothing happens", time: "7:20 PM" },
+        { from: "ai", text: "Easy fix! Here’s a short video guide for the TV setup in your villa: <span class=\"msg-link\">conviva.live/g/villa-tv</span>", time: "7:20 PM" },
+        { from: "ai", text: "Press the <strong>Input</strong> button, then select <strong>HDMI 1</strong>. That should fix it immediately!", time: "7:20 PM" },
+        { from: "guest", text: "That did it — movie night saved", time: "7:23 PM" }
+      ],
+      resolution: "ai",
+      log: [
+        { t: "7:20 PM", html: "New WhatsApp message — <strong>Jumeirah Villa</strong>", cls: "" },
+        { t: "7:20 PM", html: "Conviva matched unit data: <strong>appliance guides · TV</strong>", cls: "" },
+        { t: "7:20 PM", html: "<strong>AI replied · 0.4s</strong> — video guide sent", cls: "lg-ok" },
+        { t: "7:23 PM", html: "Guest confirmed — conversation resolved", cls: "lg-ok" }
+      ]
+    },
+    {
+      id: "wifi", chip: "Late-night WiFi", time: "1:22 AM",
+      guest: "David L.", initials: "DL", unit: "Murjan 3", ava: "a4",
+      messages: [
+        { from: "guest", text: "Sorry for the late message… we forgot the WiFi password", time: "1:22 AM" },
+        { from: "ai", text: "No problem at all! WiFi: <strong>LuxOasis_M3</strong> · Password: <strong>Guest2024#</strong>. Enjoy your evening!", time: "1:22 AM" },
+        { from: "guest", text: "Connected — you’re a lifesaver", time: "1:23 AM" }
+      ],
+      resolution: "ai",
+      log: [
+        { t: "1:22 AM", html: "New WhatsApp message — <strong>Murjan 3</strong> · out of hours", cls: "" },
+        { t: "1:22 AM", html: "Conviva matched unit data: <strong>WiFi credentials</strong>", cls: "" },
+        { t: "1:22 AM", html: "<strong>AI replied · 0.3s</strong> — nobody was woken up", cls: "lg-ok" }
+      ]
+    },
+    {
+      id: "complaint", chip: "Complaint", time: "3:45 PM",
+      guest: "Elena V.", initials: "EV", unit: "Murjan 5", ava: "a3",
+      messages: [
+        { from: "guest", text: "Honestly, we’re disappointed. The apartment is dusty and the bathroom looks like it wasn’t touched at all.", time: "3:45 PM" },
+        { from: "ai", text: "I am so sorry — this is absolutely not our standard, and I completely understand your frustration. I am getting our cleaning team on this right now; someone will be with you in the next few minutes.", time: "3:45 PM" },
+        { from: "system", text: "Omar (Guest Relations) joined the conversation", time: "3:47 PM" }
+      ],
+      resolution: "esc",
+      log: [
+        { t: "3:45 PM", html: "New WhatsApp message — <strong>Murjan 5</strong>", cls: "" },
+        { t: "3:45 PM", html: "Complaint detected — <strong>priority escalation triggered</strong>", cls: "lg-esc" },
+        { t: "3:45 PM", html: "Cleaning team alerted · guest relations notified", cls: "" },
+        { t: "3:47 PM", html: "<strong>Omar took over</strong> — human care from here", cls: "lg-esc" }
+      ]
+    }
+  ];
+
+  var simChips = document.getElementById("simChips");
+  var simChat = document.getElementById("simChat");
+  var simStage = document.getElementById("simStage");
+  var simReplay = document.getElementById("simReplay");
+  var simAvatar = document.getElementById("simAvatar");
+  var simUnitName = document.getElementById("simUnitName");
+  var simPresence = document.getElementById("simPresence");
+  var cwAva = document.getElementById("cwAva");
+  var cwName = document.getElementById("cwName");
+  var cwUnit = document.getElementById("cwUnit");
+  var cwStatus = document.getElementById("cwStatus");
+  var cwLog = document.getElementById("cwLog");
+  var cwResolution = document.getElementById("cwResolution");
+  var cwResolutionText = document.getElementById("cwResolutionText");
+
+  if (simChips && simChat) {
+    var playToken = 0;        // cancels any in-flight playback
+    var activeScenario = SCENARIOS[0];
+
+    // Build chips
+    SCENARIOS.forEach(function (sc, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "sim-chip";
+      b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      b.dataset.id = sc.id;
+      b.innerHTML = sc.chip + ' <span class="sc-time">' + sc.time + "</span>";
+      b.addEventListener("click", function () { selectScenario(sc, b); });
+      simChips.appendChild(b);
+    });
+
+    function selectScenario(sc, chipEl) {
+      activeScenario = sc;
+      Array.prototype.forEach.call(simChips.children, function (c) {
+        c.setAttribute("aria-pressed", c === chipEl ? "true" : "false");
+      });
+      playScenario(sc);
+    }
+
+    function wait(ms, token) {
+      return new Promise(function (resolve) {
+        if (prefersReducedMotion) ms = Math.min(ms, 40);
+        setTimeout(function () { resolve(token === playToken); }, ms);
+      });
+    }
+
+    function scrollChat() { simChat.scrollTop = simChat.scrollHeight; }
+
+    function ticksSVG() {
+      return '<svg class="ticks" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m1 6.5 3 3L10 3"/><path d="m8 6.5 3 3L17 3"/></svg>';
+    }
+
+    function bubbleHTML(m) {
+      if (m.from === "system") {
+        return '<div class="wa-day">' + m.text + " · " + m.time + "</div>";
+      }
+      var side = m.from === "guest" ? "msg-in" : "msg-out";
+      var meta = '<span class="msg-meta">' + m.time + (m.from === "ai" ? ticksSVG() : "") + "</span>";
+      var body;
+      if (m.voice) {
+        var bars = "";
+        var heights = [3, 6, 9, 5, 8, 4, 7, 9, 6, 3, 5, 8, 6, 4, 7, 5, 3, 6, 8, 4];
+        heights.forEach(function (h) { bars += '<i style="--h:' + h + '"></i>'; });
+        body =
+          '<div class="voice-note">' +
+          '<span class="voice-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5-13-7.5Z"/></svg></span>' +
+          '<span class="voice-wave">' + bars + "</span>" +
+          '<span class="voice-dur">' + m.dur + "</span></div>";
+      } else {
+        body = m.text;
+      }
+      return '<div class="msg ' + side + '">' + body + meta + "</div>";
+    }
+
+    function addLog(entry) {
+      var li = document.createElement("li");
+      if (entry.cls) li.className = entry.cls;
+      var dotCls = entry.cls === "lg-esc" ? "dot-amber" : "dot-green";
+      li.innerHTML = '<span class="lg-time">' + entry.t + '</span><span class="dot lg-dot ' + dotCls + '"></span><span>' + entry.html + "</span>";
+      cwLog.appendChild(li);
+    }
+
+    function setStatus(cls, label) {
+      cwStatus.className = "cw-status " + cls;
+      cwStatus.textContent = label;
+    }
+
+    async function playScenario(sc) {
+      var token = ++playToken;
+
+      // Reset phone
+      simChat.innerHTML = '<div class="wa-day">Today</div>';
+      simAvatar.textContent = sc.unit.split(/\s+/).map(function (w) { return w[0]; }).join("").slice(0, 2).toUpperCase();
+      simUnitName.textContent = sc.unit;
+      simPresence.textContent = "online";
+
+      // Reset Chatwoot panel
+      cwAva.className = "cw-ava " + sc.ava;
+      cwAva.textContent = sc.initials;
+      cwName.textContent = sc.guest;
+      cwUnit.textContent = sc.unit + " · WhatsApp · " + sc.time;
+      cwLog.innerHTML = "";
+      cwResolution.classList.remove("show", "res-ai", "res-esc");
+      setStatus("st-open", "Open");
+
+      if (!(await wait(450, token))) return;
+
+      var logIndex = 0;
+      for (var i = 0; i < sc.messages.length; i++) {
+        var m = sc.messages[i];
+
+        if (m.from === "guest") {
+          simChat.insertAdjacentHTML("beforeend", bubbleHTML(m));
+          scrollChat();
+          if (logIndex < sc.log.length) { addLog(sc.log[logIndex++]); }
+          if (!(await wait(900, token))) return;
+        } else if (m.from === "ai") {
+          // typing indicator pacing
+          simPresence.textContent = "typing…";
+          var typing = document.createElement("div");
+          typing.className = "typing";
+          typing.innerHTML = "<i></i><i></i><i></i>";
+          simChat.appendChild(typing);
+          scrollChat();
+          var typeMs = Math.min(2200, 700 + (m.text ? m.text.length * 9 : 900));
+          var ok = await wait(typeMs, token);
+          typing.remove();
+          if (!ok) return;
+          simPresence.textContent = "online";
+          simChat.insertAdjacentHTML("beforeend", bubbleHTML(m));
+          scrollChat();
+          if (logIndex < sc.log.length) { addLog(sc.log[logIndex++]); }
+          setStatus("st-ai", "AI handling");
+          if (!(await wait(1000, token))) return;
+        } else { // system
+          if (!(await wait(700, token))) return;
+          simChat.insertAdjacentHTML("beforeend", bubbleHTML(m));
+          scrollChat();
+          if (logIndex < sc.log.length) { addLog(sc.log[logIndex++]); }
+          if (!(await wait(600, token))) return;
+        }
+      }
+
+      // Flush remaining log entries
+      while (logIndex < sc.log.length) {
+        addLog(sc.log[logIndex++]);
+        if (!(await wait(500, token))) return;
+      }
+
+      // Resolution
+      if (!(await wait(400, token))) return;
+      if (sc.resolution === "ai") {
+        setStatus("st-ai", "AI · resolved");
+        cwResolution.classList.add("res-ai", "show");
+        cwResolutionText.textContent = "Resolved by AI";
+      } else {
+        setStatus("st-esc", "Escalated");
+        cwResolution.classList.add("res-esc", "show");
+        cwResolutionText.textContent = "Escalated to team";
+      }
+    }
+
+    if (simReplay) {
+      simReplay.addEventListener("click", function () { playScenario(activeScenario); });
+    }
+
+    // Autoplay the first scenario when the simulator scrolls into view
+    var autoplayed = false;
+    if ("IntersectionObserver" in window) {
+      var simObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !autoplayed) {
+            autoplayed = true;
+            playScenario(SCENARIOS[0]);
+            simObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      simObserver.observe(simStage);
+    } else {
+      autoplayed = true;
+      playScenario(SCENARIOS[0]);
+    }
+  }
+
+  /* ============================================================
+     THE DASHBOARD — 5-step product walkthrough
+     Upload -> Properties -> Buildings -> Integrations -> Reservations.
+     Self-advancing once the section scrolls into view, and clickable /
+     keyboard-driven at any time. The first interaction stops the
+     auto-advance for good so the visitor is never fought with.
+
+     Progressive enhancement: the markup ships with every panel visible
+     and the tab strip hidden, so without JS the section reads as five
+     complete stacked states. This block adds .dash-live, which switches
+     it to one-panel-at-a-time. Under prefers-reduced-motion the tabs
+     still work but nothing auto-advances or animates in.
+     ============================================================ */
+
+  var dashRoot = document.getElementById("dashDemo");
+  if (dashRoot) {
+    var dashTabs = [].slice.call(document.querySelectorAll("#dashSteps .dash-step"));
+    var dashPanels = dashTabs.map(function (t) {
+      return document.getElementById(t.getAttribute("aria-controls"));
+    });
+    var dashNavItems = [].slice.call(dashRoot.querySelectorAll(".dn-item"));
+    var dashSide = dashRoot.querySelector(".dash-side");
+    var DASH_DWELL = 5200;
+
+    if (dashTabs.length && dashPanels.every(Boolean)) {
+      dashRoot.classList.add("dash-live");
+      if (!prefersReducedMotion) dashRoot.classList.add("is-anim");
+      dashRoot.style.setProperty("--dash-dwell", DASH_DWELL + "ms");
+
+      var dashIndex = -1;
+      var dashTimer = null;
+      var dashAuto = !prefersReducedMotion; // auto-advance allowed?
+      var dashVisible = false;
+
+      function dashClearTimer() {
+        if (dashTimer) { clearTimeout(dashTimer); dashTimer = null; }
+      }
+
+      /* Horizontal-only "scroll into view" for the two strips that overflow on
+         narrow screens. Deliberately not scrollIntoView(), which would also
+         move the page. */
+      function dashTrack(box, el) {
+        if (!box || !el || box.scrollWidth <= box.clientWidth + 1) return;
+        var target = el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2;
+        box.scrollLeft = Math.max(0, target);
+      }
+
+      function dashQueueNext() {
+        dashClearTimer();
+        if (!dashAuto || !dashVisible) return;
+        if (dashIndex >= dashTabs.length - 1) return; // play once, then rest on the last step
+        dashTimer = setTimeout(function () {
+          dashShow(dashIndex + 1, false);
+        }, DASH_DWELL);
+      }
+
+      function dashShow(i, fromUser) {
+        if (i < 0 || i >= dashTabs.length) return;
+        dashIndex = i;
+
+        dashTabs.forEach(function (tab, n) {
+          var on = n === i;
+          tab.setAttribute("aria-selected", on ? "true" : "false");
+          tab.setAttribute("tabindex", on ? "0" : "-1");
+          tab.classList.remove("is-playing");
+          dashPanels[n].classList.toggle("is-active", on);
+        });
+
+        // sidebar highlight follows the view the step is showing
+        var view = dashPanels[i].getAttribute("data-nav");
+        dashNavItems.forEach(function (item) {
+          var on = item.getAttribute("data-nav") === view;
+          item.classList.toggle("is-active", on);
+          // below 900px the mock sidebar is a horizontal strip — keep the
+          // highlighted item in view without ever scrolling the page itself
+          if (on) dashTrack(dashSide, item);
+        });
+        dashTrack(document.getElementById("dashSteps"), dashTabs[i]);
+
+        if (fromUser) {
+          dashAuto = false;
+          dashClearTimer();
+          dashTabs[i].focus();
+        } else if (dashAuto && dashVisible && i < dashTabs.length - 1) {
+          // restart the progress hairline on the newly active tab
+          var active = dashTabs[i];
+          void active.offsetWidth;
+          active.classList.add("is-playing");
+          dashQueueNext();
+        }
+      }
+
+      dashTabs.forEach(function (tab, n) {
+        tab.addEventListener("click", function () { dashShow(n, true); });
+      });
+
+      document.getElementById("dashSteps").addEventListener("keydown", function (e) {
+        var next = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next = dashIndex + 1;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = dashIndex - 1;
+        else if (e.key === "Home") next = 0;
+        else if (e.key === "End") next = dashTabs.length - 1;
+        if (next === null) return;
+        e.preventDefault();
+        dashShow(Math.max(0, Math.min(dashTabs.length - 1, next)), true);
+      });
+
+      // start on step 1; begin the walkthrough when the section is in view
+      dashShow(0, false);
+
+      if ("IntersectionObserver" in window) {
+        var dashObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            dashVisible = entry.isIntersecting;
+            if (dashVisible) {
+              if (dashAuto && dashIndex === 0 && !dashTimer) dashShow(0, false);
+            } else {
+              dashClearTimer();
+            }
+          });
+        }, { threshold: 0.3 });
+        dashObserver.observe(dashRoot);
+      } else {
+        dashVisible = true;
+        dashShow(0, false);
+      }
+    }
+  }
+
+  /* ============================================================
+     PRICING — unit-count slider
+     Tiers: 1–10 @130 · 11–30 @110 · 31–60 @90 · 61–100 @75 · >100 custom
+     ============================================================ */
+  var range = document.getElementById("unitsRange");
+  if (range) {
+    var pscUnits = document.getElementById("pscUnits");
+    var pscRate = document.getElementById("pscRate");
+    var pscTotal = document.getElementById("pscTotal");
+    var pscNote = document.getElementById("pscNote");
+    var readout = document.querySelector(".psc-readout");
+    var tiers = {
+      starter: document.querySelector('[data-tier="starter"]'),
+      growth: document.querySelector('[data-tier="growth"]'),
+      scale: document.querySelector('[data-tier="scale"]'),
+      portfolio: document.querySelector('[data-tier="portfolio"]')
+    };
+
+    function tierFor(u) {
+      if (u <= 10) return { key: "starter", name: "Starter", rate: 130 };
+      if (u <= 30) return { key: "growth", name: "Growth", rate: 110 };
+      if (u <= 60) return { key: "scale", name: "Scale", rate: 90 };
+      if (u <= 100) return { key: "portfolio", name: "Portfolio", rate: 75 };
+      return { key: null, name: "Enterprise", rate: null };
+    }
+
+    function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
+    function updatePricing() {
+      var u = parseInt(range.value, 10);
+      var t = tierFor(u);
+      var fill = ((u - 1) / (110 - 1)) * 100;
+      range.style.setProperty("--fill", fill + "%");
+
+      Object.keys(tiers).forEach(function (k) {
+        if (tiers[k]) tiers[k].classList.toggle("active", k === t.key);
+      });
+
+      if (t.rate === null) {
+        readout.innerHTML = "<span>" + u + "+ units — </span><span class=\"psc-total\">custom enterprise pricing</span>";
+        pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
+      } else {
+        var total = u * t.rate;
+        readout.innerHTML = '<span id="pscUnits">' + u + '</span> units × AED <span id="pscRate">' + t.rate + '</span> = <span class="psc-total">AED <span id="pscTotal">' + fmt(total) + "</span>/mo</span>";
+        pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
+      }
+    }
+    range.addEventListener("input", updatePricing);
+    updatePricing();
+  }
+
+  /* ============================================================
+     DEMO FORM — no backend: opens a prefilled mailto:
+     (per shared brief; WhatsApp fallback link sits below the form)
+     ============================================================ */
+  var form = document.getElementById("demoForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = (document.getElementById("fName").value || "").trim();
+      var email = (document.getElementById("fEmail").value || "").trim();
+      var units = document.getElementById("fUnits").value;
+      var msg = (document.getElementById("fMsg").value || "").trim();
+
+      // minimal validation
+      if (!name || !email || email.indexOf("@") < 1) {
+        (!name ? document.getElementById("fName") : document.getElementById("fEmail")).focus();
+        return;
+      }
+
+      var subject = "Conviva demo request — " + name;
+      var body =
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\nUnits managed: " + units +
+        (msg ? "\n\nNotes:\n" + msg : "") +
+        "\n\nSent from conviva.live";
+      window.location.href =
+        "mailto:info@luxoasisadvisory.com?subject=" +
+        encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    });
+  }
+
+  /* ============================================================
+     MOTION UPGRADE — scroll choreography engine
+     One rAF loop, passive scroll listener, transform/opacity only.
+     html.js-motion  = motion allowed (no prefers-reduced-motion)
+     html.js-scrub   = motion allowed AND viewport >= 768px
+     Without these classes all scenes render their final state
+     statically (see styles.css), so nothing depends on JS.
+     NOTE: scrub mode is decided once at load; resizing across the
+     768px boundary keeps the current mode until reload.
+     ============================================================ */
+
+  var docEl = document.documentElement;
+  var motionOK = !prefersReducedMotion;
+  var scrubOK = motionOK && window.matchMedia("(min-width: 768px)").matches;
+  if (motionOK) docEl.classList.add("js-motion");
+  if (scrubOK) docEl.classList.add("js-scrub");
+
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function smoothstep(t) { return t * t * (3 - 2 * t); }
+  function flag(el, cls, on) { el.classList.toggle(cls, !!on); }
+
+  /* ---------- scene registry: element -> progress 0..1 ---------- */
+  var scenes = [];
+  function addScene(el, fn) { if (el) scenes.push({ el: el, fn: fn }); }
+
+  /* ---------- HERO: scroll-scrubbed conversation ---------- */
+  var heroScene = document.getElementById("heroScene");
+  var heroClock = document.getElementById("heroClock");
+  var heroPhone = document.getElementById("heroPhone");
+  var heroChat = heroScene ? heroScene.querySelector(".wa-chat") : null;
+  var heroLastMin = -1;
+
+  function heroFrame(p) {
+    flag(heroScene, "hm1", true);                    // guest message waits from the start
+    flag(heroScene, "ht1", p >= 0.06 && p < 0.28);   // Conviva typing…
+    flag(heroScene, "hm2", p >= 0.28);               // fix instructions
+    flag(heroScene, "ht2", p >= 0.36 && p < 0.5);
+    flag(heroScene, "hm3", p >= 0.5);                // guide link
+    flag(heroScene, "hm4", p >= 0.8);                // "That worked" (11:45)
+    flag(heroScene, "hfloat", p >= 0.91);            // Chatwoot stamp
+    var c = p < 0.28 ? 0 : p < 0.78 ? 1 : p < 0.91 ? 2 : 3;
+    for (var i = 0; i < 4; i++) flag(heroScene, "hc" + i, i === c);
+    var mins = p < 0.56 ? 43 : p < 0.72 ? 44 : 45;   // clock advances with the story
+    if (mins !== heroLastMin) {
+      heroLastMin = mins;
+      if (heroClock) heroClock.textContent = "11:" + mins + " PM";
+    }
+    if (heroPhone) heroPhone.style.transform = "rotate(" + (1.6 * (1 - p)).toFixed(2) + "deg)";
+    // keep the latest bubble in view once the thread outgrows the screen
+    if (heroChat && p >= 0.78) heroChat.scrollTop = heroChat.scrollHeight;
+    else if (heroChat && p < 0.78 && heroChat.scrollTop > 0) heroChat.scrollTop = 0;
+  }
+
+  /* ---------- PAIN: notification pile -> tidy cards ---------- */
+  var painSec = document.getElementById("pain");
+  var painGrid = document.getElementById("painGrid");
+  var painCount = document.getElementById("painCount");
+  var painCountNum = document.getElementById("painCountNum");
+  var painCards = painGrid ? [].slice.call(painGrid.children) : [];
+  var PILE_JX = [-34, 28, -16, 36, -42, 10];
+  var PILE_JY = [-96, -54, -12, 30, 64, 100];
+  var PILE_ROT = [-7, 5, -4, 6, -5, 3];
+  var painBase = null;
+  var painLastCount = -1;
+
+  function measurePain() {
+    painCards.forEach(function (c) { c.style.transform = ""; });
+    var g = painGrid.getBoundingClientRect();
+    var cx = g.left + g.width / 2;
+    var cy = g.top + g.height / 2;
+    painBase = painCards.map(function (c) {
+      var r = c.getBoundingClientRect();
+      return { dx: cx - (r.left + r.width / 2), dy: cy - (r.top + r.height / 2) };
+    });
+  }
+
+  function painFrame(p, vh) {
+    if (!painBase) measurePain();
+    var arrived = 0;
+    for (var i = 0; i < painCards.length; i++) {
+      var card = painCards[i];
+      var b = painBase[i];
+      var a0 = 0.03 + i * 0.075;          // arrival start
+      var s0 = 0.58 + i * 0.04;           // settle start
+      var px = b.dx + PILE_JX[i];
+      var py = b.dy + PILE_JY[i];
+      var rot = PILE_ROT[i];
+      if (p >= a0 + 0.01) arrived++;
+      if (p < a0) {                        // not arrived yet
+        card.style.opacity = "0";
+        card.style.transform = "translate(" + px + "px," + (py - vh * 0.55) + "px) rotate(" + rot * 1.8 + "deg)";
+        card.style.zIndex = "";
+        continue;
+      }
+      if (p >= s0 + 0.2) {                 // fully settled: hand back to CSS
+        card.style.opacity = "";
+        card.style.transform = "";
+        card.style.zIndex = "";
+        continue;
+      }
+      var x, y, r, sc;
+      if (p < s0) {                        // falling onto the pile
+        var t = easeOutCubic(clamp01((p - a0) / 0.09));
+        x = px; y = (py - vh * 0.55) + vh * 0.55 * t;
+        r = rot * 1.8 + (rot - rot * 1.8) * t;
+        sc = 0.96;
+        card.style.opacity = String(Math.min(1, t * 2.4));
+      } else {                             // sweeping into the tidy grid
+        var t2 = easeInOutCubic(clamp01((p - s0) / 0.2));
+        x = px * (1 - t2); y = py * (1 - t2);
+        r = rot * (1 - t2);
+        sc = 0.96 + 0.04 * t2;
+        card.style.opacity = "1";
+      }
+      card.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) rotate(" + r.toFixed(2) + "deg) scale(" + sc.toFixed(3) + ")";
+      card.style.zIndex = String(2 + i);
+    }
+    if (painCount) {
+      painCount.style.opacity = (p >= 0.58 || arrived === 0) ? "0" : "1";
+      if (arrived !== painLastCount && arrived > 0) {
+        painLastCount = arrived;
+        painCountNum.textContent = String(arrived);
+      }
+    }
+  }
+
+  /* ---------- HOW IT WORKS: pinned 6-step evolving scene ---------- */
+  var howSec = document.getElementById("how-it-works");
+  var howStage = document.getElementById("howStage");
+  var howStepsWrap = document.getElementById("howSteps");
+  var howStepEls = howStepsWrap ? [].slice.call(howStepsWrap.children) : [];
+  var howRailFill = document.getElementById("howRailFill");
+  var howDots = [].slice.call(document.querySelectorAll(".how-rail .hr-dot"));
+  var howLastIdx = -1;
+
+  function howFrame(p) {
+    var usable = clamp01((p - 0.03) / 0.93);
+    // idle (-1) until the pin actually starts, so the chip fly-in of step 1
+    // plays in front of the user instead of firing offscreen at page load
+    var idx = p <= 0.0001 ? -1 : Math.min(5, Math.floor(usable * 6));
+    if (howRailFill) howRailFill.style.setProperty("--p", usable.toFixed(4));
+    if (idx === howLastIdx) return;
+    howLastIdx = idx;
+    howStepEls.forEach(function (st, i) {
+      flag(st, "active", i === idx);
+      flag(st, "past", i < idx);
+    });
+    for (var s = 1; s <= 6; s++) flag(howStage, "ss" + s, s <= idx + 1);
+    howDots.forEach(function (d, i) { flag(d, "on", i <= idx); });
+  }
+
+  /* ---------- Background morph: ivory <-> espresso, scroll-interpolated ---------- */
+  var bgMorph = document.getElementById("bgMorph");
+  var morphSecs = [];
+  function sectionColor(el) {
+    var cl = el.classList;
+    if (cl.contains("band-dark")) return [42, 33, 27];       // espresso
+    if (cl.contains("band-tint")) return [242, 234, 224];    // ivory-deep
+    if (cl.contains("focus-band")) return [231, 235, 225];   // sage-soft
+    if (cl.contains("site-footer")) return [33, 25, 19];
+    return [250, 246, 240];                                  // ivory
+  }
+  var lastMorph = "";
+  function morphFrame(vh) {
+    var col = morphSecs[0].rgb.slice();
+    for (var i = 1; i < morphSecs.length; i++) {
+      var top = morphSecs[i].el.getBoundingClientRect().top;
+      // tight window: colour only fully flips once the incoming band
+      // dominates the viewport (keeps text contrast during the morph)
+      var t = clamp01((vh * 0.55 - top) / (vh * 0.4));
+      if (t <= 0) break;
+      t = smoothstep(t);
+      var c = morphSecs[i].rgb;
+      col[0] += (c[0] - col[0]) * t;
+      col[1] += (c[1] - col[1]) * t;
+      col[2] += (c[2] - col[2]) * t;
+    }
+    var out = "rgb(" + Math.round(col[0]) + "," + Math.round(col[1]) + "," + Math.round(col[2]) + ")";
+    if (out !== lastMorph) {
+      lastMorph = out;
+      bgMorph.style.backgroundColor = out;
+    }
+  }
+
+  /* ---------- one rAF loop (read phase, then write phase) ---------- */
+  var framePending = false;
+  function motionTick() {
+    framePending = false;
+    var vh = window.innerHeight || 1;
+    var rects = scenes.map(function (s) { return s.el.getBoundingClientRect(); });
+    scenes.forEach(function (s, i) {
+      var r = rects[i];
+      var span = r.height - vh;
+      var p = span > 40 ? clamp01(-r.top / span) : (r.top < vh * 0.5 ? 1 : 0);
+      s.fn(p, vh);
+    });
+    if (bgMorph && morphSecs.length) morphFrame(vh);
+  }
+  function requestTick() {
+    if (!framePending) { framePending = true; requestAnimationFrame(motionTick); }
+  }
+
+  if (scrubOK) {
+    if (heroScene) addScene(heroScene, heroFrame);
+    if (painSec && painCards.length) addScene(painSec, painFrame);
+    if (howSec && howStage) addScene(howSec, howFrame);
+    var mSecs = [].slice.call(document.querySelectorAll("main > section"));
+    var foot = document.querySelector(".site-footer");
+    if (foot) mSecs.push(foot);
+    morphSecs = mSecs.map(function (el) { return { el: el, rgb: sectionColor(el) }; });
+
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", function () { painBase = null; requestTick(); }, { passive: true });
+    requestTick();
+  }
+
+  /* ---------- Masked serif line reveals ---------- */
+  if (motionOK) {
+    var maskTargets = [].slice.call(document.querySelectorAll("#hero-h, .display-2"));
+    maskTargets.forEach(function (h) { h.__orig = h.innerHTML; });
+
+    function buildMasks() {
+      maskTargets.forEach(function (h) {
+        var revealed = h.classList.contains("in");
+        h.innerHTML = h.__orig;
+        // chunk into word groups; nodes not separated by whitespace stay glued
+        // together (e.g. "<span>constantly</span>." must not gain a space)
+        var chunks = [];
+        var open = false;
+        function pushPart(node) {
+          if (!open || !chunks.length) chunks.push([]);
+          chunks[chunks.length - 1].push(node);
+          open = true;
+        }
+        [].slice.call(h.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            n.textContent.split(/(\s+)/).forEach(function (pt) {
+              if (!pt) return;
+              if (/^\s+$/.test(pt)) { open = false; }
+              else pushPart(document.createTextNode(pt));
+            });
+          } else if (n.nodeType === 1) {
+            pushPart(n);
+          }
+        });
+        h.innerHTML = "";
+        var spans = chunks.map(function (chunk) {
+          var sp = document.createElement("span");
+          chunk.forEach(function (node) { sp.appendChild(node); });
+          h.appendChild(sp);
+          h.appendChild(document.createTextNode(" "));
+          return sp;
+        });
+        // group tokens into visual lines by offsetTop
+        var lines = [];
+        var lastTop = null;
+        spans.forEach(function (sp) {
+          var t = sp.offsetTop;
+          if (lastTop === null || Math.abs(t - lastTop) > 4) { lines.push([]); lastTop = t; }
+          lines[lines.length - 1].push(sp);
+        });
+        h.innerHTML = "";
+        lines.forEach(function (line, li) {
+          var wrap = document.createElement("span");
+          wrap.className = "mline";
+          var inner = document.createElement("span");
+          inner.className = "mline-in";
+          inner.style.setProperty("--ml", li);
+          line.forEach(function (sp, wi) {
+            while (sp.firstChild) inner.appendChild(sp.firstChild);
+            if (wi < line.length - 1) inner.appendChild(document.createTextNode(" "));
+          });
+          wrap.appendChild(inner);
+          h.appendChild(wrap);
+        });
+        h.classList.add("masked");
+        if (revealed) {
+          h.classList.add("no-anim", "in");
+          requestAnimationFrame(function () { h.classList.remove("no-anim"); });
+        }
+      });
+    }
+
+    buildMasks();
+
+    var maskIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); maskIO.unobserve(en.target); }
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
+    maskTargets.forEach(function (h) { if (h.id !== "hero-h") maskIO.observe(h); });
+
+    // hero H1 reveals as part of the load intro
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        var hh = document.getElementById("hero-h");
+        if (hh) hh.classList.add("in");
+      });
+    });
+
+    // rebuild after webfonts load / on resize (line breaks shift)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { buildMasks(); painBase = null; requestTick(); });
+    }
+    var maskRz;
+    window.addEventListener("resize", function () {
+      clearTimeout(maskRz);
+      maskRz = setTimeout(buildMasks, 220);
+    }, { passive: true });
+  }
+
+  /* ---------- Simulator: invite pulse until first interaction ---------- */
+  var simChipsEl = document.getElementById("simChips");
+  if (motionOK && simChipsEl) {
+    simChipsEl.classList.add("invite");
+    simChipsEl.addEventListener("pointerdown", function () {
+      simChipsEl.classList.remove("invite");
+    }, { once: true });
+  }
+})();
