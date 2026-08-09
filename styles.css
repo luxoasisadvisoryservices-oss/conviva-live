@@ -1,6 +1,6 @@
 /* GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py */
 /* ============================================================
-   CONVIVA — conviva.live
+   OASIS GUEST LAB — oasisguestlab.ai
    "Warm hospitality, precise machinery"
    Palette: ivory #FAF6F0 · espresso #2A211B · terracotta #C2603E
             sage #7A8B6F · WhatsApp green only inside chat mocks
@@ -216,7 +216,7 @@ h1, h2, h3, .serif {
   gap: 11px;
   text-decoration: none;
 }
-/* The official Conviva speech-bubble mark (assets/logo.png). The image is
+/* The official Oasis Guest Lab speech-bubble mark (assets/logo.png). The image is
    46x34 so the lockup keeps the same 34px cap height as before — the 74px
    header row is unchanged. */
 .brand-mark {
@@ -1217,8 +1217,12 @@ section { padding: 108px 0; }
 .dash-lockup {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 0.98rem;
+  /* the wordmark is 15 characters since the Oasis Guest Lab rename; at the
+     old 0.98rem it no longer fitted the 186px mock sidebar and broke as
+     "Oasis / Guest Lab". One notch down keeps it on a single line. */
+  gap: 8px;
+  white-space: nowrap;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--espresso);
@@ -2226,13 +2230,13 @@ input[type="range"].units-range::-moz-range-thumb {
 .compare tbody tr:last-child td { border-bottom: 0; }
 .compare .feat { font-weight: 650; color: var(--espresso); width: 26%; }
 .compare .generic { color: var(--ink-muted); }
-.compare .conviva-col {
+.compare .ogl-col {
   background: rgba(122, 139, 111, 0.09);
   color: var(--espresso-2);
   font-weight: 550;
   border-left: 1px solid var(--hairline-soft);
 }
-.compare thead .conviva-col {
+.compare thead .ogl-col {
   background: var(--sage);
   color: #fff;
 }
@@ -2243,7 +2247,7 @@ input[type="range"].units-range::-moz-range-thumb {
 }
 .compare .cell-flag svg { width: 16px; height: 16px; flex: none; }
 .compare .generic .cell-flag svg { color: #B3A08F; }
-.compare .conviva-col .cell-flag svg { color: var(--sage-deep); }
+.compare .ogl-col .cell-flag svg { color: var(--sage-deep); }
 .compare-scroll { overflow-x: auto; }
 @media (max-width: 720px) {
   .compare { min-width: 620px; }
@@ -2525,17 +2529,27 @@ input[type="range"].units-range::-moz-range-thumb {
 
 /* ============================================================
    MOTION UPGRADE — Apple-grade scroll choreography
-   Engine: script.js adds html.js-motion (motion allowed) and
-   html.js-scrub (motion allowed AND viewport >= 768px). Without
-   either class, every scene below renders its complete final
-   state statically — content is never unreachable without JS.
+   Engine: script.js sets three classes on <html>:
+     js-motion  motion allowed (no prefers-reduced-motion)
+     js-scrub   motion allowed AND viewport >= 768px  — the pinned,
+                scroll-scrubbed desktop scenes (pinning + layout)
+     js-steps   motion allowed AND viewport <  768px  — the phone
+                engine (see scripts/80-mobile-scenes.js and the
+                phone block in styles/90-responsive.css)
+     js-scene   either of the two above
+   Rules below are keyed on js-scrub when they describe the desktop
+   PIN or its compacted layout, and on js-scene when they describe a
+   VISUAL STATE both engines drive (the hero conversation, the pain
+   counter, the how-it-works stage, the background colour layer).
+   Without any of these classes every scene renders its complete
+   final state statically — content is never unreachable without JS.
    Easing signature: cubic-bezier(0.22, 1, 0.36, 1)
    ============================================================ */
 
 /* ---------- Scroll-interpolated background morph ---------- */
 
 .bg-morph { display: none; }
-html.js-scrub .bg-morph {
+html.js-scene .bg-morph {
   display: block;
   position: fixed;
   inset: 0;
@@ -2543,9 +2557,9 @@ html.js-scrub .bg-morph {
   background: var(--ivory);
 }
 /* participating bands go transparent; the fixed layer supplies the colour */
-html.js-scrub .band-tint,
-html.js-scrub .band-dark,
-html.js-scrub .focus-band { background: transparent; }
+html.js-scene .band-tint,
+html.js-scene .band-dark,
+html.js-scene .focus-band { background: transparent; }
 
 /* ---------- Masked serif line reveals ---------- */
 
@@ -2628,13 +2642,13 @@ html.js-scrub .hero-body { font-size: 1.05rem; max-width: 33rem; }
 html.js-scrub .hero-ctas { margin-top: 24px; }
 html.js-scrub .hero-note { margin-top: 14px; }
 
-html.js-scrub .hero-claims {
+html.js-scene .hero-claims {
   display: block;
   position: relative;
   height: 2.9em;
   margin-top: 22px;
 }
-html.js-scrub .hc-line {
+html.js-scene .hc-line {
   position: absolute;
   top: 0; left: 0;
   max-width: 33rem;
@@ -2651,19 +2665,19 @@ html.js-scrub .hc-line {
 #heroScene.hc2 .hc-2, #heroScene.hc3 .hc-3 { opacity: 1; transform: none; }
 
 /* messages hidden until their scrub threshold; send whoosh via transform */
-html.js-scrub .hs-m {
+html.js-scene .hs-m {
   opacity: 0;
   transform: translateY(18px) scale(0.9);
   transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   animation: none;
   will-change: transform, opacity;
 }
-html.js-scrub .msg-in.hs-m { transform-origin: bottom left; }
-html.js-scrub .msg-out.hs-m { transform-origin: bottom right; }
+html.js-scene .msg-in.hs-m { transform-origin: bottom left; }
+html.js-scene .msg-out.hs-m { transform-origin: bottom right; }
 #heroScene.hm1 [data-hs="m1"], #heroScene.hm2 [data-hs="m2"],
 #heroScene.hm3 [data-hs="m3"], #heroScene.hm4 [data-hs="m4"] { opacity: 1; transform: none; }
 
-html.js-scrub .hs-typing {
+html.js-scene .hs-typing {
   display: flex;
   position: absolute;
   top: 0; right: 0;
@@ -2678,12 +2692,12 @@ html.js-scrub .hs-typing {
 #heroScene.ht1 [data-hs="t1"], #heroScene.ht2 [data-hs="t2"] { opacity: 1; transform: none; }
 
 /* Chatwoot float card stamps in at completion */
-html.js-scrub .hero-float {
+html.js-scene .hero-float {
   opacity: 0;
   transform: rotate(5deg) scale(1.22);
   transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1), transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
-html.js-scrub #heroScene.hfloat .hero-float { opacity: 1; transform: rotate(-1.4deg) scale(1); }
+html.js-scene #heroScene.hfloat .hero-float { opacity: 1; transform: rotate(-1.4deg) scale(1); }
 
 /* ---------- PAIN — notification pile -> tidy cards ---------- */
 
@@ -2702,12 +2716,12 @@ html.js-scrub .pain-pin {
 html.js-scrub .pain-pin .container { width: 100%; }
 html.js-scrub #pain .section-head { margin-bottom: 24px; }
 html.js-scrub #pain .display-2 { font-size: clamp(1.8rem, 2.9vw, 2.35rem); }
-html.js-scrub .pain-count {
+html.js-scene .pain-count {
   display: inline-flex;
   margin-top: 14px;
   transition: opacity 0.4s ease;
 }
-html.js-scrub .pain-count i { animation: pulse 1.6s infinite; }
+html.js-scene .pain-count i { animation: pulse 1.6s infinite; }
 /* the scene JS drives transforms directly — neutralise the generic reveal */
 html.js-scrub .pain-item.reveal {
   opacity: 1;
@@ -2791,15 +2805,15 @@ html.js-scrub .how-step {
 }
 html.js-scrub .how-step.past { transform: translateY(-24px); }
 html.js-scrub .how-step.active { opacity: 1; transform: none; }
-html.js-scrub .how-stage.reveal { opacity: 1; transform: none; transition: none; }
+html.js-scene .how-stage.reveal { opacity: 1; transform: none; transition: none; }
 
 /* stage: cumulative classes ss1..ss6 build the story */
-html.js-scrub .how-stage .hsb-chips span {
+html.js-scene .how-stage .hsb-chips span {
   opacity: 0;
   transform: translate(var(--fx, 0), var(--fy, 0)) rotate(var(--fr, 0deg)) scale(0.9);
   will-change: transform, opacity;
 }
-html.js-scrub .how-stage.ss1 .hsb-chips span { opacity: 1; transform: none; }
+html.js-scene .how-stage.ss1 .hsb-chips span { opacity: 1; transform: none; }
 .how-stage.ss1 .hsb-chips span:nth-child(2) { transition-delay: 60ms; }
 .how-stage.ss1 .hsb-chips span:nth-child(3) { transition-delay: 120ms; }
 .how-stage.ss1 .hsb-chips span:nth-child(4) { transition-delay: 180ms; }
@@ -2808,37 +2822,37 @@ html.js-scrub .how-stage.ss1 .hsb-chips span { opacity: 1; transform: none; }
 .how-stage.ss1 .hsb-chips span:nth-child(7) { transition-delay: 360ms; }
 .how-stage.ss1 .hsb-chips span:nth-child(8) { transition-delay: 420ms; }
 
-html.js-scrub .how-stage .hsb-badge { opacity: 0; transform: scale(0.8); }
-html.js-scrub .how-stage.ss2 .hsb-badge { opacity: 1; transform: none; }
-html.js-scrub .how-stage.ss2 .hs-brain {
+html.js-scene .how-stage .hsb-badge { opacity: 0; transform: scale(0.8); }
+html.js-scene .how-stage.ss2 .hsb-badge { opacity: 1; transform: none; }
+html.js-scene .how-stage.ss2 .hs-brain {
   border-color: var(--sage);
   box-shadow: 0 0 0 4px rgba(122, 139, 111, 0.14), var(--shadow-soft);
 }
-html.js-scrub .how-stage.ss2 .hsb-chips span {
+html.js-scene .how-stage.ss2 .hsb-chips span {
   background: var(--sage-soft);
   border-color: rgba(122, 139, 111, 0.35);
   color: var(--sage-deep);
   transition-delay: 0ms;
 }
 
-html.js-scrub .how-stage .hs-bubble { opacity: 0; transform: translateY(16px) scale(0.9); }
-html.js-scrub .how-stage.ss3 .hs-guest { opacity: 1; transform: none; }
-html.js-scrub .how-stage.ss4 .hs-ai { opacity: 1; transform: none; }
+html.js-scene .how-stage .hs-bubble { opacity: 0; transform: translateY(16px) scale(0.9); }
+html.js-scene .how-stage.ss3 .hs-guest { opacity: 1; transform: none; }
+html.js-scene .how-stage.ss4 .hs-ai { opacity: 1; transform: none; }
 
-html.js-scrub .how-stage .hs-chatwoot { opacity: 0; transform: translateX(52px); }
-html.js-scrub .how-stage.ss5 .hs-chatwoot { opacity: 1; transform: none; }
+html.js-scene .how-stage .hs-chatwoot { opacity: 0; transform: translateX(52px); }
+html.js-scene .how-stage.ss5 .hs-chatwoot { opacity: 1; transform: none; }
 
 /* takeover toggle: off until step 6 flips it */
-html.js-scrub .how-stage .hst-switch { background: rgba(42, 33, 27, 0.2); }
-html.js-scrub .how-stage .hst-switch i { transform: none; }
-html.js-scrub .how-stage .ht-ai { opacity: 1; transform: none; }
-html.js-scrub .how-stage .ht-hu { opacity: 0; transform: scale(0.86); }
-html.js-scrub .how-stage .hst-agent { opacity: 0; transform: translateX(8px); }
-html.js-scrub .how-stage.ss6 .hst-switch { background: var(--amber); }
-html.js-scrub .how-stage.ss6 .hst-switch i { transform: translateX(18px); }
-html.js-scrub .how-stage.ss6 .ht-ai { opacity: 0; transform: scale(0.86); }
-html.js-scrub .how-stage.ss6 .ht-hu { opacity: 1; transform: none; }
-html.js-scrub .how-stage.ss6 .hst-agent { opacity: 1; transform: none; }
+html.js-scene .how-stage .hst-switch { background: rgba(42, 33, 27, 0.2); }
+html.js-scene .how-stage .hst-switch i { transform: none; }
+html.js-scene .how-stage .ht-ai { opacity: 1; transform: none; }
+html.js-scene .how-stage .ht-hu { opacity: 0; transform: scale(0.86); }
+html.js-scene .how-stage .hst-agent { opacity: 0; transform: translateX(8px); }
+html.js-scene .how-stage.ss6 .hst-switch { background: var(--amber); }
+html.js-scene .how-stage.ss6 .hst-switch i { transform: translateX(18px); }
+html.js-scene .how-stage.ss6 .ht-ai { opacity: 0; transform: scale(0.86); }
+html.js-scene .how-stage.ss6 .ht-hu { opacity: 1; transform: none; }
+html.js-scene .how-stage.ss6 .hst-agent { opacity: 1; transform: none; }
 
 /* ---------- Simulator: invite pulse on the active chip ---------- */
 
@@ -2850,16 +2864,218 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
   45% { box-shadow: 0 0 0 9px rgba(194, 96, 62, 0); }
 }
 
+
+/* ============================================================
+   PHONE STEP CONTROL — always hidden unless the phone engine is
+   running (html.js-steps below 768px). Declared outside every
+   media query so the desktop, the no-JS page and reduced motion
+   never render it.
+   ============================================================ */
+
+.how-dots { display: none; }
+.how-dot {
+  width: 30px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.how-dot i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(42, 33, 27, 0.2);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+}
+.how-dot.on i { width: 22px; border-radius: 4px; background: var(--terracotta); }
+
 /* ---------- Reduced motion: everything static ---------- */
 
 @media (prefers-reduced-motion: reduce) {
   .mline-in { transform: none; transition: none; }
   .hs-typing { display: none !important; }
+  /* Safety net. The phone engine is never started under reduced motion (it is
+     gated on the same media query in JS, so no timer is ever scheduled), but if
+     the preference is switched on *after* load the classes are already on the
+     element — so pin every phone state to its finished value here. */
+  html.js-steps .pain-item,
+  html.js-steps .how-step,
+  html.js-steps .hs-m,
+  html.js-steps .hero-float,
+  html.js-steps .how-stage .hsb-chips span,
+  html.js-steps .how-stage .hsb-badge,
+  html.js-steps .how-stage .hs-bubble,
+  html.js-steps .how-stage .hs-chatwoot,
+  html.js-steps .how-stage .hst-agent,
+  html.js-steps .how-stage .ht-hu {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html.js-steps .bg-morph { transition: none !important; }
 }
 
-/* Mobile: prevent a fixed/overhanging element from widening the layout
-   viewport and letting the page scroll sideways. `clip` does not create a
-   scroll container, and pinned sticky scenes are disabled below 768px. */
+/* ============================================================
+   PHONE (< 768px)
+   Two jobs in this block:
+     1. vertical rhythm — the desktop spacing was being applied almost
+        unchanged to a 390px screen, which turned every section into a
+        long static run of ivory;
+     2. the phone choreography — the same visual states the desktop
+        scrub scenes move through, laid out for a thumb and advanced by
+        scripts/80-mobile-scenes.js. Everything here is scoped to
+        html.js-steps, so the no-JS page and reduced motion keep the
+        static final states.
+   ============================================================ */
+
 @media (max-width: 767px) {
+  /* Mobile: prevent a fixed/overhanging element from widening the layout
+     viewport and letting the page scroll sideways. `clip` does not create a
+     scroll container, and pinned sticky scenes are disabled below 768px. */
   html { overflow-x: clip; }
+
+  /* ---------- vertical rhythm ---------- */
+  section { padding: 58px 0; }
+  .container { padding: 0 22px; }
+  .section-head { margin-bottom: 34px; }
+  .section-head .lede { margin-top: 14px; }
+  .lede { font-size: 1.06rem; line-height: 1.62; }
+  .hero-pin { padding: 122px 0 54px; }
+  .hero .container { gap: 38px; }
+  .hero-chips { margin: 18px 0 16px; }
+  .hero-ctas { margin-top: 22px; }
+  .how-head { margin-bottom: 30px; }
+  .how-layout { gap: 30px; }
+  .pain-grid { gap: 14px; }
+  .site-footer { padding: 56px 0 30px; }
+  .footer-grid { gap: 40px; padding-bottom: 38px; }
+
+  /* ---------- HERO: the conversation types itself out on arrival ---------- */
+  /* the claim lines are the caption track for the phone conversation; the
+     three-word brand name and the longer lines need room to wrap */
+  html.js-steps .hero-claims {
+    height: auto;
+    min-height: 4.6em;
+    margin-top: 16px;
+  }
+  html.js-steps .hc-line { font-size: 1.02rem; }
+
+  /* ---------- PAIN: the six notifications arrive one at a time ----------
+     Desktop pours them into a pile and sweeps them into the grid. A phone
+     gets the same meaning — the volume keeps coming — as a staggered
+     arrival into the grid it already has, with the unread counter climbing
+     1 -> 6 alongside. Transform and opacity only. */
+  html.js-steps .pain-item.reveal {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0ms;
+    will-change: transform, opacity;
+  }
+  html.js-steps .pain-item.reveal.is-on { opacity: 1; transform: none; }
+  html.js-steps .pain-count { opacity: 0; }
+  html.js-steps .pain-count.is-on { opacity: 1; }
+
+  /* ---------- HOW IT WORKS: a swipeable six-step track ----------
+     The pinned scrub scene is desktop-only. Here the six steps become a
+     horizontal snap track — native overflow scrolling, so the browser
+     decides horizontal-vs-vertical and a swipe meant for the page is never
+     stolen — with the dot strip as index and tap control. The stage below
+     shows the cumulative state of whichever step is current, exactly as it
+     does on desktop. */
+  html.js-steps .how-steps {
+    flex-direction: row;
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 0 -22px;
+    /* the trailing 16vw is what lets the LAST card snap flush to the left
+       gutter instead of the track running out of scroll under it
+       (card 86vw + 16vw of tail > one viewport) */
+    padding: 0 16vw 0 22px;
+    scroll-padding-left: 22px;
+  }
+  html.js-steps .how-steps::-webkit-scrollbar { display: none; }
+  html.js-steps .how-step.reveal {
+    flex: 0 0 86vw;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    padding: 20px 0 4px;
+    border-bottom: none;
+    opacity: 0.42;
+    transform: none;
+    transition: opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0ms;
+  }
+  html.js-steps .how-step.reveal.active { opacity: 1; }
+  html.js-steps .how-dots { display: flex; align-items: center; margin-top: 14px; }
+  /* the stage's entrance transforms (chips flying in from +-250px, the
+     Chatwoot card sliding in from +52px) are contained by .how-pin's
+     overflow on desktop; the phone layout needs the same guard or they
+     push the page sideways */
+  html.js-steps .how-pin { overflow: hidden; }
+
+  /* ---------- background morph ---------- */
+  /* the fixed colour layer is shared with desktop; on a phone it is stepped
+     by an IntersectionObserver rather than interpolated per frame, so it
+     needs a transition of its own */
+  html.js-steps .bg-morph {
+    transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ---------- simulator: tighten, do not rebuild ----------
+     Nine scenario chips wrapped onto five rows on a 390px screen, which
+     pushed the phone mock — the thing you are meant to watch — a full
+     screen below the fold and made the section read as a dead list. One
+     scrollable row instead, the same strip pattern the dashboard step
+     rail already uses. The chips themselves are untouched. */
+  .sim-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 8px;
+    margin: 0 -22px 26px;
+    padding: 2px 22px 6px;
+  }
+  .sim-chips::-webkit-scrollbar { display: none; }
+  .sim-chip { flex: none; }
+  .sim-stage { gap: 18px; }
+  .dash-cap, .dash-disclaimer { margin-top: 14px; }
+}
+
+/* ------------------------------------------------------------------
+   Small phones (360-400px and below). Three things stop fitting:
+   the 15-character brand name in the header lockup, the fixed-width
+   phone mock, and the `white-space: nowrap` accent phrases in the
+   display headings ("extension of your team" is 328px at the 1.9rem
+   floor and was being clipped by its own reveal mask at 320px).
+   ------------------------------------------------------------------ */
+@media (max-width: 400px) {
+  .brand-name { font-size: 1.16rem; }
+  .brand-mark { width: 38px; height: 28px; }
+  .brand { gap: 9px; }
+
+  .display-1 { font-size: clamp(2rem, 10vw, 2.5rem); }
+  .display-2 { font-size: clamp(1.5rem, 7.5vw, 1.9rem); }
+
+  .phone { max-width: 100%; }
+  .intel-layout > *, .how-layout > *, .sim-stage > *, .intel-stack > * { min-width: 0; }
+  .dash-url { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hsb-head { flex-wrap: wrap; row-gap: 6px; }
+  .hsb-badge { margin-left: 0; }
+  .kc-head { flex-wrap: wrap; row-gap: 6px; }
 }

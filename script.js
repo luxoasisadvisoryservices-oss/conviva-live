@@ -1,6 +1,6 @@
 /* GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py */
 /* ============================================================
-   CONVIVA — script.js
+   OASIS GUEST LAB — script.js
    Vanilla JS only. No dependencies, no build step.
    ============================================================ */
 (function () {
@@ -50,7 +50,7 @@
   }
 
   /* ============================================================
-     CHAT SIMULATOR — "See Conviva handle a real night"
+     CHAT SIMULATOR — "See Oasis Guest Lab handle a real night"
      All 9 scenarios from the content brief. Each plays message-by-
      message with typing-indicator pacing; the Chatwoot panel updates
      live alongside (status, activity log, resolution).
@@ -69,7 +69,7 @@
       resolution: "ai",
       log: [
         { t: "11:47 PM", html: "New WhatsApp message — <strong>Murjan 3</strong>", cls: "" },
-        { t: "11:47 PM", html: "Conviva matched unit data: <strong>building access + door codes</strong>", cls: "" },
+        { t: "11:47 PM", html: "LIA matched unit data: <strong>building access + door codes</strong>", cls: "" },
         { t: "11:47 PM", html: "<strong>AI replied · 0.4s</strong> — no escalation needed", cls: "lg-ok" },
         { t: "11:49 PM", html: "Guest confirmed — conversation resolved", cls: "lg-ok" }
       ]
@@ -79,13 +79,13 @@
       guest: "Amira H.", initials: "AH", unit: "JBR Tower 2", ava: "a2",
       messages: [
         { from: "guest", voice: true, dur: "0:14", time: "9:12 AM" },
-        { from: "ai", text: "Good morning! Heard your note about the washing machine — here’s the quick guide: <span class=\"msg-link\">conviva.live/g/jbr2-washer</span>", time: "9:12 AM" },
+        { from: "ai", text: "Good morning! Heard your note about the washing machine — here’s the quick guide: <span class=\"msg-link\">oasisguestlab.ai/g/jbr2-washer</span>", time: "9:12 AM" },
         { from: "ai", text: "Press <strong>Power</strong>, select the cycle with the left dial, then <strong>Start/Pause</strong>. “Daily 40°” works for most loads.", time: "9:12 AM" }
       ],
       resolution: "ai",
       log: [
         { t: "9:12 AM", html: "Voice message received — <strong>JBR Tower 2</strong>", cls: "" },
-        { t: "9:12 AM", html: "Conviva transcribed the voice note · <strong>appliance guides</strong> matched", cls: "" },
+        { t: "9:12 AM", html: "LIA transcribed the voice note · <strong>appliance guides</strong> matched", cls: "" },
         { t: "9:12 AM", html: "<strong>AI replied · 0.6s</strong> — guide link sent", cls: "lg-ok" }
       ]
     },
@@ -116,7 +116,7 @@
       resolution: "ai",
       log: [
         { t: "6:45 PM", html: "New WhatsApp message — <strong>Murjan 5</strong>", cls: "" },
-        { t: "6:45 PM", html: "Conviva matched unit data: <strong>local directions</strong>", cls: "" },
+        { t: "6:45 PM", html: "LIA matched unit data: <strong>local directions</strong>", cls: "" },
         { t: "6:45 PM", html: "<strong>AI replied · 0.3s</strong> — map link sent", cls: "lg-ok" }
       ]
     },
@@ -154,14 +154,14 @@
       guest: "Priya M.", initials: "PM", unit: "Jumeirah Villa", ava: "a2",
       messages: [
         { from: "guest", text: "The TV just shows a black screen — we’ve tried the remote but nothing happens", time: "7:20 PM" },
-        { from: "ai", text: "Easy fix! Here’s a short video guide for the TV setup in your villa: <span class=\"msg-link\">conviva.live/g/villa-tv</span>", time: "7:20 PM" },
+        { from: "ai", text: "Easy fix! Here’s a short video guide for the TV setup in your villa: <span class=\"msg-link\">oasisguestlab.ai/g/villa-tv</span>", time: "7:20 PM" },
         { from: "ai", text: "Press the <strong>Input</strong> button, then select <strong>HDMI 1</strong>. That should fix it immediately!", time: "7:20 PM" },
         { from: "guest", text: "That did it — movie night saved", time: "7:23 PM" }
       ],
       resolution: "ai",
       log: [
         { t: "7:20 PM", html: "New WhatsApp message — <strong>Jumeirah Villa</strong>", cls: "" },
-        { t: "7:20 PM", html: "Conviva matched unit data: <strong>appliance guides · TV</strong>", cls: "" },
+        { t: "7:20 PM", html: "LIA matched unit data: <strong>appliance guides · TV</strong>", cls: "" },
         { t: "7:20 PM", html: "<strong>AI replied · 0.4s</strong> — video guide sent", cls: "lg-ok" },
         { t: "7:23 PM", html: "Guest confirmed — conversation resolved", cls: "lg-ok" }
       ]
@@ -177,7 +177,7 @@
       resolution: "ai",
       log: [
         { t: "1:22 AM", html: "New WhatsApp message — <strong>Murjan 3</strong> · out of hours", cls: "" },
-        { t: "1:22 AM", html: "Conviva matched unit data: <strong>WiFi credentials</strong>", cls: "" },
+        { t: "1:22 AM", html: "LIA matched unit data: <strong>WiFi credentials</strong>", cls: "" },
         { t: "1:22 AM", html: "<strong>AI replied · 0.3s</strong> — nobody was woken up", cls: "lg-ok" }
       ]
     },
@@ -293,7 +293,7 @@
       simChat.innerHTML = '<div class="wa-day">Today</div>';
       simAvatar.textContent = sc.unit.split(/\s+/).map(function (w) { return w[0]; }).join("").slice(0, 2).toUpperCase();
       simUnitName.textContent = sc.unit;
-      simPresence.textContent = "online";
+      simPresence.textContent = "LIA · online";
 
       // Reset Chatwoot panel
       cwAva.className = "cw-ava " + sc.ava;
@@ -317,7 +317,7 @@
           if (!(await wait(900, token))) return;
         } else if (m.from === "ai") {
           // typing indicator pacing
-          simPresence.textContent = "typing…";
+          simPresence.textContent = "LIA · typing…";
           var typing = document.createElement("div");
           typing.className = "typing";
           typing.innerHTML = "<i></i><i></i><i></i>";
@@ -327,7 +327,7 @@
           var ok = await wait(typeMs, token);
           typing.remove();
           if (!ok) return;
-          simPresence.textContent = "online";
+          simPresence.textContent = "LIA · online";
           simChat.insertAdjacentHTML("beforeend", bubbleHTML(m));
           scrollChat();
           if (logIndex < sc.log.length) { addLog(sc.log[logIndex++]); }
@@ -583,13 +583,13 @@
         return;
       }
 
-      var subject = "Conviva demo request — " + name;
+      var subject = "Oasis Guest Lab demo request — " + name;
       var body =
         "Name: " + name +
         "\nEmail: " + email +
         "\nUnits managed: " + units +
         (msg ? "\n\nNotes:\n" + msg : "") +
-        "\n\nSent from conviva.live";
+        "\n\nSent from oasisguestlab.ai";
       window.location.href =
         "mailto:info@luxoasisadvisory.com?subject=" +
         encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
@@ -601,17 +601,33 @@
      One rAF loop, passive scroll listener, transform/opacity only.
      html.js-motion  = motion allowed (no prefers-reduced-motion)
      html.js-scrub   = motion allowed AND viewport >= 768px
+     html.js-steps   = motion allowed AND viewport <  768px
+     html.js-scene   = either of the two above — the shared visual
+                       states the two engines both drive
      Without these classes all scenes render their final state
      statically (see styles.css), so nothing depends on JS.
-     NOTE: scrub mode is decided once at load; resizing across the
+
+     Why two engines: pinned sticky scrub scenes are good on a desktop
+     pointer and bad under a thumb — they fight the mobile browser
+     chrome collapse and hijack the scroll. So below 768px the same
+     visual states are driven by IntersectionObserver + short timed
+     sequences instead (scripts/80-mobile-scenes.js): reading position
+     picks WHICH scene plays, time drives the states inside it.
+
+     NOTE: the mode is decided once at load; resizing across the
      768px boundary keeps the current mode until reload.
      ============================================================ */
 
   var docEl = document.documentElement;
   var motionOK = !prefersReducedMotion;
   var scrubOK = motionOK && window.matchMedia("(min-width: 768px)").matches;
+  /* the phone engine needs IntersectionObserver; without it the page simply
+     keeps its static final states, which are complete and readable */
+  var stepsOK = motionOK && !scrubOK && ("IntersectionObserver" in window);
   if (motionOK) docEl.classList.add("js-motion");
   if (scrubOK) docEl.classList.add("js-scrub");
+  if (stepsOK) docEl.classList.add("js-steps");
+  if (scrubOK || stepsOK) docEl.classList.add("js-scene");
 
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
@@ -632,7 +648,7 @@
 
   function heroFrame(p) {
     flag(heroScene, "hm1", true);                    // guest message waits from the start
-    flag(heroScene, "ht1", p >= 0.06 && p < 0.28);   // Conviva typing…
+    flag(heroScene, "ht1", p >= 0.06 && p < 0.28);   // LIA typing…
     flag(heroScene, "hm2", p >= 0.28);               // fix instructions
     flag(heroScene, "ht2", p >= 0.36 && p < 0.5);
     flag(heroScene, "hm3", p >= 0.5);                // guide link
@@ -909,6 +925,246 @@
     }, { passive: true });
   }
 
+
+  /* ============================================================
+     PHONE CHOREOGRAPHY (html.js-steps, below 768px)
+
+     The desktop scenes are pinned and scroll-scrubbed. That is the
+     wrong instrument on a phone: a pinned sticky frame fights the
+     browser chrome collapse and a scrubbed scene hijacks the scroll,
+     so below 768px the scrub engine never runs and this one does
+     instead. It drives the SAME state classes the scrub scenes drive
+     (hm1..hm4 / ht1,ht2 / hc0..hc3 / hfloat, the pain grid, ss1..ss6
+     on the how-it-works stage, the background colour layer) — but
+     reading position only decides WHICH scene plays; time then walks
+     the states inside it, once, and the scene rests on its last state.
+
+     Rules kept: transform and opacity only, passive listeners, every
+     play-once observer disconnects as soon as its scene has fired, and
+     nothing here runs under prefers-reduced-motion or without JS —
+     in both of those cases the CSS final states are already correct.
+     ============================================================ */
+
+  if (stepsOK) {
+    /* one beat of a scene's timeline. Nothing here is ever scheduled under
+       prefers-reduced-motion (stepsOK is false), so there is no timer to
+       cancel and no cancellation path to get wrong. */
+    function stepAt(ms, fn) { window.setTimeout(fn, ms); }
+
+    /* fire `run` the first time `el` is on screen, then stop watching it */
+    function playOnce(el, ratio, run) {
+      if (!el) return;
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (!entries[i].isIntersecting) continue;
+          io.disconnect();
+          run();
+          return;
+        }
+      }, { threshold: ratio, rootMargin: "0px 0px -8% 0px" });
+      io.observe(el);
+    }
+
+    /* ---------- HERO: the 11:43 PM exchange plays itself ----------
+       Same beats as the scrubbed version: the guest's message is already
+       waiting, the agent types, answers, sends the unit guide, the guest
+       confirms two minutes later and the Chatwoot stamp lands. The clock
+       starts at 11:43 so the two minutes are something you watch pass. */
+    if (heroScene) {
+      if (heroClock) heroClock.textContent = "11:43 PM";
+      flag(heroScene, "hm1", true);
+      flag(heroScene, "hc0", true);
+
+      playOnce(heroScene, 0.05, function () {
+        stepAt(700, function () { flag(heroScene, "ht1", true); });
+        stepAt(1900, function () {
+          flag(heroScene, "ht1", false);
+          flag(heroScene, "hm2", true);
+          flag(heroScene, "hc0", false);
+          flag(heroScene, "hc1", true);
+        });
+        stepAt(2900, function () { flag(heroScene, "ht2", true); });
+        stepAt(3800, function () {
+          flag(heroScene, "ht2", false);
+          flag(heroScene, "hm3", true);
+        });
+        stepAt(4900, function () {
+          flag(heroScene, "hm4", true);
+          flag(heroScene, "hc1", false);
+          flag(heroScene, "hc2", true);
+          if (heroClock) heroClock.textContent = "11:45 PM";
+          if (heroChat) heroChat.scrollTop = heroChat.scrollHeight;
+        });
+        stepAt(5800, function () {
+          flag(heroScene, "hfloat", true);
+          flag(heroScene, "hc2", false);
+          flag(heroScene, "hc3", true);
+          if (heroChat) heroChat.scrollTop = heroChat.scrollHeight;
+        });
+      });
+    }
+
+    /* ---------- PAIN: the six notifications keep arriving ----------
+       Desktop piles them up and sweeps them into order. On a phone the
+       grid is already a single column, so the meaning that carries is the
+       arrival itself: one card at a time, unread counter climbing behind
+       them. It stops at six and stays there. */
+    if (painGrid && painCards.length) {
+      playOnce(painGrid, 0.15, function () {
+        painCards.forEach(function (card, i) {
+          stepAt(140 + i * 260, function () {
+            card.classList.add("is-on");
+            if (painCount) {
+              painCount.classList.add("is-on");
+              if (painCountNum) painCountNum.textContent = String(i + 1);
+            }
+          });
+        });
+      });
+    }
+
+    /* ---------- HOW IT WORKS: six steps you can actually drive ----------
+       A horizontal snap track plus a dot index. It auto-advances from the
+       moment the section arrives so the stage tells its story unprompted,
+       and the first touch anywhere on the track or the dots hands control
+       over permanently. The track is a native overflow-x scroller, so the
+       browser — not this code — decides whether a gesture is a horizontal
+       swipe or a page scroll, and a vertical swipe is never captured. */
+    var howDotEls = [].slice.call(document.querySelectorAll("#howDots .how-dot"));
+    if (howSec && howStage && howStepsWrap && howStepEls.length) {
+      var howIdx = -1;
+      var howAuto = true;
+      /* the stage stays empty until the section is actually on screen, so
+         step 1's chips fly into the unit brain in front of the visitor
+         instead of having already landed while it was below the fold */
+      var howArmed = false;
+      var howTimer = null;
+      var howSyncing = false;
+      var HOW_DWELL = 2600;
+
+      function howStopAuto() {
+        howAuto = false;
+        if (howTimer) { window.clearTimeout(howTimer); howTimer = null; }
+      }
+
+      /* snap position of card i, expressed the way the scroll container sees
+         it: card 0 sits at scrollLeft 0 because scroll-padding matches the
+         track's own left gutter */
+      function howPos(i) {
+        return howStepEls[i].offsetLeft - howStepEls[0].offsetLeft;
+      }
+
+      function howScrollTo(i) {
+        if (!howStepEls[i]) return;
+        var left = howPos(i);
+        howSyncing = true;
+        if (howStepsWrap.scrollTo) howStepsWrap.scrollTo({ left: left, behavior: "smooth" });
+        else howStepsWrap.scrollLeft = left;
+        window.setTimeout(function () { howSyncing = false; }, 600);
+      }
+
+      /* marks a step everywhere — card, dots and the cumulative stage —
+         without moving the track; the track calls this from its own scroll */
+      function howMark(i) {
+        if (i === howIdx) return;
+        howIdx = i;
+        howStepEls.forEach(function (st, k) {
+          flag(st, "active", k === i);
+          flag(st, "past", k < i);
+        });
+        howPaintStage();
+        howDotEls.forEach(function (d, k) { flag(d, "on", k === i); });
+      }
+
+      function howPaintStage() {
+        for (var s = 1; s <= 6; s++) flag(howStage, "ss" + s, howArmed && s <= howIdx + 1);
+      }
+
+      function howGo(i, scroll) {
+        howMark(i);
+        if (scroll) howScrollTo(i);
+      }
+
+      function howQueue() {
+        if (!howAuto) return;
+        howTimer = window.setTimeout(function () {
+          howTimer = null;
+          if (!howAuto || howIdx >= howStepEls.length - 1) return;
+          howGo(howIdx + 1, true);
+          howQueue();
+        }, HOW_DWELL);
+      }
+
+      /* the card whose snap position is nearest the current scroll is current */
+      function howSyncFromTrack() {
+        if (howSyncing) return;
+        var x = howStepsWrap.scrollLeft;
+        var best = 0;
+        var bestD = Infinity;
+        for (var i = 0; i < howStepEls.length; i++) {
+          var d = Math.abs(howPos(i) - x);
+          if (d < bestD) { bestD = d; best = i; }
+        }
+        howMark(best);
+      }
+
+      var howTick = false;
+      howStepsWrap.addEventListener("scroll", function () {
+        if (howTick) return;
+        howTick = true;
+        requestAnimationFrame(function () { howTick = false; howSyncFromTrack(); });
+      }, { passive: true });
+
+      /* any touch on the track is the visitor taking over */
+      howStepsWrap.addEventListener("pointerdown", howStopAuto, { passive: true });
+      howStepsWrap.addEventListener("touchstart", howStopAuto, { passive: true });
+
+      howDotEls.forEach(function (dot, i) {
+        dot.addEventListener("click", function () {
+          howStopAuto();
+          howGo(i, true);
+        });
+      });
+
+      howMark(0);
+      playOnce(howSec, 0.2, function () {
+        howArmed = true;
+        howPaintStage();
+        howQueue();
+      });
+    }
+
+    /* ---------- BACKGROUND MORPH ----------
+       Desktop interpolates the fixed colour layer per frame. Here the same
+       band colours are committed as discrete states by an observer watching
+       a 1%-tall line 15% down the viewport — the point at which the incoming
+       band already fills the screen, which is where the desktop scrub reaches
+       the end of its own crossfade window. A 300ms CSS transition does the
+       rest. This is the one observer that stays connected: the background has
+       to keep matching the band you are reading, in both directions. */
+    if (bgMorph) {
+      var bandSecs = [].slice.call(document.querySelectorAll("main > section"));
+      var bandFoot = document.querySelector(".site-footer");
+      if (bandFoot) bandSecs.push(bandFoot);
+      if (bandSecs.length) {
+        var bandLast = "";
+        function bandPaint(el) {
+          var c = sectionColor(el);
+          var out = "rgb(" + c[0] + "," + c[1] + "," + c[2] + ")";
+          if (out === bandLast) return;
+          bandLast = out;
+          bgMorph.style.backgroundColor = out;
+        }
+        bandPaint(bandSecs[0]);
+        var bandIO = new IntersectionObserver(function (entries) {
+          for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) bandPaint(entries[i].target);
+          }
+        }, { rootMargin: "-15% 0px -84% 0px", threshold: 0 });
+        bandSecs.forEach(function (el) { bandIO.observe(el); });
+      }
+    }
+  }
   /* ---------- Simulator: invite pulse until first interaction ---------- */
   var simChipsEl = document.getElementById("simChips");
   if (motionOK && simChipsEl) {
