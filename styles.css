@@ -296,6 +296,18 @@ section { padding: 108px 0; }
 
 .band-tint { background: var(--ivory-deep); }
 
+/* Inline link inside a lede. No new colour and no new treatment: this is the
+   same terracotta-deep / 600-weight / underline-on-hover pattern already used
+   by .form-alt a and .legal-body a. Scoped to the ecosystem block, which is the
+   only lede on the page that carries a link (the sibling-product cross-link).
+   Without a rule it would inherit `a { color: inherit }` and be invisible. */
+#ecosystem .lede a {
+  color: var(--terracotta-deep);
+  font-weight: 600;
+  text-decoration: none;
+}
+#ecosystem .lede a:hover { text-decoration: underline; }
+
 /* ---------- Scroll reveal ---------- */
 
 .reveal {

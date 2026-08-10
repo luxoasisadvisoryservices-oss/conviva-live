@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py -->
 <html lang="en">
 <head>
@@ -328,6 +328,18 @@ section { padding: 108px 0; }
 .band-dark .eyebrow::before { background: #E0977C; }
 
 .band-tint { background: var(--ivory-deep); }
+
+/* Inline link inside a lede. No new colour and no new treatment: this is the
+   same terracotta-deep / 600-weight / underline-on-hover pattern already used
+   by .form-alt a and .legal-body a. Scoped to the ecosystem block, which is the
+   only lede on the page that carries a link (the sibling-product cross-link).
+   Without a rule it would inherit `a { color: inherit }` and be invisible. */
+#ecosystem .lede a {
+  color: var(--terracotta-deep);
+  font-weight: 600;
+  text-decoration: none;
+}
+#ecosystem .lede a:hover { text-decoration: underline; }
 
 /* ---------- Scroll reveal ---------- */
 
@@ -4149,17 +4161,31 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
          Never move this above the pricing section or into the hero.
          Naming: LIA is the agent who speaks to guests; Oasis Guest Lab is the
          platform she belongs to; Oasis Revenue Lab is the sibling platform.
-         Nest Match is in private beta — "opening city by city" is the approved
-         wording and must not be softened into an invitation to sign up. No bundle
-         price, no discount percentage, no bundle tier name: package pricing is
-         quoted in conversation, deliberately. -->
+         THE ECOSYSTEM IS THREE THINGS, NOT TWO (owner, 9 Aug 2026). The earlier
+         heading framed LIA as a fraction of a two-part job; that was rejected.
+         Guest communication, revenue management and the network app are three
+         parts, and this block names all three. Do not reintroduce a two-part
+         metaphor or a fractions-of-a-job heading.
+         CROSS-SITE RULE: name the sibling, do not perform it. Oasis Revenue Lab is
+         named and linked, and that is all — how it prices is Revenue Lab's pitch to
+         make on Revenue Lab's own site. LIA IS named here, because this is her site.
+         Nest Match is an app — a network for the growth and scale of every player in
+         it — and "opening city by city" is the approved wording, which must not be
+         softened into an invitation to sign up. NO mobile-storefront badge, vendor
+         mark or install link of any kind: the app does not exist yet, the vendors'
+         brand guidelines permit those marks only as links to a live listing, and a
+         badge pointing at nothing reads as vapourware to the operators this page is
+         written for. Capture interest through the contact route already on the
+         page instead.
+         No bundle price, no discount percentage, no bundle tier name: package
+         pricing is quoted in conversation, deliberately. -->
     <section id="ecosystem" aria-labelledby="eco-h">
       <div class="container">
         <div class="reveal">
           <p class="eyebrow">The ecosystem</p>
-          <h2 class="display-2" id="eco-h">LIA is <span class="u-accent">one half</span> of the job.</h2>
-          <p class="lede" style="margin-top:18px">LIA answers your guests. Oasis Revenue Lab prices your nights, run by a revenue manager who does this daily, not by software left on autopilot. Between them they cover the two jobs that keep most operators on their phone at midnight, which is how you get your attention back for finding the next unit.</p>
-          <p class="lede" style="margin-top:18px">Nest Match, our marketplace for landlords, operators and suppliers, is opening city by city.</p>
+          <h2 class="display-2" id="eco-h">Part of the <span class="u-accent">ecosystem</span>.</h2>
+          <p class="lede" style="margin-top:18px">LIA replies to your guests. <a href="https://www.oasisrevenuelab.com" target="_blank" rel="noopener">Oasis Revenue Lab</a> prices your nights. Nest Match is the network app connecting landlords, operators and suppliers.</p>
+          <p class="lede" style="margin-top:18px">Nest Match is built for the growth and scale of every player in it, and is opening city by city.</p>
         </div>
         <div class="handover-note reveal" style="--rd:80ms">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v5M12 16.5v.01"/></svg>
