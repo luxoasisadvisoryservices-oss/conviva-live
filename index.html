@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py -->
 <html lang="en">
 <head>
@@ -2097,6 +2097,7 @@ section { padding: 108px 0; }
   margin-bottom: 20px;
 }
 .psc-top label { font-weight: 700; font-size: 1.02rem; }
+.psc-figures { text-align: right; }
 .psc-readout {
   font-family: var(--serif);
   font-size: 1.35rem;
@@ -2104,6 +2105,21 @@ section { padding: 108px 0; }
   color: var(--espresso);
 }
 .psc-readout .psc-total { color: var(--terracotta); }
+/* Standard rate sits above the introductory headline, smaller and in muted ink.
+   It is what the client pays from month thirteen — never a former price. */
+.psc-standard {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+.psc-standard-label { font-weight: 650; }
+.psc-introlabel {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin-top: 2px;
+}
 input[type="range"].units-range {
   -webkit-appearance: none;
   appearance: none;
@@ -2180,10 +2196,46 @@ input[type="range"].units-range::-moz-range-thumb {
 }
 .tier-name { font-family: var(--serif); font-size: 1.32rem; font-weight: 650; }
 .tier-range { font-size: 0.8rem; font-weight: 650; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-muted); }
-.tier-price { margin: 14px 0 4px; display: flex; align-items: baseline; gap: 6px; }
+/* Two price levels per card. The standard rate is de-emphasised and labelled;
+   the diagonal rule is only permissible because "Standard rate" sits beside it.
+   Nothing here may imply the standard rate has ever been charged. */
+.tier-standard {
+  margin: 14px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+.tier-standard-label { font-weight: 650; }
+.tier-standard-fig {
+  position: relative;
+  white-space: nowrap;
+  margin-left: 2px;
+}
+.tier-standard-fig::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 50%;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0.6;
+  transform: translateY(-50%) rotate(-8deg);
+  pointer-events: none;
+}
+.tier-price { margin: 2px 0 0; display: flex; align-items: baseline; gap: 6px; }
 .tier-price strong { font-family: var(--serif); font-size: 2.1rem; font-weight: 650; color: var(--espresso); line-height: 1; }
 .tier-price span { font-size: 0.8rem; color: var(--ink-muted); }
+.tier-introlabel { font-size: 0.78rem; line-height: 1.5; color: var(--ink-muted); margin: 2px 0 8px; }
 .tier-desc { font-size: 0.87rem; color: var(--espresso-soft); line-height: 1.55; }
+
+.pricing-terms {
+  margin-top: 24px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 46rem;
+}
 
 .enterprise-line {
   margin-top: 34px;
@@ -2228,6 +2280,7 @@ input[type="range"].units-range::-moz-range-thumb {
 .pricing-cta { margin-top: 48px; text-align: center; }
 
 @media (max-width: 1020px) { .tier-band { grid-template-columns: repeat(2, 1fr); gap: 26px 20px; } }
+@media (max-width: 720px) { .psc-figures { text-align: left; } }
 @media (max-width: 560px) { .tier-band { grid-template-columns: 1fr; gap: 26px; } .price-slider-card { padding: 28px 24px; } }
 
 /* ============================================================
@@ -3987,6 +4040,26 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
     </section>
 
     <!-- ================= PRICING ================= -->
+    <!--
+      SOURCE NOTE — why the introductory period is TWELVE months, not six.
+      Decided in _briefs/guestlab-pricing.md; do not shorten it casually.
+      1. Dubai short-term-rental demand is seasonal (peak roughly Nov–Mar). A half-year
+         intro shows a client only half a cycle, so the renewal conversation happens
+         while they are still guessing at their annual return.
+      2. The per-unit knowledge layer compounds. A rise at month six lands exactly when
+         the client first sees the value returned — the highest-churn moment there is.
+      3. True cost per unit (WhatsApp API conversations, inference, human escalation) is
+         still unknown; a full year produces the cost picture needed to reprice honestly.
+      4. It matches the owner's own plan to raise prices "next year" — twelve months.
+
+      SOURCE NOTE — how the standard rate may be shown.
+      The standard rate has never been charged. It is a statement about what the client
+      pays from month thirteen, not about the past, so it must never be framed as a
+      former, previous or usual selling price. The diagonal rule is permitted only
+      because the words "Standard rate" sit immediately beside the figure.
+      No discount percentage appears anywhere: adding an uplift to a price is not the
+      same as taking that same percentage off it, so any such claim would be false.
+    -->
     <section id="pricing" aria-labelledby="pricing-h">
       <div class="container">
         <div class="section-head reveal">
@@ -3998,7 +4071,11 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
         <div class="price-slider-card reveal">
           <div class="psc-top">
             <label for="unitsRange">How many units do you manage?</label>
-            <p class="psc-readout" aria-live="polite"><span id="pscUnits">24</span> units × AED <span id="pscRate">110</span> = <span class="psc-total">AED <span id="pscTotal">2,640</span>/mo</span></p>
+            <div class="psc-figures" aria-live="polite">
+              <p class="psc-standard" id="pscStandard"><span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdRate">155</span>/unit · AED <span id="pscStdTotal">3,720</span>/mo</span></p>
+              <p class="psc-readout"><span id="pscUnits">24</span> units × AED <span id="pscRate">110</span> = <span class="psc-total">AED <span id="pscTotal">2,640</span>/mo</span></p>
+              <p class="psc-introlabel" id="pscIntroLabel">Your rate for the first 12 months</p>
+            </div>
           </div>
           <input type="range" class="units-range" id="unitsRange" min="1" max="110" value="24" step="1" aria-label="Number of units">
           <div class="psc-scale"><span>1</span><span>25</span><span>50</span><span>75</span><span>100+</span></div>
@@ -4009,28 +4086,38 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
           <div class="tier reveal" data-tier="starter">
             <span class="tier-range">1–10 units</span>
             <span class="tier-name">Starter</span>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 185</span></p>
             <div class="tier-price"><strong>AED 130</strong><span>/unit/month</span></div>
+            <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For independent hosts and small operators getting started with AI-powered guest communication.</p>
           </div>
           <div class="tier reveal" style="--rd:60ms" data-tier="growth">
             <span class="tier-range">11–30 units</span>
             <span class="tier-name">Growth</span>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 155</span></p>
             <div class="tier-price"><strong>AED 110</strong><span>/unit/month</span></div>
+            <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For established operators ready to scale communication without scaling team size.</p>
           </div>
           <div class="tier reveal" style="--rd:120ms" data-tier="scale">
             <span class="tier-range">31–60 units</span>
             <span class="tier-name">Scale</span>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 125</span></p>
             <div class="tier-price"><strong>AED 90</strong><span>/unit/month</span></div>
+            <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For professional operators running serious portfolios who need consistent quality at volume.</p>
           </div>
           <div class="tier reveal" style="--rd:180ms" data-tier="portfolio">
             <span class="tier-range">61–100 units</span>
             <span class="tier-name">Portfolio</span>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 105</span></p>
             <div class="tier-price"><strong>AED 75</strong><span>/unit/month</span></div>
+            <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For large operators managing complex multi-building portfolios with high-volume guest flow.</p>
           </div>
         </div>
+
+        <p class="pricing-terms reveal">Your rate is held for twelve months from the day service starts. After that it moves to the standard rate shown, and never above it. All prices exclude VAT.</p>
 
         <div class="enterprise-line reveal">
           <p>Managing more than 100 units? Get in touch for custom enterprise pricing.</p>
@@ -4859,7 +4946,12 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
 
   /* ============================================================
      PRICING — unit-count slider
-     Tiers: 1–10 @130 · 11–30 @110 · 31–60 @90 · 61–100 @75 · >100 custom
+     Two price levels per tier. `rate` is the introductory rate, held for the
+     first twelve months; `std` is the standard rate the client moves to from
+     month thirteen. The standard rate has never been charged, so it is only
+     ever labelled "Standard rate" — never as a former price.
+     Tiers: 1–10 @130/185 · 11–30 @110/155 · 31–60 @90/125 · 61–100 @75/105
+            · >100 custom
      ============================================================ */
   var range = document.getElementById("unitsRange");
   if (range) {
@@ -4868,6 +4960,8 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
     var pscTotal = document.getElementById("pscTotal");
     var pscNote = document.getElementById("pscNote");
     var readout = document.querySelector(".psc-readout");
+    var pscStandard = document.getElementById("pscStandard");
+    var pscIntroLabel = document.getElementById("pscIntroLabel");
     var tiers = {
       starter: document.querySelector('[data-tier="starter"]'),
       growth: document.querySelector('[data-tier="growth"]'),
@@ -4876,11 +4970,11 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
     };
 
     function tierFor(u) {
-      if (u <= 10) return { key: "starter", name: "Starter", rate: 130 };
-      if (u <= 30) return { key: "growth", name: "Growth", rate: 110 };
-      if (u <= 60) return { key: "scale", name: "Scale", rate: 90 };
-      if (u <= 100) return { key: "portfolio", name: "Portfolio", rate: 75 };
-      return { key: null, name: "Enterprise", rate: null };
+      if (u <= 10) return { key: "starter", name: "Starter", rate: 130, std: 185 };
+      if (u <= 30) return { key: "growth", name: "Growth", rate: 110, std: 155 };
+      if (u <= 60) return { key: "scale", name: "Scale", rate: 90, std: 125 };
+      if (u <= 100) return { key: "portfolio", name: "Portfolio", rate: 75, std: 105 };
+      return { key: null, name: "Enterprise", rate: null, std: null };
     }
 
     function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
@@ -4898,9 +4992,17 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       if (t.rate === null) {
         readout.innerHTML = "<span>" + u + "+ units — </span><span class=\"psc-total\">custom enterprise pricing</span>";
         pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
+        if (pscStandard) { pscStandard.hidden = true; }
+        if (pscIntroLabel) { pscIntroLabel.hidden = true; }
       } else {
         var total = u * t.rate;
+        var stdTotal = u * t.std;
         readout.innerHTML = '<span id="pscUnits">' + u + '</span> units × AED <span id="pscRate">' + t.rate + '</span> = <span class="psc-total">AED <span id="pscTotal">' + fmt(total) + "</span>/mo</span>";
+        if (pscStandard) {
+          pscStandard.hidden = false;
+          pscStandard.innerHTML = '<span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdRate">' + t.std + '</span>/unit · AED <span id="pscStdTotal">' + fmt(stdTotal) + "</span>/mo</span>";
+        }
+        if (pscIntroLabel) { pscIntroLabel.hidden = false; }
         pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
       }
     }

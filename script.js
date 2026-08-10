@@ -515,7 +515,12 @@
 
   /* ============================================================
      PRICING — unit-count slider
-     Tiers: 1–10 @130 · 11–30 @110 · 31–60 @90 · 61–100 @75 · >100 custom
+     Two price levels per tier. `rate` is the introductory rate, held for the
+     first twelve months; `std` is the standard rate the client moves to from
+     month thirteen. The standard rate has never been charged, so it is only
+     ever labelled "Standard rate" — never as a former price.
+     Tiers: 1–10 @130/185 · 11–30 @110/155 · 31–60 @90/125 · 61–100 @75/105
+            · >100 custom
      ============================================================ */
   var range = document.getElementById("unitsRange");
   if (range) {
@@ -524,6 +529,8 @@
     var pscTotal = document.getElementById("pscTotal");
     var pscNote = document.getElementById("pscNote");
     var readout = document.querySelector(".psc-readout");
+    var pscStandard = document.getElementById("pscStandard");
+    var pscIntroLabel = document.getElementById("pscIntroLabel");
     var tiers = {
       starter: document.querySelector('[data-tier="starter"]'),
       growth: document.querySelector('[data-tier="growth"]'),
@@ -532,11 +539,11 @@
     };
 
     function tierFor(u) {
-      if (u <= 10) return { key: "starter", name: "Starter", rate: 130 };
-      if (u <= 30) return { key: "growth", name: "Growth", rate: 110 };
-      if (u <= 60) return { key: "scale", name: "Scale", rate: 90 };
-      if (u <= 100) return { key: "portfolio", name: "Portfolio", rate: 75 };
-      return { key: null, name: "Enterprise", rate: null };
+      if (u <= 10) return { key: "starter", name: "Starter", rate: 130, std: 185 };
+      if (u <= 30) return { key: "growth", name: "Growth", rate: 110, std: 155 };
+      if (u <= 60) return { key: "scale", name: "Scale", rate: 90, std: 125 };
+      if (u <= 100) return { key: "portfolio", name: "Portfolio", rate: 75, std: 105 };
+      return { key: null, name: "Enterprise", rate: null, std: null };
     }
 
     function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
@@ -554,9 +561,17 @@
       if (t.rate === null) {
         readout.innerHTML = "<span>" + u + "+ units — </span><span class=\"psc-total\">custom enterprise pricing</span>";
         pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
+        if (pscStandard) { pscStandard.hidden = true; }
+        if (pscIntroLabel) { pscIntroLabel.hidden = true; }
       } else {
         var total = u * t.rate;
+        var stdTotal = u * t.std;
         readout.innerHTML = '<span id="pscUnits">' + u + '</span> units × AED <span id="pscRate">' + t.rate + '</span> = <span class="psc-total">AED <span id="pscTotal">' + fmt(total) + "</span>/mo</span>";
+        if (pscStandard) {
+          pscStandard.hidden = false;
+          pscStandard.innerHTML = '<span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdRate">' + t.std + '</span>/unit · AED <span id="pscStdTotal">' + fmt(stdTotal) + "</span>/mo</span>";
+        }
+        if (pscIntroLabel) { pscIntroLabel.hidden = false; }
         pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
       }
     }
