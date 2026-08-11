@@ -8,7 +8,7 @@
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEX0lEQVR4nO1WS2wbVRQ9972xnW8lBIlLJSRgUQmLoEoEFRp74vAJ4SMhJCawKLYLFSsQVCzYIGzv2KA0wAKqkjQpi+JBSCyAJC1k4oRWSBQRCRmpUmCB1BKngJTUKeOZeZdF7OIkrmNXyQrO6mn07pxz7zv3vgf810HlBTPISvXKpVwnG6EQ7wSZmctRRyhP0dSMR4R/OTKGIXeCsBbKnJQxDDlomt7UCwf2tMP3qsfoVkr5uKI62wECWBOiyOAfCuQe7R85ezFjGJIA4Jt45IkWTR5n5ilb8aTjqWUo2t5jEEw+KXYFBD1KRP2rrnf4wbHZL+h0Qu/yM89KicHwyOzUtpJeB3OxSL9LMB2isOZT/C6A4fDI7NSFVwYCP/7e7u4k+b7dK9re9yamrER42M8Yppm4vihZHui5Q/81hTTSaaidFJBMQqSQhLVg3UlSnaWZeOSy5rmhno/P5RkgAuo++7JRG40hgCcPPtDZLLWcAEj8ZbuiwUSo5GAmgEst1VDXOLYrGCQ0AGiSYl0GtVqwlC0Pmqb3/UtPtgCX0H3MXG0gFpWc2sZNWx0DJ5PCzJlasOWWtx13ZRBog5XQzXzh8htGyHApnb6uh6qJ2ySAAP5yYCCwePXqps17bvNLSqcL07HIW7vbAkeWVosAgFtbA6+xurlA6fSbkwfvab34203exthgczPTxIS9UcQ6AQSwFdPfb/Pb8VZHeQCujWgGVJvPFVYiMioY4WXb8ZRSDADLtkOC8LiViOxq07RDgdtdRUClr7xWny2tmD5G49mXa1ZAQC0oyHkGe8xUcUewUoCAogUmvp9AxCC1JpwEAJcZvyhgnpkVr31bS4zYAyAYamEj3zoBDBCNzw0BGNq4sRLT8Yjd5JP3cSnLJp9Eoeh+1Dc++yGAo7ViN3psswmTyZotaVmW6Bub+eDrWNhu0WQcAJYKzljf+NzodG+vFo1Gaw+ydHqdwWkmrv/p2PZdD5/6brHeQVRtX6OxZ57bH/QFAj9vqkA9IIDZMGQqZDIApHIGkWlucn490AD2mjVR9yi9JqKCMA2zYeJmTbALVhoDnqN8wYxh/GECwA1mUi9MwxAZAI62GASzS1ZcPwXg7+hYNjGd7K37SJZynTxYEpsxDNkRytd1F7RfukLdx847Vlw/QcQBOvPi/qDP9Z/XhBzqGbXeaSSbcsfUGr/V8O0h/XVH8RFXK95LAHD6+fDedr/2KcCrRU/NsUIBBK72VwKrgJRy1eH5h05mPwMAK9bzdEDT9tme51UOoDIEADCIJLUESISZ0LpSdJ955OTcBUomIcqPkHOJ6LMesQ5wu6eq32pEIEFQDDzlsToMAJLEcQl87jIEc/VWlAIsQCuKKRs+YX0CrD1OsG7RAE4n9K5sIrKSTUSuWAm9q9H4MmdllpQxDLGlmSygo7NT3G2aRSumPwYA0fHsVz8Zhn8pn1eI1iYumVehgVdUVVRW7UYquC3gZFJsdXf8j63wD6X478QHaSONAAAAAElFTkSuQmCC">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <meta name="description" content="How Oasis Guest Lab, the AI-powered guest communication platform by Lux Oasis Advisory & Services LLC, collects, uses and protects data.">
+  <meta name="description" content="How Oasis Guest Lab, the AI guest communication platform by Lux Oasis Advisory & Services LLC, collects, uses and protects data.">
   <link rel="canonical" href="https://www.oasisguestlab.ai/privacy">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.oasisguestlab.ai/privacy">
@@ -2619,6 +2619,129 @@ input[type="range"].units-range::-moz-range-thumb {
 .legal-body a:hover { text-decoration: underline; }
 
 /* ============================================================
+   LEGAL DOCUMENTS — elements used by the full document set
+   (dpa.html, subprocessors.html, aup.html, cookies.html and the
+   longer terms.html). Scoped to .legal-body so nothing else moves.
+   ============================================================ */
+
+.legal-body h2.legal-part {
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 2px solid var(--terracotta-soft, var(--hairline-soft));
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--terracotta-deep);
+}
+.legal-body h3 {
+  font-size: 1.06rem;
+  margin: 28px 0 10px;
+  color: var(--espresso);
+}
+.legal-body h4 {
+  font-size: 0.98rem;
+  margin: 22px 0 8px;
+  color: var(--espresso-soft);
+}
+.legal-body ol {
+  margin: 14px 0 14px 20px;
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.legal-body ol li { list-style: decimal; }
+.legal-body blockquote {
+  margin: 18px 0;
+  padding: 2px 0 2px 20px;
+  border-left: 3px solid var(--terracotta);
+  color: var(--espresso-soft);
+}
+.legal-body blockquote p + p { margin-top: 10px; }
+.legal-body hr {
+  border: 0;
+  border-top: 1px solid var(--hairline-soft);
+  margin: 36px 0;
+}
+.legal-body code {
+  font-size: 0.86em;
+  word-break: break-word;
+  color: var(--espresso-soft);
+}
+.legal-body .legal-flag {
+  background: #FBEFC4;
+  color: var(--espresso);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.legal-body .legal-choices li::before { display: none; }
+.legal-body .legal-choices li::marker { content: ""; }
+.legal-body .legal-choices li {
+  padding-left: 26px;
+  position: relative;
+}
+.legal-body .legal-choices li::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 5px;
+  width: 13px; height: 13px;
+  border: 1.5px solid var(--terracotta);
+  border-radius: 3px;
+}
+
+/* Tables. The wrapper scrolls on a phone rather than forcing the page wide. */
+.legal-table-wrap {
+  margin: 20px 0 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  min-width: 460px;
+}
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 11px 14px;
+  border: 1px solid var(--hairline-soft);
+  color: var(--espresso-soft);
+}
+.legal-table thead th {
+  background: var(--ivory-deep);
+  color: var(--espresso);
+  font-weight: 650;
+  font-size: 0.84rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.legal-table tbody tr:nth-child(even) td { background: rgba(0, 0, 0, 0.014); }
+
+@media (max-width: 640px) {
+  .legal-table { font-size: 0.84rem; min-width: 380px; }
+  .legal-table th, .legal-table td { padding: 9px 10px; }
+}
+
+/* ---------- legal document index ----------
+   A client landing on any legal page can see and reach every other document
+   for that service. The documents stay separately versioned, which is why
+   this is a set of links rather than one merged page. */
+.legal-nav { margin: 0 0 8px; padding: 26px 0 4px; }
+.legal-nav-head { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; opacity: .62; margin: 0 0 14px; }
+.legal-nav-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: currentColor; border: 1px solid; border-radius: 10px; overflow: hidden; }
+.legal-nav-item { margin: 0; padding: 0; background: var(--paper, #fff); }
+.legal-nav-item > a, .legal-nav-item.is-current { display: block; padding: 14px 16px; text-decoration: none; color: inherit; }
+.legal-nav-item > a:hover { background: rgba(127,127,127,.08); }
+.legal-nav-name { display: block; font-weight: 600; font-size: .96rem; }
+.legal-nav-desc { display: block; font-size: .86rem; opacity: .68; margin-top: 3px; line-height: 1.45; }
+.legal-nav-item.is-current { opacity: .72; }
+.legal-nav-here { display: inline-block; margin-top: 5px; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+.legal-nav-foot { font-size: .84rem; opacity: .62; margin: 12px 0 0; line-height: 1.5; }
+@media (max-width: 767px) { .legal-nav { padding-top: 18px; } .legal-nav-desc { font-size: .82rem; } }
+/* ============================================================
    MOTION UPGRADE — Apple-grade scroll choreography
    Engine: script.js sets three classes on <html>:
      js-motion  motion allowed (no prefers-reduced-motion)
@@ -3191,59 +3314,186 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       <div class="container">
         <p class="eyebrow">Legal</p>
         <h1 class="display-2">Privacy Policy</h1>
-        <p class="updated">Last Updated: April 15, 2026</p>
+        <p class="updated">Version 1.0 · Effective 1 September 2026</p>
       </div>
     </div>
 
+
+    <nav class="legal-nav" aria-label="Legal documents">
+      <div class="container">
+        <p class="legal-nav-head">The legal documents for this service</p>
+        <ul class="legal-nav-list">
+          <li class="legal-nav-item"><a href="terms.html"><span class="legal-nav-name">Terms of Service</span><span class="legal-nav-desc">The contract itself: what you buy, what we owe you, liability and termination.</span></a></li>
+          <li class="legal-nav-item is-current"><span class="legal-nav-name">Privacy Policy</span><span class="legal-nav-desc">What we do with your data, and what we do with your guests' data. Two separate roles.</span><span class="legal-nav-here">You are here</span></li>
+          <li class="legal-nav-item"><a href="dpa.html"><span class="legal-nav-name">Data Processing Addendum</span><span class="legal-nav-desc">The Article 28 terms. Part of your contract. Hand this to your lawyer.</span></a></li>
+          <li class="legal-nav-item"><a href="subprocessors.html"><span class="legal-nav-name">Sub-processors</span><span class="legal-nav-desc">Every third party that touches guest data, and where each one processes it.</span></a></li>
+          <li class="legal-nav-item"><a href="aup.html"><span class="legal-nav-name">Acceptable Use Policy</span><span class="legal-nav-desc">What the platform may not be used for, including Meta and WhatsApp rules passed to you.</span></a></li>
+          <li class="legal-nav-item"><a href="cookies.html"><span class="legal-nav-name">Cookie Policy</span><span class="legal-nav-desc">What this website stores on your device.</span></a></li>
+        </ul>
+        <p class="legal-nav-foot">Each document is versioned and updated separately, so a change to one does not silently rewrite the others. Together they are the whole agreement.</p>
+      </div>
+    </nav>
     <div class="legal-body">
       <div class="container">
-        <h2>Introduction</h2>
-        <p>Oasis Guest Lab ("we", "us") is an AI-powered guest communication platform operated by Lux Oasis Advisory &amp; Services LLC. The platform enables holiday home operators to manage guest conversations over WhatsApp, with monitoring and control through the Chatwoot interface. By using our website or services, you accept the practices described in this Privacy Policy.</p>
-
-        <h2>Who We Are</h2>
-        <p>Oasis Guest Lab is a product of Lux Oasis Advisory &amp; Services LLC, a company registered in the United Arab Emirates. The platform provides automated guest communication for holiday home operators, combining WhatsApp messaging with a Chatwoot-based control layer. For the guest data handled through the platform, we act as a data processor on behalf of the property operators who use our services. You can reach us at <a href="mailto:info@luxoasisadvisory.com">info@luxoasisadvisory.com</a>.</p>
-
-        <h2>Data We Collect</h2>
+        <p>Permanent URL of this version: <code>https://www.oasisguestlab.ai/legal/privacy/v1.0/</code> Current version always at: <code>https://www.oasisguestlab.ai/legal/privacy/</code></p>
+        <hr>
+        <h2>Who we are</h2>
+        <p>Oasis Guest Lab is a service of Lux Oasis Advisory &amp; Services LLC, a company registered in the Sharjah Free Zone (SHAMS), United Arab Emirates, licence number 2645909, TRN 104722180700003 ("we", "us", "our").</p>
+        <p>Contact for anything in this policy: <a href="mailto:info@luxoasisadvisory.com">info@luxoasisadvisory.com</a> · WhatsApp +971 58 508 9283</p>
+        <p>Lux Oasis Advisory &amp; Services LLC and Lux Oasis Holiday Homes are two separate companies registered in the United Arab Emirates. Neither owns the other. Lux Oasis Holiday Homes holds a DTCM licence and operates a short-term rental portfolio in JBR, Dubai Marina and Downtown Dubai. It is our operating partner: the live operation in which our systems and methods are tested before they are offered to clients. Lux Oasis Advisory &amp; Services LLC does not hold a DTCM licence and does not operate short-term rental accommodation.</p>
+        <h2>Why this policy has two parts</h2>
+        <p>We handle personal data in two completely different roles, and the rules are different for each. Reading them as one thing is how privacy policies end up incoherent, so we have split them.</p>
+        <p><strong>Part A is data we control.</strong> Website visitors, people who send us an enquiry, and the people at our client businesses who hold accounts with us. We decide why and how that data is used, so we are the controller, we choose the legal basis, and you come to us with your rights requests.</p>
+        <p><strong>Part B is data we process for a client.</strong> The personal data of guests who message a property operator on WhatsApp. The operator decides why and how that data is used, so the operator is the controller and we are the processor. We act only on the operator's documented instructions. We do not choose the legal basis for that data and we cannot answer a guest's rights request in our own name.</p>
+        <p>Part C applies to both.</p>
+        <p>If you are a guest and you are not sure which applies to you, the short answer is Part B: contact the operator of the property you are staying in. If you cannot reach them, contact us and we will pass your request to them.</p>
+        <hr>
+        <h2 class="legal-part">PART A: DATA WE CONTROL</h2>
+        <p>We are the controller of the data in this Part.</p>
+        <h2>A1. Website visitors</h2>
+        <p><strong>What we collect.</strong> Our web server records the standard technical information generated by any web request: IP address, the page requested, the date and time, the referring page, and browser and device information sent by your browser.</p>
+        <p>We set no cookies on our website. We run no analytics product. We use no advertising or tracking technology, and we do not store anything in your browser's local storage or session storage. See the Cookie Policy for the detail, including the one third-party request our pages make.</p>
+        <p><strong>Why, and on what basis.</strong> To serve the website, keep it secure, and diagnose faults. Our legal basis is our legitimate interest in operating and protecting our own website. That interest is limited: we do not build profiles, we do not track you across other sites, and we do not use this data for marketing.</p>
+        <p><strong>How long.</strong> Server logs are kept for <mark class="legal-flag">[PLACEHOLDER: LOG RETENTION PERIOD, TO BE CONFIRMED BY THE OWNER]</mark> and then deleted.</p>
+        <h2>A2. Enquiries</h2>
+        <p><strong>What we collect.</strong> Whatever you put in your message to us: your name, your email address, your WhatsApp number, your company, the size of your portfolio, and anything else you choose to tell us. Our website forms have no backend; submitting one opens a pre-filled email in your own email client, so the message reaches us as an ordinary email. If you contact us on WhatsApp, we receive your WhatsApp number and profile name.</p>
+        <p><strong>Why, and on what basis.</strong> To answer you, to prepare a proposal, and to keep a record of what was discussed. Our legal basis is our legitimate interest in responding to people who contact us about our services, and, once we are working towards an agreement, the steps taken at your request before entering into a contract.</p>
+        <p><strong>Marketing.</strong> We do not add enquirers to a marketing list. If we ever introduce one, it will be opt-in, and the opt-in will be separate and unticked.</p>
+        <p><strong>How long.</strong> Enquiries that do not lead to an agreement are kept for 24 months and then deleted. Enquiries that lead to an agreement become part of the client record under A3.</p>
+        <h2>A3. Client account holders</h2>
+        <p><strong>What we collect.</strong> The name, business email address, telephone or WhatsApp number and role of the people at our client businesses who hold accounts or act as our contacts, together with account activity records such as sign-in times, actions taken in the dashboard and support correspondence. We also hold the client's business details, licence and TRN, billing details and payment records, which are mostly company information rather than personal data.</p>
+        <p><strong>Why, and on what basis.</strong></p>
+        <div class="legal-table-wrap">
+          <table class="legal-table">
+            <thead>
+              <tr><th>Purpose</th><th>Legal basis</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Providing the platform to the client, administering accounts, providing support</td><td>Performance of our contract with the client, and our legitimate interest in administering that contract where the individual is not personally the counterparty</td></tr>
+              <tr><td>Billing, invoicing, credit control</td><td>Performance of the contract, and legal obligation under UAE tax law</td></tr>
+              <tr><td>Security, access control, keeping audit records of who did what in the dashboard</td><td>Our legitimate interest in keeping the platform secure, and our obligations to our clients under the Data Processing Addendum</td></tr>
+              <tr><td>Service messages: outages, changes to documents, changes to price, security notices</td><td>Performance of the contract</td></tr>
+              <tr><td>Keeping accounting and tax records</td><td>Legal obligation</td></tr>
+              <tr><td>Establishing, exercising or defending legal claims</td><td>Our legitimate interest in protecting our position</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>How long.</strong> Account records are deleted within 30 days of the end of the client agreement, in line with clause 13 of the Terms of Service. Invoices and accounting records are kept for the period required by applicable UAE tax and accounting law and for nothing else.</p>
+        <h2>A4. Our own AI improvement work</h2>
+        <p>We improve our models, our prompts and our product using <strong>Aggregated and De-identified Data</strong> as defined in clause 11.3 of the Terms of Service: data from which names, phone numbers, email addresses, booking references, unit and building identifiers and client identity have been removed or irreversibly obscured, so that neither a guest, nor a member of a client's team, nor a unit, nor a client can reasonably be identified.</p>
+        <p>We do not use identifiable guest personal data, or guest conversation content in a form from which an individual can reasonably be re-identified, to train, fine-tune, evaluate or improve any model, for benchmarking, or for product analytics. Doing so would be processing for our own purposes and would make us a controller of guest data. We do not do it, and our contract with each client does not permit it.</p>
+        <p>We do not attempt to re-identify Aggregated and De-identified Data.</p>
+        <h2>A5. Your rights over data we control</h2>
+        <p>Where the law gives you these rights, you have them, and you exercise them by emailing <a href="mailto:info@luxoasisadvisory.com">info@luxoasisadvisory.com</a>. We will respond within one month.</p>
         <ul>
-          <li>Guest data: WhatsApp phone numbers, display names, and the content of messages sent to operator numbers connected to the platform.</li>
-          <li>Operator data: business details provided during onboarding and account administration.</li>
-          <li>Conversation records: message histories and timestamps required to operate the service.</li>
-          <li>Technical data: IP addresses, browser information, and usage logs generated when you access our website or dashboards.</li>
+          <li>Access to the personal data we hold about you, and a copy of it.</li>
+          <li>Correction of data that is wrong or incomplete.</li>
+          <li>Deletion, where we no longer have a good reason to keep it.</li>
+          <li>Restriction of processing while a dispute about accuracy or legitimacy is resolved.</li>
+          <li>Objection to processing based on legitimate interests, including an absolute right to object to direct marketing.</li>
+          <li>Portability of data you gave us, where processing is by consent or contract and carried out by automated means.</li>
+          <li>Withdrawal of consent, where we relied on consent, without affecting what we did before you withdrew it.</li>
+          <li>To complain to a supervisory authority. Which authority that is depends on where you are and which law applies to you.</li>
         </ul>
-
-        <h2>WhatsApp Data &amp; Meta Platform Policy</h2>
-        <p>Messages sent through WhatsApp are processed through Meta's infrastructure via the official WhatsApp Business API. We do not use WhatsApp data for advertising. Message content is used solely to generate automated responses and to enable operator oversight of conversations. Guests may request deletion of their conversation data at any time by contacting us or the property operator.</p>
-
-        <h2>How We Use Data</h2>
-        <p>We use the data we collect to deliver the service, improve AI response quality, enable conversation monitoring and human escalation, provide customer support, and comply with legal obligations. We never sell personal data, and we do not use guest data for marketing.</p>
-
-        <h2>Storage &amp; Security</h2>
-        <p>Data is stored on Hetzner servers located in the European Union. Transmissions are protected with SSL/TLS encryption, and access to systems is restricted through access controls. Conversation data is retained for a maximum of 12 months unless a longer period is required by law.</p>
-
-        <h2>Your Rights Under GDPR</h2>
-        <p>Where the EU General Data Protection Regulation applies, we process data on the legal bases of legitimate interest, performance of a contract, and legal obligation. You have the right to access, correct, erase, restrict the processing of, and port your personal data. To exercise any of these rights, contact <a href="mailto:info@luxoasisadvisory.com">info@luxoasisadvisory.com</a>.</p>
-
-        <h2>UAE Personal Data Protection Law</h2>
-        <p>We comply with the UAE Personal Data Protection Law (PDPL), including the principles of fair processing, collection for specified purposes, UAE data residency requirements where applicable, and the rights granted to data subjects under the PDPL.</p>
-
-        <h2>Third-Party Services</h2>
-        <p>We rely on a small set of carefully chosen service providers to run the platform:</p>
+        <p>We may need to verify your identity before acting. We will not charge you unless a request is manifestly unfounded or excessive, and we will tell you before we charge anything.</p>
+        <hr>
+        <h2 class="legal-part">PART B: DATA WE PROCESS ON A CLIENT'S INSTRUCTIONS</h2>
+        <p>We are the processor of the data in this Part. The property operator is the controller. The operator decides what data is collected, why it is used, how long it is kept and on what legal basis it is processed. We act only on the operator's documented instructions, which are set out in the Data Processing Addendum at <code>https://www.oasisguestlab.ai/legal/dpa/</code>.</p>
+        <p>We are stating this in one sentence so it cannot be misread: <strong>for guest personal data, we do not choose the purpose, we do not choose the legal basis, and we do not decide a guest's rights request.</strong></p>
+        <h2>B1. Whose data, and what data</h2>
+        <p><strong>Data subjects:</strong> guests and prospective guests who message a WhatsApp number connected to the Service; other individuals a guest mentions in a message; and the operator's own staff who use the Chatwoot dashboard.</p>
+        <p><strong>Categories of data:</strong></p>
         <ul>
-          <li>Meta / WhatsApp — message delivery over the WhatsApp Business API.</li>
-          <li>Chatwoot (self-hosted) — the operator conversation dashboard.</li>
-          <li>OpenAI — AI processing used to generate responses.</li>
-          <li>Hetzner — EU-based server infrastructure.</li>
-          <li>360dialog — WhatsApp Business API connectivity.</li>
+          <li>WhatsApp phone number and WhatsApp profile display name.</li>
+          <li>The content of messages sent to and from the connected number, including anything a guest chooses to put in a message.</li>
+          <li>Conversation metadata: timestamps, delivery status, message direction, language, whether a message was AI generated or sent by a human operator, escalation labels.</li>
+          <li>Booking data received from the operator's property management system where the operator connects one: guest name, phone number, unit, check-in and check-out dates, booking source and booking reference.</li>
+          <li>Operator staff data: dashboard user names, email addresses and action logs.</li>
         </ul>
-
-        <h2>Cookies</h2>
-        <p>Our website uses minimal cookies — functional and analytics cookies only. We do not use advertising cookies and we do not track you across other sites.</p>
-
-        <h2>Changes to This Policy</h2>
-        <p>If we make material changes to this Privacy Policy, we will notify operators by email. Continued use of the platform after changes take effect constitutes acceptance of the updated policy.</p>
-
-        <h2>Contact</h2>
-        <p>Questions about this policy or about your data can be sent to <a href="mailto:info@luxoasisadvisory.com">info@luxoasisadvisory.com</a>, or via <a href="https://www.oasisguestlab.ai">oasisguestlab.ai</a>.</p>
+        <p><strong>Special category data.</strong> The Service is not designed to collect health data, data about religious or philosophical beliefs, or any other special category of data, and operators must not configure it to. A guest may nonetheless volunteer such data in a free-text message, for example by mentioning an allergy, a disability, a medical need or a dietary requirement tied to belief. Where that happens the data is processed only because it is in the message, and it is subject to the same handling as the rest of the conversation. Operators should account for that possibility in their own privacy notice and in their own legal basis analysis.</p>
+        <p><strong>Children.</strong> The Service is not directed at children. Where a booking includes children, their data may appear in a message.</p>
+        <h2>B2. What we do with it</h2>
+        <p>Only what is needed to run the Service for the operator:</p>
+        <ul>
+          <li>match an incoming message to the right unit and the right booking;</li>
+          <li>generate a reply from that unit's knowledge layer;</li>
+          <li>apply the operator's escalation rules and flag conversations to the operator's team;</li>
+          <li>present the conversation in the Chatwoot dashboard so the operator can read it, take it over and continue it;</li>
+          <li>keep the conversation history so context is not lost when a human takes over;</li>
+          <li>keep the Service secure and diagnose faults;</li>
+          <li>comply with law.</li>
+        </ul>
+        <p>We do not use guest data for our own marketing or for the operator's marketing. We do not sell it. We do not use it for advertising, and we do not permit WhatsApp data to be used for advertising. We do not use it to train models except in the aggregated and de-identified form described in A4, which is not guest personal data.</p>
+        <h2>B3. The legal basis for guest data</h2>
+        <p>The operator determines it. Typically an operator will rely on performance of its accommodation contract with the guest, on its legitimate interests in servicing a stay, or on consent, but that is the operator's call and the operator's responsibility to state in its own privacy notice.</p>
+        <p>We do not adopt, assert or publish a legal basis for guest personal data, because a processor that selects a legal basis is not a processor.</p>
+        <h2>B4. Retention of guest data</h2>
+        <p>Our default, which applies unless the operator instructs otherwise in writing:</p>
+        <ul>
+          <li>conversation data is kept for <strong>twelve months from the date of the last message in that conversation</strong>, then deleted;</li>
+          <li>on termination of the operator's agreement, all of it is deleted within 30 days, or within 30 days of delivering an export the operator has requested, whichever is later;</li>
+          <li>an operator may instruct a shorter period at any time, and we will apply it.</li>
+        </ul>
+        <p>This is the single retention position for the Service. It replaces every other retention statement previously published for Oasis Guest Lab.</p>
+        <h2>B5. Guest rights requests</h2>
+        <p>If you are a guest and you want access to, correction of, or deletion of your data, or you want to object to processing, the request goes to the operator of the property you stayed in. They are the controller and the decision is theirs.</p>
+        <p>If you send the request to us, we will not decide it. We will forward it to the operator without undue delay and tell you that we have done so, and we will help the operator answer it. We can identify the operator connected to the number you messaged.</p>
+        <p>We can act on a guest request directly only where the operator instructs us to.</p>
+        <h2>B6. Sub-processors for guest data</h2>
+        <p>The current list, what each one does, and where each one processes, is at <code>https://www.oasisguestlab.ai/legal/sub-processors/</code>. We give operators at least 30 days' notice before adding or replacing one, and operators may object. See the Data Processing Addendum, clause 7.</p>
+        <hr>
+        <h2 class="legal-part">PART C: MATTERS THAT APPLY TO BOTH PARTS</h2>
+        <h2>C1. Where data is stored and processed</h2>
+        <p><strong>Guest and unit data is hosted in the European Union</strong>, on servers operated by Hetzner. It is not hosted in the United Arab Emirates.</p>
+        <p>This is a change of position, stated plainly. Earlier versions of our privacy policy claimed compliance with UAE data residency requirements while also saying data sits in the EU. Those two statements cannot both be true, and the accurate one is that the data is in the EU. If your own regulatory position, or a requirement imposed on you by a landlord, an owners' association, a licensing authority or your own client, requires that guest data stays inside the UAE, tell us before onboarding. We cannot meet a UAE residency requirement on the current infrastructure.</p>
+        <p>Some processing necessarily happens outside the EU:</p>
+        <div class="legal-table-wrap">
+          <table class="legal-table">
+            <thead>
+              <tr><th>Flow</th><th>Where</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Message transport to and from guests</td><td>Meta's global infrastructure, including the United States</td></tr>
+              <tr><td>WhatsApp Business API connectivity</td><td>Our WhatsApp Business Solution Provider, 360dialog, in the European Union</td></tr>
+              <tr><td>Generating AI replies</td><td>OpenAI, in the United States</td></tr>
+              <tr><td>Hosting, storage, the operator dashboard</td><td>Hetzner, in the European Union</td></tr>
+              <tr><td>Booking data, where an operator connects a property management system</td><td>The operator's own PMS provider, under the operator's own contract with them</td></tr>
+              <tr><td>Our own staff access for support and administration</td><td>The United Arab Emirates</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h2>C2. Cross-border transfers, and where the position is unsettled</h2>
+        <p>We would rather be exact than reassuring, so this section says what we rely on and where the ground is not yet firm.</p>
+        <p><strong>Transfers out of the UAE.</strong> The UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021) restricts transfers of personal data outside the UAE, permitting them where the receiving jurisdiction provides an adequate level of protection, or where an appropriate safeguard such as a contract, binding corporate rules or an approved instrument is in place, or on other limited grounds. The detail of the adequacy list, of the approved contractual instruments and of the notification procedure is left to executive regulations.</p>
+        <p><strong>As at the effective date of this document, we do not treat those executive regulations as settled, and we have not built any position that depends on them.</strong> Where a document, a certification body or a competitor tells you that UAE cross-border transfer requirements are fully resolved, treat that as a claim to be checked rather than a fact. Our position is:</p>
+        <ul>
+          <li>we rely on written contractual commitments with each provider that carry data protection obligations equivalent in substance to those we owe our clients;</li>
+          <li>where the provider offers them, we rely in addition on the standard contractual clauses adopted by the European Commission;</li>
+          <li>we will re-paper on the PDPL's own transfer instruments as soon as they exist in a usable form, and we will publish an updated version of this policy when we do;</li>
+          <li>this section is flagged for review by a qualified UAE lawyer at publication and at each material change in the regulations.</li>
+        </ul>
+        <p><strong>Transfers out of the EU, where the GDPR applies.</strong> We do not assert that the GDPR applies to every operator or every guest, and we do not assert that it does not. Whether it applies depends on where the operator is established and whether the operator is offering services to individuals in the EU or the UK. That is the operator's determination to make, and the Data Processing Addendum contains the GDPR terms that apply where the operator determines it does.</p>
+        <p>Where the GDPR applies and personal data hosted in the EU is transferred onward to a provider outside the EU, we rely on the standard contractual clauses adopted by the European Commission, in the module appropriate to the relationship, together with the transfer risk assessment and supplementary measures those clauses require. Where a recipient is certified under the EU-US Data Privacy Framework and the transfer falls within that certification, we may rely on the framework instead. We do not claim that any particular provider holds such a certification; the current position for each is stated in the Sub-processor List.</p>
+        <p><strong>What we do not claim.</strong> We do not claim UAE data residency. We do not claim adequacy for any jurisdiction. We do not claim certification under any privacy framework in our own name. We do not claim compliance with any regulation not addressed in this document.</p>
+        <h2>C3. Security</h2>
+        <p>We protect data in transit with TLS encryption. Access to systems is restricted to the people who need it to do their job, under individual credentials. Guest and unit data is held on infrastructure we control, in EU data centres operated by Hetzner. The operator dashboard, Chatwoot, is open-source software that we self-host on that same infrastructure, so guest conversations are not sent to a third-party dashboard vendor. Everyone with access is under a written confidentiality obligation.</p>
+        <p>The full and current list of technical and organisational measures is in Annex 2 of the Data Processing Addendum, which is the document a client or a client's lawyer should read. We describe there only measures we actually have in place. We hold no security certification and we do not claim one. Where a measure is planned but not yet implemented, Annex 2 says so.</p>
+        <p>No system is perfectly secure, and we do not say ours is.</p>
+        <h2>C4. Personal data breaches</h2>
+        <p>If a breach affects data we control under Part A, we will notify the individuals affected and any competent authority where the law requires it, without undue delay.</p>
+        <p>If a breach affects data we process under Part B, we notify the operator, not the guest. The operator is the controller and decides what to tell guests and regulators. Our notification obligations and timings are in clause 9 of the Data Processing Addendum.</p>
+        <h2>C5. Complaints</h2>
+        <p>Tell us first: <a href="mailto:info@luxoasisadvisory.com">info@luxoasisadvisory.com</a>. We would rather fix it than have it escalated, and we will answer within one month.</p>
+        <p>You may also complain to a supervisory authority. Which one that is depends on where you are and which law applies. For data we process for an operator, a complaint about how the data is used goes to the operator in the first instance.</p>
+        <h2>C6. Third-party marks</h2>
+        <p>Third-party names, logos and trademarks are the property of their respective owners. Their appearance on this site indicates the tools and platforms we work with. It does not imply any endorsement, sponsorship or affiliation beyond any partner status we expressly state and hold.</p>
+        <h2>C7. Changes to this policy</h2>
+        <p>Every version carries a version number and an effective date, and every version is archived at a permanent URL and is never overwritten in place.</p>
+        <p>For a material change we give clients at least 30 days' notice by email and ask them to accept the new version. Continued use of the Service after the effective date is not acceptance of a material change. Non-material changes take effect on publication.</p>
+        <h2>C8. Language</h2>
+        <p>These documents are written in English. English is the governing language. If they are translated, the English version prevails.</p>
+        <hr>
+        <p>This document has been prepared for review and requires sign-off by a qualified UAE lawyer before publication. It is not legal advice.</p>
       </div>
     </div>
   </main>
