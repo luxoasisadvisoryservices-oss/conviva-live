@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py -->
 <html lang="en">
 <head>
@@ -5105,11 +5105,21 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
      ever labelled "Standard rate" — never as a former price.
      Tiers: 1–10 @130/185 · 11–30 @110/155 · 31–60 @90/125 · 61–100 @75/105
             · >100 custom
+
+     MONOTONIC TOTAL — do not remove.
+     A plain units × rate calculation is not monotonic across tier boundaries:
+     at 10 units it billed AED 1,300 but at 11 units only AED 1,210, so adding
+     a unit LOWERED the bill. The same happened at 30→31 and 60→61. A prospect
+     who noticed could ask to be billed for units they do not have, and it
+     makes the volume-pricing promise look broken.
+     The fix floors the total at the highest full-tier total already passed, so
+     the bill never falls as unit count rises. The advertised per-unit rate is
+     unchanged: only the total is floored. While the floor is active the
+     multiplication would not reconcile, so the readout drops the
+     "units × rate =" form and explains why instead.
      ============================================================ */
   var range = document.getElementById("unitsRange");
   if (range) {
-    var pscUnits = document.getElementById("pscUnits");
-    var pscRate = document.getElementById("pscRate");
     var pscTotal = document.getElementById("pscTotal");
     var pscNote = document.getElementById("pscNote");
     var readout = document.querySelector(".psc-readout");
@@ -5122,12 +5132,35 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       portfolio: document.querySelector('[data-tier="portfolio"]')
     };
 
+    var TIERS = [
+      { max: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 185 },
+      { max: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 155 },
+      { max: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 125 },
+      { max: 100, key: "portfolio", name: "Portfolio", intro: 75,  standard: 105 }
+    ];
+
     function tierFor(u) {
-      if (u <= 10) return { key: "starter", name: "Starter", rate: 130, std: 185 };
-      if (u <= 30) return { key: "growth", name: "Growth", rate: 110, std: 155 };
-      if (u <= 60) return { key: "scale", name: "Scale", rate: 90, std: 125 };
-      if (u <= 100) return { key: "portfolio", name: "Portfolio", rate: 75, std: 105 };
-      return { key: null, name: "Enterprise", rate: null, std: null };
+      for (var i = 0; i < TIERS.length; i++) {
+        if (u <= TIERS[i].max) return TIERS[i];
+      }
+      return { key: null, name: "Enterprise", intro: null, standard: null };
+    }
+
+    /* Returns the billed total and whether the tier floor is doing the work.
+       floored === true means units × rate is BELOW the previous tier's full
+       total, so the previous total is charged instead. */
+    function monthlyTotal(units, key) {
+      var floor = 0;
+      for (var i = 0; i < TIERS.length; i++) {
+        var tier = TIERS[i];
+        var rate = tier[key];
+        if (units <= tier.max) {
+          var raw = units * rate;
+          return { total: Math.max(raw, floor), floored: floor > raw, rate: rate };
+        }
+        floor = Math.max(floor, tier.max * rate);
+      }
+      return { total: 0, floored: false, rate: null };
     }
 
     function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
@@ -5142,22 +5175,35 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
         if (tiers[k]) tiers[k].classList.toggle("active", k === t.key);
       });
 
-      if (t.rate === null) {
+      if (t.intro === null) {
         readout.innerHTML = "<span>" + u + "+ units — </span><span class=\"psc-total\">custom enterprise pricing</span>";
         pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
         if (pscStandard) { pscStandard.hidden = true; }
         if (pscIntroLabel) { pscIntroLabel.hidden = true; }
-      } else {
-        var total = u * t.rate;
-        var stdTotal = u * t.std;
-        readout.innerHTML = '<span id="pscUnits">' + u + '</span> units × AED <span id="pscRate">' + t.rate + '</span> = <span class="psc-total">AED <span id="pscTotal">' + fmt(total) + "</span>/mo</span>";
-        if (pscStandard) {
-          pscStandard.hidden = false;
-          pscStandard.innerHTML = '<span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdRate">' + t.std + '</span>/unit · AED <span id="pscStdTotal">' + fmt(stdTotal) + "</span>/mo</span>";
-        }
-        if (pscIntroLabel) { pscIntroLabel.hidden = false; }
-        pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
+        return;
       }
+
+      var intro = monthlyTotal(u, "intro");
+      var std = monthlyTotal(u, "standard");
+
+      if (intro.floored) {
+        /* Do not print units × rate = total: it would not reconcile. */
+        readout.innerHTML = '<span class="psc-total">AED <span id="pscTotal">' + fmt(intro.total) + "</span>/mo</span>";
+      } else {
+        readout.innerHTML = '<span id="pscUnits">' + u + '</span> units × AED <span id="pscRate">' + t.intro
+          + '</span> = <span class="psc-total">AED <span id="pscTotal">' + fmt(intro.total) + "</span>/mo</span>";
+      }
+
+      if (pscStandard) {
+        pscStandard.hidden = false;
+        pscStandard.innerHTML = '<span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdRate">'
+          + t.standard + '</span>/unit · AED <span id="pscStdTotal">' + fmt(std.total) + "</span>/mo</span>";
+      }
+      if (pscIntroLabel) { pscIntroLabel.hidden = false; }
+
+      pscNote.textContent = intro.floored
+        ? "Your rate is held at the previous tier total until the " + t.name + " rate overtakes it."
+        : t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
     }
     range.addEventListener("input", updatePricing);
     updatePricing();
