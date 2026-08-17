@@ -2288,6 +2288,20 @@ input[type="range"].units-range::-moz-range-thumb {
 @media (max-width: 720px) { .psc-figures { text-align: left; } }
 @media (max-width: 560px) { .tier-band { grid-template-columns: 1fr; gap: 26px; } .price-slider-card { padding: 28px 24px; } }
 
+
+/* ---------- graduated pricing readout ---------- */
+.psc-effective { font-size: .88rem; opacity: .74; margin: 4px 0 0; }
+.psc-breakdown { margin: 14px 0 0; font-size: .88rem; }
+.psc-breakdown > summary { cursor: pointer; opacity: .72; list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+.psc-breakdown > summary::-webkit-details-marker { display: none; }
+.psc-breakdown > summary::after { content: "+"; font-size: 1rem; line-height: 1; opacity: .7; }
+.psc-breakdown[open] > summary::after { content: "\2212"; }
+.psc-breakdown > summary:hover { opacity: 1; }
+.psc-bd-table { width: 100%; border-collapse: collapse; margin: 10px 0 0; }
+.psc-bd-table td { padding: 6px 0; border-bottom: 1px solid rgba(127,127,127,.22); }
+.psc-bd-table .bd-amt { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.psc-bd-table .bd-total td { font-weight: 700; border-bottom: 0; padding-top: 9px; }
+@media (max-width: 767px) { .psc-breakdown, .psc-effective { font-size: .84rem; } }
 /* ============================================================
    DIFFERENCE — comparison table
    ============================================================ */
@@ -3952,33 +3966,35 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
   }
 
   /* ============================================================
-     PRICING — unit-count slider
-     Two price levels per tier. `rate` is the introductory rate, held for the
-     first twelve months; `std` is the standard rate the client moves to from
-     month thirteen. The standard rate has never been charged, so it is only
-     ever labelled "Standard rate" — never as a former price.
-     Tiers: 1–10 @130/185 · 11–30 @110/155 · 31–60 @90/125 · 61–100 @75/105
-            · >100 custom
+     PRICING — unit-count slider, GRADUATED (tiered) pricing
 
-     MONOTONIC TOTAL — do not remove.
-     A plain units × rate calculation is not monotonic across tier boundaries:
-     at 10 units it billed AED 1,300 but at 11 units only AED 1,210, so adding
-     a unit LOWERED the bill. The same happened at 30→31 and 60→61. A prospect
-     who noticed could ask to be billed for units they do not have, and it
-     makes the volume-pricing promise look broken.
-     The fix floors the total at the highest full-tier total already passed, so
-     the bill never falls as unit count rises. The advertised per-unit rate is
-     unchanged: only the total is floored. While the floor is active the
-     multiplication would not reconcile, so the readout drops the
-     "units × rate =" form and explains why instead.
+     Each unit is charged at the rate of the band THAT UNIT falls into, like
+     tax brackets. Units 1-10 at 130, 11-30 at 110, 31-60 at 90, 61-100 at 75.
+
+     This replaced volume pricing, where every unit was charged at the rate of
+     the band the TOTAL landed in. Volume pricing was not monotonic: at 10
+     units it billed AED 1,300 but at 11 units only AED 1,210, so adding a
+     property lowered the bill. It also created wide zones where extra
+     properties were effectively free. Graduated pricing removes both: the
+     total rises with every single unit and the effective per-unit rate falls
+     continuously.
+
+     Do not "simplify" this back to units x tier rate. That is the bug.
+
+     `intro` is the introductory rate, held for the first twelve months.
+     `standard` is the rate the client moves to from month thirteen. The
+     standard rate has never been charged, so it is only ever labelled
+     "Standard rate", never as a former price.
      ============================================================ */
   var range = document.getElementById("unitsRange");
   if (range) {
-    var pscTotal = document.getElementById("pscTotal");
     var pscNote = document.getElementById("pscNote");
     var readout = document.querySelector(".psc-readout");
+    var effLine = document.querySelector(".psc-effective");
     var pscStandard = document.getElementById("pscStandard");
     var pscIntroLabel = document.getElementById("pscIntroLabel");
+    var pscBreakdown = document.getElementById("pscBreakdown");
+    var pscBdBody = document.getElementById("pscBdBody");
     var tiers = {
       starter: document.querySelector('[data-tier="starter"]'),
       growth: document.querySelector('[data-tier="growth"]'),
@@ -3987,82 +4003,103 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
     };
 
     var TIERS = [
-      { max: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 185 },
-      { max: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 155 },
-      { max: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 125 },
-      { max: 100, key: "portfolio", name: "Portfolio", intro: 75,  standard: 105 }
+      { upTo: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 185 },
+      { upTo: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 155 },
+      { upTo: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 125 },
+      { upTo: 100, key: "portfolio", name: "Portfolio", intro: 75,  standard: 105 }
     ];
 
-    function tierFor(u) {
-      for (var i = 0; i < TIERS.length; i++) {
-        if (u <= TIERS[i].max) return TIERS[i];
-      }
-      return { key: null, name: "Enterprise", intro: null, standard: null };
-    }
-
-    /* Returns the billed total and whether the tier floor is doing the work.
-       floored === true means units × rate is BELOW the previous tier's full
-       total, so the previous total is charged instead. */
     function monthlyTotal(units, key) {
-      var floor = 0;
+      var total = 0, counted = 0;
       for (var i = 0; i < TIERS.length; i++) {
         var tier = TIERS[i];
-        var rate = tier[key];
-        if (units <= tier.max) {
-          var raw = units * rate;
-          return { total: Math.max(raw, floor), floored: floor > raw, rate: rate };
-        }
-        floor = Math.max(floor, tier.max * rate);
+        if (units <= counted) break;
+        var inThisTier = Math.min(units, tier.upTo) - counted;
+        total += inThisTier * tier[key];
+        counted += inThisTier;
       }
-      return { total: 0, floored: false, rate: null };
+      return total;
+    }
+
+    /* The bands a given unit count actually spans, for the breakdown table. */
+    function breakdown(units, key) {
+      var rows = [], counted = 0;
+      for (var i = 0; i < TIERS.length; i++) {
+        var tier = TIERS[i];
+        if (units <= counted) break;
+        var n = Math.min(units, tier.upTo) - counted;
+        rows.push({ first: counted === 0, n: n, rate: tier[key], sub: n * tier[key] });
+        counted += n;
+      }
+      return rows;
+    }
+
+    function currentTier(units) {
+      for (var i = 0; i < TIERS.length; i++) {
+        if (units <= TIERS[i].upTo) return TIERS[i];
+      }
+      return TIERS[TIERS.length - 1];
     }
 
     function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 
+    function renderBreakdown(units) {
+      if (!pscBdBody) return;
+      var rows = breakdown(units, "intro"), html = "";
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        html += '<tr><td class="bd-label">' + (r.first ? "First " : "Next ") + r.n
+             + " unit" + (r.n === 1 ? "" : "s") + " &times; AED " + r.rate + "</td>"
+             + '<td class="bd-amt">AED ' + fmt(r.sub) + "</td></tr>";
+      }
+      html += '<tr class="bd-total"><td class="bd-label">Total</td><td class="bd-amt">AED '
+           + fmt(monthlyTotal(units, "intro")) + "</td></tr>";
+      pscBdBody.innerHTML = html;
+    }
+
     function updatePricing() {
       var u = parseInt(range.value, 10);
-      var t = tierFor(u);
+      var t = currentTier(u);
       var fill = ((u - 1) / (110 - 1)) * 100;
       range.style.setProperty("--fill", fill + "%");
 
+      var isEnterprise = u > 100;
       Object.keys(tiers).forEach(function (k) {
-        if (tiers[k]) tiers[k].classList.toggle("active", k === t.key);
+        if (tiers[k]) tiers[k].classList.toggle("active", !isEnterprise && k === t.key);
       });
 
-      if (t.intro === null) {
-        readout.innerHTML = "<span>" + u + "+ units — </span><span class=\"psc-total\">custom enterprise pricing</span>";
-        pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
+      if (isEnterprise) {
+        readout.innerHTML = '<span class="psc-total">custom enterprise pricing</span>';
+        if (effLine) { effLine.innerHTML = '<span id="pscUnits">' + u + "</span> units"; }
         if (pscStandard) { pscStandard.hidden = true; }
         if (pscIntroLabel) { pscIntroLabel.hidden = true; }
+        if (pscBreakdown) { pscBreakdown.hidden = true; }
+        pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
         return;
       }
 
-      var intro = monthlyTotal(u, "intro");
-      var std = monthlyTotal(u, "standard");
+      var total = monthlyTotal(u, "intro");
+      var stdTotal = monthlyTotal(u, "standard");
+      var effective = Math.round(total / u);
 
-      if (intro.floored) {
-        /* Do not print units × rate = total: it would not reconcile. */
-        readout.innerHTML = '<span class="psc-total">AED <span id="pscTotal">' + fmt(intro.total) + "</span>/mo</span>";
-      } else {
-        readout.innerHTML = '<span id="pscUnits">' + u + '</span> units × AED <span id="pscRate">' + t.intro
-          + '</span> = <span class="psc-total">AED <span id="pscTotal">' + fmt(intro.total) + "</span>/mo</span>";
+      readout.innerHTML = '<span class="psc-total">AED <span id="pscTotal">' + fmt(total) + "</span>/mo</span>";
+      if (effLine) {
+        effLine.innerHTML = '<span id="pscUnits">' + u + "</span> unit" + (u === 1 ? "" : "s")
+          + ' · effective AED <span id="pscEffective">' + effective + "</span>/unit";
       }
-
       if (pscStandard) {
         pscStandard.hidden = false;
-        pscStandard.innerHTML = '<span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdRate">'
-          + t.standard + '</span>/unit · AED <span id="pscStdTotal">' + fmt(std.total) + "</span>/mo</span>";
+        pscStandard.innerHTML = '<span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdTotal">'
+          + fmt(stdTotal) + "</span>/mo</span>";
       }
       if (pscIntroLabel) { pscIntroLabel.hidden = false; }
+      if (pscBreakdown) { pscBreakdown.hidden = false; renderBreakdown(u); }
 
-      pscNote.textContent = intro.floored
-        ? "Your rate is held at the previous tier total until the " + t.name + " rate overtakes it."
-        : t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
+      pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
     }
     range.addEventListener("input", updatePricing);
     updatePricing();
   }
-
   /* ============================================================
      DEMO FORM — no backend: opens a prefilled mailto:
      (per shared brief; WhatsApp fallback link sits below the form)

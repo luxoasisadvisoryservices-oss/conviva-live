@@ -2262,6 +2262,20 @@ input[type="range"].units-range::-moz-range-thumb {
 @media (max-width: 720px) { .psc-figures { text-align: left; } }
 @media (max-width: 560px) { .tier-band { grid-template-columns: 1fr; gap: 26px; } .price-slider-card { padding: 28px 24px; } }
 
+
+/* ---------- graduated pricing readout ---------- */
+.psc-effective { font-size: .88rem; opacity: .74; margin: 4px 0 0; }
+.psc-breakdown { margin: 14px 0 0; font-size: .88rem; }
+.psc-breakdown > summary { cursor: pointer; opacity: .72; list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+.psc-breakdown > summary::-webkit-details-marker { display: none; }
+.psc-breakdown > summary::after { content: "+"; font-size: 1rem; line-height: 1; opacity: .7; }
+.psc-breakdown[open] > summary::after { content: "\2212"; }
+.psc-breakdown > summary:hover { opacity: 1; }
+.psc-bd-table { width: 100%; border-collapse: collapse; margin: 10px 0 0; }
+.psc-bd-table td { padding: 6px 0; border-bottom: 1px solid rgba(127,127,127,.22); }
+.psc-bd-table .bd-amt { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.psc-bd-table .bd-total td { font-weight: 700; border-bottom: 0; padding-top: 9px; }
+@media (max-width: 767px) { .psc-breakdown, .psc-effective { font-size: .84rem; } }
 /* ============================================================
    DIFFERENCE — comparison table
    ============================================================ */
