@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py -->
 <html lang="en">
 <head>
@@ -3322,6 +3322,85 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       .hero-claims, .pain-count, .how-rail { display: none !important; }
     </style>
   </noscript>
+
+  <!-- STRUCTURED DATA (schema.org JSON-LD)
+       All four sites declare the SAME Organization @id, so search engines and
+       answer engines resolve them to one company instead of four unrelated sites.
+       Deliberately NOT included: any price (pricing decisions are still open and a
+       machine-readable price that contradicts the FAQ is worse than none), any
+       rating or review (none exist), and any relationship to Lux Oasis Holiday Homes
+       (it is a separate company; every schema.org relation property would misstate it). -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://luxoasisadvisory.com/#organization",
+      "name": "Lux Oasis Advisory & Services",
+      "legalName": "Lux Oasis Advisory & Services LLC",
+      "url": "https://luxoasisadvisory.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://luxoasisadvisory.com/assets/logo.png"
+      },
+      "email": "info@luxoasisadvisory.com",
+      "description": "Lux Oasis Advisory & Services builds technology and services for the short-term rental industry: revenue management, AI guest communication, a B2B network app, and renovation project management.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Sharjah",
+        "addressCountry": "AE"
+      },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "name": "UAE Trade Licence (SHAMS)",
+          "value": "2645909"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "UAE Tax Registration Number",
+          "value": "104722180700003"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "info@luxoasisadvisory.com",
+          "telephone": "+971585089283",
+          "availableLanguage": [
+            "en"
+          ],
+          "areaServed": "AE"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.oasisguestlab.ai/#website",
+      "url": "https://www.oasisguestlab.ai/",
+      "name": "Oasis Guest Lab",
+      "publisher": {
+        "@id": "https://luxoasisadvisory.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.oasisguestlab.ai/#service",
+      "name": "Oasis Guest Lab",
+      "url": "https://www.oasisguestlab.ai/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web-based",
+      "description": "AI guest communication for holiday home operators. Guests message on WhatsApp; each property has its own knowledge layer, and anything needing judgement is escalated to a person.",
+      "provider": {
+        "@id": "https://luxoasisadvisory.com/#organization"
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <!-- Scroll-interpolated background layer (ivory <-> espresso morphs). Only active
