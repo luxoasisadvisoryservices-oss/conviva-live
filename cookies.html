@@ -3965,10 +3965,10 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
     };
 
     var TIERS = [
-      { upTo: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 185 },
-      { upTo: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 155 },
-      { upTo: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 125 },
-      { upTo: 100, key: "portfolio", name: "Portfolio", intro: 75,  standard: 105 }
+      { upTo: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 150 },
+      { upTo: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 130 },
+      { upTo: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 110 },
+      { upTo: Infinity, key: "portfolio", name: "Portfolio", intro: 75,  standard: 95  }
     ];
 
     function monthlyTotal(units, key) {
@@ -4025,20 +4025,13 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       var fill = ((u - 1) / (110 - 1)) * 100;
       range.style.setProperty("--fill", fill + "%");
 
+      /* Above 100 units the Portfolio rate simply continues, so the slider keeps
+         showing a real number. The note invites a conversation about custom terms
+         rather than replacing the figure with "contact us", which reads as a wall. */
       var isEnterprise = u > 100;
       Object.keys(tiers).forEach(function (k) {
-        if (tiers[k]) tiers[k].classList.toggle("active", !isEnterprise && k === t.key);
+        if (tiers[k]) tiers[k].classList.toggle("active", k === t.key);
       });
-
-      if (isEnterprise) {
-        readout.innerHTML = '<span class="psc-total">custom enterprise pricing</span>';
-        if (effLine) { effLine.innerHTML = '<span id="pscUnits">' + u + "</span> units"; }
-        if (pscStandard) { pscStandard.hidden = true; }
-        if (pscIntroLabel) { pscIntroLabel.hidden = true; }
-        if (pscBreakdown) { pscBreakdown.hidden = true; }
-        pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
-        return;
-      }
 
       var total = monthlyTotal(u, "intro");
       var stdTotal = monthlyTotal(u, "standard");
@@ -4057,7 +4050,9 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       if (pscIntroLabel) { pscIntroLabel.hidden = false; }
       if (pscBreakdown) { pscBreakdown.hidden = false; renderBreakdown(u); }
 
-      pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
+      pscNote.textContent = isEnterprise
+        ? "Above 100 units · charged at the Portfolio rate unless we agree custom terms."
+        : t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
     }
     range.addEventListener("input", updatePricing);
     updatePricing();

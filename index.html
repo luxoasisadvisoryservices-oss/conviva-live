@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- GENERATED FILE — do not edit directly. Edit the files in partials/ styles/ scripts/ then run: python3 build.py -->
 <html lang="en">
 <head>
@@ -4303,7 +4303,7 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
               <p class="psc-readout"><span class="psc-total">AED <span id="pscTotal">2,840</span>/mo</span></p>
               <p class="psc-effective"><span id="pscUnits">24</span> units · effective AED <span id="pscEffective">118</span>/unit</p>
               <p class="psc-introlabel" id="pscIntroLabel">Your rate for the first 12 months</p>
-              <p class="psc-standard" id="pscStandard"><span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdTotal">4,020</span>/mo</span></p>
+              <p class="psc-standard" id="pscStandard"><span class="psc-standard-label">Standard rate</span> <span class="psc-standard-fig">AED <span id="pscStdTotal">3,320</span>/mo</span></p>
             </div>
           </div>
           <input type="range" class="units-range" id="unitsRange" min="1" max="110" value="24" step="1" aria-label="Number of units">
@@ -4319,7 +4319,7 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
           <div class="tier reveal" data-tier="starter">
             <span class="tier-range">1–10 units</span>
             <span class="tier-name">Starter</span>
-            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 185</span></p>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 150</span></p>
             <div class="tier-price"><strong>AED 130</strong><span>per unit · units 1–10</span></div>
             <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For independent hosts and small operators getting started with AI-powered guest communication.</p>
@@ -4327,7 +4327,7 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
           <div class="tier reveal" style="--rd:60ms" data-tier="growth">
             <span class="tier-range">11–30 units</span>
             <span class="tier-name">Growth</span>
-            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 155</span></p>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 130</span></p>
             <div class="tier-price"><strong>AED 110</strong><span>per unit · units 11–30</span></div>
             <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For established operators ready to scale communication without scaling team size.</p>
@@ -4335,7 +4335,7 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
           <div class="tier reveal" style="--rd:120ms" data-tier="scale">
             <span class="tier-range">31–60 units</span>
             <span class="tier-name">Scale</span>
-            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 125</span></p>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 110</span></p>
             <div class="tier-price"><strong>AED 90</strong><span>per unit · units 31–60</span></div>
             <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For professional operators running serious portfolios who need consistent quality at volume.</p>
@@ -4343,7 +4343,7 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
           <div class="tier reveal" style="--rd:180ms" data-tier="portfolio">
             <span class="tier-range">61–100 units</span>
             <span class="tier-name">Portfolio</span>
-            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 105</span></p>
+            <p class="tier-standard"><span class="tier-standard-label">Standard rate</span> <span class="tier-standard-fig">AED 95</span></p>
             <div class="tier-price"><strong>AED 75</strong><span>per unit · units 61–100</span></div>
             <p class="tier-introlabel">Your rate for the first 12 months</p>
             <p class="tier-desc">For large operators managing complex multi-building portfolios with high-volume guest flow.</p>
@@ -4353,7 +4353,7 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
         <p class="pricing-terms reveal">Your rate is held for twelve months from the day service starts. After that it moves to the standard rate shown, and never above it. All prices exclude VAT.</p>
 
         <div class="enterprise-line reveal">
-          <p>Managing more than 100 units? Get in touch for custom enterprise pricing.</p>
+          <p>Managing more than 100 units? Units above 100 are charged at the Portfolio rate unless we agree custom terms. Get in touch.</p>
           <a class="btn btn-ghost" href="#contact">Talk to us</a>
         </div>
 
@@ -5233,10 +5233,10 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
     };
 
     var TIERS = [
-      { upTo: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 185 },
-      { upTo: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 155 },
-      { upTo: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 125 },
-      { upTo: 100, key: "portfolio", name: "Portfolio", intro: 75,  standard: 105 }
+      { upTo: 10,  key: "starter",   name: "Starter",   intro: 130, standard: 150 },
+      { upTo: 30,  key: "growth",    name: "Growth",    intro: 110, standard: 130 },
+      { upTo: 60,  key: "scale",     name: "Scale",     intro: 90,  standard: 110 },
+      { upTo: Infinity, key: "portfolio", name: "Portfolio", intro: 75,  standard: 95  }
     ];
 
     function monthlyTotal(units, key) {
@@ -5293,20 +5293,13 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       var fill = ((u - 1) / (110 - 1)) * 100;
       range.style.setProperty("--fill", fill + "%");
 
+      /* Above 100 units the Portfolio rate simply continues, so the slider keeps
+         showing a real number. The note invites a conversation about custom terms
+         rather than replacing the figure with "contact us", which reads as a wall. */
       var isEnterprise = u > 100;
       Object.keys(tiers).forEach(function (k) {
-        if (tiers[k]) tiers[k].classList.toggle("active", !isEnterprise && k === t.key);
+        if (tiers[k]) tiers[k].classList.toggle("active", k === t.key);
       });
-
-      if (isEnterprise) {
-        readout.innerHTML = '<span class="psc-total">custom enterprise pricing</span>';
-        if (effLine) { effLine.innerHTML = '<span id="pscUnits">' + u + "</span> units"; }
-        if (pscStandard) { pscStandard.hidden = true; }
-        if (pscIntroLabel) { pscIntroLabel.hidden = true; }
-        if (pscBreakdown) { pscBreakdown.hidden = true; }
-        pscNote.textContent = "Enterprise · Managing more than 100 units? Get in touch for custom pricing.";
-        return;
-      }
 
       var total = monthlyTotal(u, "intro");
       var stdTotal = monthlyTotal(u, "standard");
@@ -5325,7 +5318,9 @@ html.js-motion .sim-chips.invite .sim-chip[aria-pressed="true"] {
       if (pscIntroLabel) { pscIntroLabel.hidden = false; }
       if (pscBreakdown) { pscBreakdown.hidden = false; renderBreakdown(u); }
 
-      pscNote.textContent = t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
+      pscNote.textContent = isEnterprise
+        ? "Above 100 units · charged at the Portfolio rate unless we agree custom terms."
+        : t.name + " tier · Totals are indicative — final pricing is confirmed at onboarding.";
     }
     range.addEventListener("input", updatePricing);
     updatePricing();
