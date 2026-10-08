@@ -670,7 +670,7 @@
         (msg ? "\n\nNotes:\n" + msg : "") +
         "\n\nSent from oasisguestlab.ai";
       window.location.href =
-        "mailto:info@luxoasisadvisory.com?subject=" +
+        "mailto:oasisguestlab@luxoasisadvisory.com?subject=" +
         encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     });
   }
